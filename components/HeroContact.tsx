@@ -56,7 +56,7 @@ export default function HeroContact() {
                   id="name"
                   type="text"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder="Your name"
                   className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
                   required
                 />
@@ -73,7 +73,7 @@ export default function HeroContact() {
                   id="email"
                   type="email"
                   name="email"
-                  placeholder="john@email.com"
+                  placeholder="Your email address"
                   className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
                   required
                 />
@@ -90,7 +90,7 @@ export default function HeroContact() {
                   id="phone"
                   type="text"
                   name="phone"
-                  placeholder="(123) 456-789"
+                  placeholder="Your phone number"
                   className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
                 />
               </div>

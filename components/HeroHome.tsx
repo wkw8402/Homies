@@ -20,27 +20,28 @@ const HeroHome = () => {
           </p>
 
           <div className="flex flex-col items-center mt-8 overflow-hidden sm:flex-row">
-            <Link href="/contact">
-              <a className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600 group">
-                Get in touch
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 ml-3 group-hover:animate-horizontal-bounce"
-                  width="44"
-                  height="44"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <line x1="15" y1="16" x2="19" y2="12" />
-                  <line x1="15" y1="8" x2="19" y2="12" />
-                </svg>
-              </a>
+            <Link
+              href="/contact"
+              className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600 group"
+            >
+              Get in touch
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 ml-3 group-hover:animate-horizontal-bounce"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <line x1="15" y1="16" x2="19" y2="12" />
+                <line x1="15" y1="8" x2="19" y2="12" />
+              </svg>
             </Link>
           </div>
         </div>

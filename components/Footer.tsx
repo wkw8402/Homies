@@ -8,10 +8,8 @@ export default function Footer() {
         <div className="flex flex-col lg:mx-auto lg:col-span-4">
           <div className="flex items-center">
             <div className="flex-grow-0 flex-shrink-0 w-60">
-              <Link href="/">
-                <a>
-                  <img className="h-auto" src="/images/logo.png" alt="Homies" />
-                </a>
+              <Link href="/" legacyBehavior>
+                <img className="h-auto" src="/images/logo.png" alt="Homies" />
               </Link>
             </div>
           </div>

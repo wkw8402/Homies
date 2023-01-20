@@ -9,14 +9,8 @@ const Header = () => {
           <div className="relative max-w-screen-xl py-5 mx-auto border-b border-purple-200/30">
             <div className="flex items-center justify-between">
               <div className="flex-grow-0 flex-shrink-0 w-40 text-xl font-black">
-                <Link href="/">
-                  <a>
-                    <img
-                      src="/images/logo.png"
-                      alt="Homies"
-                      className="h-auto"
-                    />
-                  </a>
+                <Link href="/" legacyBehavior>
+                  <img src="/images/logo.png" alt="Homies" className="h-auto" />
                 </Link>
               </div>
               <ul className="flex ml-8 lg:space-x-6 xl:space-x-16">
