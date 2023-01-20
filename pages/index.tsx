@@ -9,6 +9,8 @@ import HomeFeaturesBlocks from '../components/HomeFeaturesBlocks';
 import Programs from '../components/Programs';
 
 const Home = () => {
+  console.log(process.env.NEXT_PUBLIC_VERCEL_URL);
+  console.log(process.env.NEXT_PUBLIC_BASE_URL);
   return (
     <>
       <Head>
