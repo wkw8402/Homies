@@ -163,11 +163,9 @@ const faqs = [
         </a>
         <a href="https://www.thecasdpnetwork.org" target="_blank">
           https://www.thecasdpnetwork.org
-        </a>
-        <a href="https://phoenixfacilitation.org" target="_blank">
-          - A valuable resource connecting self-determining Californian&rsquo;s
-          with independent facilitators and other service providers.
-        </a>
+        </a>{" "}
+        - A valuable resource connecting self-determining Californian&rsquo;s
+        with independent facilitators and other service providers.
       </>
     ),
   },
@@ -238,6 +236,7 @@ export default function Faq() {
         <ul className="relative mt-12 space-y-6">
           {faqs.map((question, index) => (
             <FaqDropdown
+              key={question.question}
               question={question.question}
               answer={question.answer}
             />
