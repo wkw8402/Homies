@@ -1,22 +1,50 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const ContactForm = () => {
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+    },
+  });
 
   const name = watch('name');
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    setSuccess(true);
+    setLoading(true);
+
+    const res = await axios({
+      method: 'POST',
+      url: '/api/contact',
+      data: data,
+    })
+      .then((res) => {
+        setLoading(false);
+        return res?.data;
+      })
+      .catch((e) => {
+        alert('An error occurred. See log for details.');
+        console.error(e);
+      });
+
+    if (res.status === 1) {
+      setSuccess(true);
+    } else {
+      alert(res.message);
+    }
   };
-  console.log(errors);
 
   if (success) {
     return (

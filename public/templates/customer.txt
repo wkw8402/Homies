@@ -1,0 +1,9 @@
+Message Received!
+
+Dear %NAME%:
+
+Thank you for inquiring. We just wanted to let you know that we've received your message and will be responding soon.
+
+Have a great day!
+
+- The Webmaster

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import AboutTeam from '../components/AboutTeam';
-import CTA from '../components/CTA';
+import CallToAction from '../components/CallToAction';
 import Faq from '../components/Faq';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -30,7 +30,7 @@ const Home = () => {
 
       <Faq />
 
-      <CTA />
+      <CallToAction />
 
       <Footer />
     </>
