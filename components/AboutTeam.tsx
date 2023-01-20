@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react';
 export default function AboutTeam() {
   return (
     <section className="relative w-full px-4 py-16 sm:py-24 sm:px-6 xl:px-8">
