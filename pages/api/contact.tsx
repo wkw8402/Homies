@@ -69,29 +69,30 @@ async function sendEmails(req, res) {
     });
 
     if (!info.messageId) {
-      res
-        .status(200)
-        .json({
-          status: 0,
-          message:
-            'Sorry, we are having some technical difficulties. Please send us an email instead.',
-        });
-      return false;
+      console.log('failed');
+      res.status(200).json({
+        status: 0,
+        message:
+          'Sorry, we are having some technical difficulties. Please send us an email instead.',
+      });
+      return;
     }
 
     sendHtml = template
       .replace('%BODY%', adminHtml)
       .replace('%NAME%', name)
       .replace('%EMAIL%', email)
+      .replace('%PHONE%', phone)
       .replace('%MESSAGE%', message);
 
     sendTxt = adminTxt
       .replace('%NAME%', name)
       .replace('%EMAIL%', email)
+      .replace('%PHONE%', phone)
       .replace('%MESSAGE%', message);
 
     info = await transporter.sendMail({
-      from: recipEmail,
+      from: adminEmail,
       to: adminEmail, // list of receivers
       subject: req.body.subject ? req.body.subject : `New Message From ${name}`, // Subject line
       text: sendTxt, // plain text body
@@ -99,24 +100,25 @@ async function sendEmails(req, res) {
     });
 
     if (info.messageId) {
+      console.log('success');
       res.status(200).json({ status: 1 });
     } else {
-      res
-        .status(200)
-        .json({
-          status: 0,
-          message:
-            'Sorry, we are having some technical difficulties. Please send us an email instead.',
-        });
-    }
-  } catch (e) {
-    console.log(e);
-    res
-      .status(200)
-      .json({
+      console.log('failed');
+
+      res.status(200).json({
         status: 0,
         message:
           'Sorry, we are having some technical difficulties. Please send us an email instead.',
       });
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(200).json({
+      status: 0,
+      message:
+        'Sorry, we are having some technical difficulties. Please send us an email instead.',
+    });
   }
+  console.log('hit');
+  return;
 }

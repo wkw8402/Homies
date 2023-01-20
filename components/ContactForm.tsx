@@ -182,8 +182,11 @@ const ContactForm = () => {
         </div>
 
         <div className="flex justify-start mt-6">
-          <button className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600">
-            Send message
+          <button
+            disabled={loading}
+            className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600"
+          >
+            {loading ? 'Sending...' : 'Send message'}
           </button>
         </div>
       </form>

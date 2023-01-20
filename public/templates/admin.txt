@@ -4,5 +4,6 @@ The following information was submitted:
 
 Name: %NAME%
 Email: %EMAIL%
+Phone: %PHONE%
 Message:
 %MESSAGE%
