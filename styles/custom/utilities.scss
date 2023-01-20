@@ -1,0 +1,30 @@
+// Typography
+.h1 {
+  @apply font-extrabold text-5xl sm:text-6xl xl:text-6xl leading-snug sm:leading-tight xl:leading-tighter;
+}
+
+.h2 {
+  @apply text-4xl leading-tight tracking-tight sm:text-5xl xl:text-6xl sm:leading-tighter font-bold;
+}
+
+.h3 {
+  @apply text-3xl leading-tight tracking-tight sm:text-4xl sm:leading-tighter font-bold;
+}
+
+.h4 {
+  @apply text-2xl leading-tight tracking-tight sm:text-3xl sm:leading-tighter font-bold;
+}
+
+// Buttons
+.btn,
+.btn-sm {
+  @apply relative leading-normal inline-flex items-center justify-center px-8 py-3 duration-300 ease-in-out rounded-full outline-none;
+}
+
+.btn {
+  @apply px-8 py-3.5;
+}
+
+.btn-sm {
+  @apply px-5 py-2.5;
+}
