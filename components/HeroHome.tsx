@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const HeroHome = () => {
   return (
-    <section className="px-4 pt-16 sm:px-6 lg:px-8">
+    <section className="px-4 pt-12 sm:pt-16 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto lg:grid lg:grid-cols-12 lg:gap-8">
         <div className="flex flex-col items-center justify-center lg:items-start lg:col-span-6">
           <div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Programs() {
   return (
-    <section className="px-4 pt-16 pb-24 overflow-hidden sm:pb-28 md:pb-0 sm:pt-24 sm:px-6 lg:px-8">
+    <section className="px-4 pb-24 overflow-hidden sm:pb-28 md:pb-0 sm:pt-24 sm:px-6 lg:px-8">
       <div className="max-w-xl mx-auto md:max-w-screen-xl">
         <div className="md:grid md:grid-cols-2 md:gap-12 lg:gap-16">
           <div>

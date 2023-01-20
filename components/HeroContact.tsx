@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactForm from './ContactForm';
 
 export default function HeroContact() {
   return (
@@ -34,90 +35,7 @@ export default function HeroContact() {
           />
 
           <div className="relative z-10 w-full px-4 py-10 mx-auto bg-white shadow-xl rounded-3xl lg:mr-0 lg:ml-auto sm:p-16 lg:p-12 xl:p-14">
-            <div>
-              <h3 className="text-2xl font-bold text-purple-900">
-                Send us a message
-              </h3>
-              <p className="text-purple-800 mt-0.5 text-opacity-90">
-                Please fill out the form to learn more about the Homies pilot
-                program. We will be in touch shortly.
-              </p>
-            </div>
-
-            <form className="mt-8" name="contact-form">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="ml-0.5 text-purple-900 font-medium text-lg"
-                >
-                  Name *
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-6">
-                <label
-                  htmlFor="email"
-                  className="ml-0.5 text-purple-900 font-medium text-lg"
-                >
-                  Email *
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Your email address"
-                  className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-6">
-                <label
-                  htmlFor="phone"
-                  className="ml-0.5 text-purple-900 font-medium text-lg"
-                >
-                  Phone *
-                </label>
-                <input
-                  id="phone"
-                  type="text"
-                  name="phone"
-                  placeholder="Your phone number"
-                  className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
-                />
-              </div>
-
-              <div className="mt-6">
-                <label
-                  htmlFor="message"
-                  className="ml-0.5 text-purple-900 font-medium text-lg"
-                >
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Hi, I'd like to learn more about the Homies pilot program."
-                  rows={5}
-                  className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
-                  required
-                ></textarea>
-              </div>
-
-              <div className="flex justify-start mt-6">
-                <button className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600">
-                  Send message
-                </button>
-              </div>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

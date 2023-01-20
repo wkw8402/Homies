@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -8,8 +9,14 @@ export default function Footer() {
         <div className="flex flex-col lg:mx-auto lg:col-span-4">
           <div className="flex items-center">
             <div className="flex-grow-0 flex-shrink-0 w-60">
-              <Link href="/" legacyBehavior>
-                <img className="h-auto" src="/images/logo.png" alt="Homies" />
+              <Link href="/">
+                <Image
+                  width={100}
+                  height={100}
+                  className="h-auto"
+                  src="/images/logo.png"
+                  alt="Homies"
+                />
               </Link>
             </div>
           </div>
@@ -26,7 +33,7 @@ export default function Footer() {
           </h6>
           <ul className="mt-6 text-lg divide-y divide-purple-400/20">
             <li className="py-2 font-medium text-purple-700 duration-300 ease-in-out hover:text-purple-600">
-              <a href="privacy-policy"> Privacy Policy </a>
+              <Link href="privacy-policy">Privacy Policy</Link>
             </li>
           </ul>
         </div>

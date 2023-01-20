@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import HeroContact from '../components/HeroContact';
 
-const Home = () => {
+const Contact = () => {
   return (
     <>
       <Head>
@@ -25,4 +25,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Contact;

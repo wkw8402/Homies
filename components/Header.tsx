@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -5,15 +6,21 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="hidden px-4 lg:block sm:px-6">
+        <div className="px-4 sm:px-6">
           <div className="relative max-w-screen-xl py-5 mx-auto border-b border-purple-200/30">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-center sm:justify-between">
               <div className="flex-grow-0 flex-shrink-0 w-40 text-xl font-black">
-                <Link href="/" legacyBehavior>
-                  <img src="/images/logo.png" alt="Homies" className="h-auto" />
+                <Link href="/">
+                  <Image
+                    width={200}
+                    height={100}
+                    className="h-auto"
+                    src="/images/logo.png"
+                    alt="Homies"
+                  />
                 </Link>
               </div>
-              <ul className="flex ml-8 lg:space-x-6 xl:space-x-16">
+              <ul className="hidden space-x-6 md:flex sm:ml-8 xl:space-x-16">
                 <li className="flex flex-shrink-0">
                   <div>
                     <span className="flex items-center justify-center bg-purple-200 rounded-2xl w-11 h-11">
