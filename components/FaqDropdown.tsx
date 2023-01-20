@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import React, { useRef, useState } from "react";
+import classNames from 'classnames';
+import React, { useRef, useState } from 'react';
 
 export default function FaqDropdown({ question, answer }) {
   const [open, setOpen] = useState(false);
@@ -17,8 +17,8 @@ export default function FaqDropdown({ question, answer }) {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={classNames(
-            "flex-shrink-0 w-5 h-6 ml-3 text-purple-700 duration-300 ease-in-out sm:w-6 sm:h-6 sm:ml-6 group-hover:text-purple-600",
-            open ? "rotate-180" : ""
+            'flex-shrink-0 w-5 h-6 ml-3 text-purple-700 duration-300 ease-in-out sm:w-6 sm:h-6 sm:ml-6 group-hover:text-purple-600',
+            open ? 'rotate-180' : ''
           )}
           fill="none"
           viewBox="0 0 24 24"
@@ -35,8 +35,8 @@ export default function FaqDropdown({ question, answer }) {
       <div
         ref={scrollRef}
         className={classNames(
-          "relative overflow-hidden duration-700 max-h-0",
-          open ? "max-h-full" : ""
+          'relative overflow-hidden duration-700 max-h-0',
+          open ? 'max-h-full' : ''
         )}
         style={{
           maxHeight: open ? scrollRef.current?.scrollHeight : 0,

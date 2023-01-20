@@ -1,8 +1,8 @@
-import Head from "next/head";
-import ContactInformation from "../components/ContactInformation";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import HeroContact from "../components/HeroContact";
+import Head from 'next/head';
+import ContactInformation from '../components/ContactInformation';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import HeroContact from '../components/HeroContact';
 
 const Home = () => {
   return (

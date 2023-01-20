@@ -1,4 +1,5 @@
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 export default function Footer() {
   return (
@@ -7,9 +8,11 @@ export default function Footer() {
         <div className="flex flex-col lg:mx-auto lg:col-span-4">
           <div className="flex items-center">
             <div className="flex-grow-0 flex-shrink-0 w-60">
-              <a href="/">
-                <img className="h-auto" src="/images/logo.png" alt="Homies" />
-              </a>
+              <Link href="/">
+                <a>
+                  <img className="h-auto" src="/images/logo.png" alt="Homies" />
+                </a>
+              </Link>
             </div>
           </div>
           <div className="mt-6 text-lg text-purple-800">

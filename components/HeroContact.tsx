@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function HeroContact() {
   return (
@@ -44,7 +44,7 @@ export default function HeroContact() {
               </p>
             </div>
 
-            <form netlify className="mt-8" name="contact-form">
+            <form className="mt-8" name="contact-form">
               <div>
                 <label
                   htmlFor="name"

@@ -1,4 +1,5 @@
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 export default function AboutTeam() {
   return (
     <section className="relative w-full px-4 py-16 sm:py-24 sm:px-6 xl:px-8">
@@ -174,29 +175,28 @@ export default function AboutTeam() {
                   </li>
                 </ul>
 
-                <a
-                  href="/contact"
-                  className="mt-10 font-medium text-white bg-purple-600 btn-sm hover:bg-purple-500 group"
-                >
-                  Become a supportive roommate
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 ml-3 group-hover:animate-horizontal-bounce"
-                    width="44"
-                    height="44"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <line x1="15" y1="16" x2="19" y2="12"></line>
-                    <line x1="15" y1="8" x2="19" y2="12"></line>
-                  </svg>
-                </a>
+                <Link href="/contact">
+                  <a className="mt-10 font-medium text-white bg-purple-600 btn-sm hover:bg-purple-500 group">
+                    Become a supportive roommate
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 ml-3 group-hover:animate-horizontal-bounce"
+                      width="44"
+                      height="44"
+                      viewBox="0 0 24 24"
+                      strokeWidth="2"
+                      stroke="currentColor"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <line x1="15" y1="16" x2="19" y2="12"></line>
+                      <line x1="15" y1="8" x2="19" y2="12"></line>
+                    </svg>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

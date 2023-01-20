@@ -1,5 +1,5 @@
-// new react component
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 const Header = () => {
   return (
@@ -9,9 +9,15 @@ const Header = () => {
           <div className="relative max-w-screen-xl py-5 mx-auto border-b border-purple-200/30">
             <div className="flex items-center justify-between">
               <div className="flex-grow-0 flex-shrink-0 w-40 text-xl font-black">
-                <a href="/">
-                  <img src="/images/logo.png" alt="Homies" className="h-auto" />
-                </a>
+                <Link href="/">
+                  <a>
+                    <img
+                      src="/images/logo.png"
+                      alt="Homies"
+                      className="h-auto"
+                    />
+                  </a>
+                </Link>
               </div>
               <ul className="flex ml-8 lg:space-x-6 xl:space-x-16">
                 <li className="flex flex-shrink-0">

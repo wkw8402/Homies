@@ -1,12 +1,12 @@
-import Head from "next/head";
-import AboutTeam from "../components/AboutTeam";
-import CTA from "../components/CTA";
-import Faq from "../components/Faq";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import HeroHome from "../components/HeroHome";
-import HomeFeaturesBlocks from "../components/HomeFeaturesBlocks";
-import Programs from "../components/Programs";
+import Head from 'next/head';
+import AboutTeam from '../components/AboutTeam';
+import CTA from '../components/CTA';
+import Faq from '../components/Faq';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import HeroHome from '../components/HeroHome';
+import HomeFeaturesBlocks from '../components/HomeFeaturesBlocks';
+import Programs from '../components/Programs';
 
 const Home = () => {
   return (

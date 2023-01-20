@@ -1,4 +1,5 @@
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 export default function CTA() {
   return (
@@ -18,12 +19,11 @@ export default function CTA() {
           </span>
         </h2>
         <div className="flex justify-center mt-12 xl:mt-14">
-          <a
-            className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600 group"
-            href="/contact"
-          >
-            Get started
-          </a>
+          <Link href="/contact">
+            <a className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600 group">
+              Get started
+            </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
-import FaqDropdown from "./FaqDropdown";
+import FaqDropdown from './FaqDropdown';
 
 const faqs = [
   {
-    question: "What is Life-Sharing?",
+    question: 'What is Life-Sharing?',
     answer: (
       <>
         Lifesharing supports individuals with disabilities to live with
@@ -20,7 +20,7 @@ const faqs = [
     ),
   },
   {
-    question: "If I become a supportive roommate, can I keep my current job?",
+    question: 'If I become a supportive roommate, can I keep my current job?',
     answer: (
       <>
         Yes, you have the freedom to pick your own hours. Most supportive
@@ -30,7 +30,7 @@ const faqs = [
     ),
   },
   {
-    question: "I have a family, can I still be a supportive roommate?",
+    question: 'I have a family, can I still be a supportive roommate?',
     answer: (
       <>
         Of course, a lot of individuals with disabilities are looking to live
@@ -39,7 +39,7 @@ const faqs = [
     ),
   },
   {
-    question: "What is the salary for a supportive roommate?",
+    question: 'What is the salary for a supportive roommate?',
     answer: (
       <>
         The salary for supportive roommates range from $12,000- $40,000
@@ -49,7 +49,7 @@ const faqs = [
     ),
   },
   {
-    question: "What are some of the responsibilities for Supportive Roommates?",
+    question: 'What are some of the responsibilities for Supportive Roommates?',
     answer: (
       <>
         The most important requirement is that supportive roommates are there
@@ -65,11 +65,11 @@ const faqs = [
   },
   {
     question:
-      "I have an extra bedroom, can someone with disabilities move into the extra bedroom?",
+      'I have an extra bedroom, can someone with disabilities move into the extra bedroom?',
     answer: <>Yes!</>,
   },
   {
-    question: "How long does it take to find your Homie?",
+    question: 'How long does it take to find your Homie?',
     answer: (
       <>
         It can take anywhere from 1 to 6 months to find your roommate! We
@@ -80,7 +80,7 @@ const faqs = [
     ),
   },
   {
-    question: "Will Homies provide housing?",
+    question: 'Will Homies provide housing?',
     answer: (
       <>
         We don&rsquo;t provide housing, but we will help both parties find
@@ -90,7 +90,7 @@ const faqs = [
     ),
   },
   {
-    question: "Does the Homie have to pay for rent?",
+    question: 'Does the Homie have to pay for rent?',
     answer: (
       <>
         Yes, you will share living expenses with your supportive roommate if you
@@ -101,7 +101,7 @@ const faqs = [
     ),
   },
   {
-    question: "Which areas do you serve?",
+    question: 'Which areas do you serve?',
     answer: (
       <>
         The entire state of California. We are accepting individuals who want to
@@ -110,19 +110,23 @@ const faqs = [
     ),
   },
   {
-    question: "How is this funded?",
+    question: 'How is this funded?',
     answer: (
       <>
         California Regional Centers and Self Determination Program.
-        <br /> <br /> To learn more about Self-Determination, please visit:{" "}
-        <a href="https://www.dds.ca.gov/initiatives/sdp/" target="_blank">
+        <br /> <br /> To learn more about Self-Determination, please visit:{' '}
+        <a
+          href="https://www.dds.ca.gov/initiatives/sdp/"
+          target="_blank"
+          rel="noreferrer"
+        >
           https://www.dds.ca.gov/initiatives/sdp/
         </a>
       </>
     ),
   },
   {
-    question: "How is the income tax-free?",
+    question: 'How is the income tax-free?',
     answer: (
       <>
         The tax law allows individuals who receive family foster care payments
@@ -142,39 +146,52 @@ const faqs = [
         </ul>
         <br /> Since Homies is a service that connects two people that live in
         their own home on their own lease (and not in a group home or
-        institutionalized setting), the income to the care provider is tax-free.{" "}
+        institutionalized setting), the income to the care provider is tax-free.{' '}
         <br /> <br /> Remember to consult your tax professional with any tax
         questions.
       </>
     ),
   },
   {
-    question: "How can I sign up for Self Determination?",
+    question: 'How can I sign up for Self Determination?',
     answer: (
       <>
         Connect with a local Independent Facilitator to learn more about how to
         sign up for Self Determination. Here is a growing list of contacts that
         can help you navigate the landscape. If you know of other resources
-        please let us know! <br /> <br />
-        <a href="https://phoenixfacilitation.org" target="_blank">
+        please let us know!
+        <br />
+        <br />
+        <a
+          href="https://phoenixfacilitation.org"
+          target="_blank"
+          rel="noreferrer"
+        >
           https://phoenixfacilitation.org - Contact Naomi Hagel at
           naomi@gophoenix.org. She is an independent facilitator that
-          specializes in self determination. <br /> <br />
+          specializes in self determination.
+          <br />
+          <br />
         </a>
-        <a href="https://www.thecasdpnetwork.org" target="_blank">
+        <a
+          href="https://www.thecasdpnetwork.org"
+          target="_blank"
+          rel="noreferrer"
+        >
           https://www.thecasdpnetwork.org
-        </a>{" "}
+        </a>{' '}
         - A valuable resource connecting self-determining Californian&rsquo;s
         with independent facilitators and other service providers.
       </>
     ),
   },
   {
-    question: "What disqualifies me from being a supportive roommate?",
+    question: 'What disqualifies me from being a supportive roommate?',
     answer: (
       <>
         An individual can be disqualified based on information from Califonriaor
-        any other state that includes: <br />
+        any other state that includes:
+        <br />
         <ul className="ml-4">
           <li>
             - a conviction, admission, or Alford plea, to any of the crimes
@@ -195,16 +212,18 @@ const faqs = [
     ),
   },
   {
-    question: "How do you make sure supportive roommates are safe?",
+    question: 'How do you make sure supportive roommates are safe?',
     answer: (
       <>
         We require full legal name and phone numbers, so that we can call to
         verify. We also run background checks through the state criminal court
-        system as well as &ldquo;Dru Sjodin National Sex Offender&rdquo; system.{" "}
-        <br /> <br /> We also offer guidance on how to engage with connections
-        to ensure safety. There is zero tolerance for behavior that breaks our
-        rules; those that do engage in inappropriate behavior will be flagged
-        and banned from our system.
+        system as well as "Dru Sjodin National Sex Offender" system.
+        <br />
+        <br />
+        We also offer guidance on how to engage with connections to ensure
+        safety. There is zero tolerance for behavior that breaks our rules;
+        those that do engage in inappropriate behavior will be flagged and
+        banned from our system.
       </>
     ),
   },

@@ -1,4 +1,5 @@
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 export default function HomeFeaturesBlocks() {
   return (
@@ -75,14 +76,14 @@ export default function HomeFeaturesBlocks() {
                 <img
                   className="object-cover rounded-2xl"
                   src="/images/home-emmett.jpg"
-                  alt="Picture of one of our Homies"
+                  alt="One of our Homies"
                 />
               </div>
               <div className="absolute bottom-0 left-0 hidden sm:block sm:translate-y-1/3 sm:w-72 sm:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80 rounded-3xl">
                 <img
                   className="object-cover w-full h-full rounded-3xl"
                   src="/images/home-spencer.jpg"
-                  alt="Picture of one of our Homies"
+                  alt="One of our Homies"
                 />
               </div>
             </div>
@@ -103,29 +104,28 @@ export default function HomeFeaturesBlocks() {
               to individuals in all California regional centers.
             </p>
             <div className="mt-6">
-              <a
-                href="/contact"
-                className="font-medium text-white bg-purple-600 btn-sm hover:bg-purple-500 group"
-              >
-                Discover eligibility
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 ml-3 group-hover:animate-horizontal-bounce"
-                  width="44"
-                  height="44"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <line x1="15" y1="16" x2="19" y2="12"></line>
-                  <line x1="15" y1="8" x2="19" y2="12"></line>
-                </svg>
-              </a>
+              <Link href="/contact">
+                <a className="font-medium text-white bg-purple-600 btn-sm hover:bg-purple-500 group">
+                  Discover eligibility
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 ml-3 group-hover:animate-horizontal-bounce"
+                    width="44"
+                    height="44"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <line x1="15" y1="16" x2="19" y2="12"></line>
+                    <line x1="15" y1="8" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -137,14 +137,14 @@ export default function HomeFeaturesBlocks() {
                 <img
                   className="object-cover rounded-3xl"
                   src="/images/home-roommates-2.jpg"
-                  alt="Picture of one of our Homies"
+                  alt="One of our Homies"
                 />
               </div>
               <div className="absolute top-0 right-0 hidden sm:block sm:-translate-y-1/3 sm:w-72 sm:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80 rounded-3xl">
                 <img
                   className="object-cover w-full h-full rounded-3xl"
                   src="/images/home-roommates-1.jpg"
-                  alt="Picture of one of our Homies"
+                  alt="One of our Homies"
                 />
               </div>
             </div>
@@ -165,29 +165,28 @@ export default function HomeFeaturesBlocks() {
             </p>
 
             <div className="mt-6">
-              <a
-                href="/contact"
-                className="font-medium text-white bg-purple-600 btn-sm hover:bg-purple-500 group"
-              >
-                Join the pilot program
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 ml-3 group-hover:animate-horizontal-bounce"
-                  width="44"
-                  height="44"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <line x1="15" y1="16" x2="19" y2="12"></line>
-                  <line x1="15" y1="8" x2="19" y2="12"></line>
-                </svg>
-              </a>
+              <Link href="/contact">
+                <a className="font-medium text-white bg-purple-600 btn-sm hover:bg-purple-500 group">
+                  Join the pilot program
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 ml-3 group-hover:animate-horizontal-bounce"
+                    width="44"
+                    height="44"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <line x1="15" y1="16" x2="19" y2="12"></line>
+                    <line x1="15" y1="8" x2="19" y2="12"></line>
+                  </svg>
+                </a>
+              </Link>
             </div>
           </div>
         </div>
