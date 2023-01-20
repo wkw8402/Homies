@@ -11,8 +11,8 @@ export default function Footer() {
             <div className="flex-grow-0 flex-shrink-0 w-60">
               <Link href="/">
                 <Image
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={63.44}
                   className="h-auto"
                   src="/images/logo.png"
                   alt="Homies"

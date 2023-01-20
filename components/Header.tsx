@@ -78,7 +78,7 @@ const Header = () => {
                       Phone
                     </h5>
                     <p className="mt-0.5 text-sm text-purple-800 leading-relaxed text-opacity-90">
-                      <a href="tel:+19512918279">+1 (951) 291-8279</a>
+                      <a href="tel:+19512918279">(951) 291-8279</a>
                     </p>
                   </div>
                 </li>

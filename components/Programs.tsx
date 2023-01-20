@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Programs() {
   return (
-    <section className="px-4 pb-24 overflow-hidden sm:pb-28 md:pb-0 sm:pt-24 sm:px-6 lg:px-8">
+    <section className="px-4 overflow-hidden md:pb-0 sm:pt-24 sm:px-6 lg:px-8">
       <div className="max-w-xl mx-auto md:max-w-screen-xl">
         <div className="md:grid md:grid-cols-2 md:gap-12 lg:gap-16">
           <div>
@@ -16,11 +16,11 @@ export default function Programs() {
             </p>
           </div>
         </div>
-        <div className="mt-16 md:mt-72 md:grid md:grid-cols-2 md:gap-8 lg:gap-16">
+        <div className="mt-16 mb-24 md:mt-72 md:-mb-48 md:grid md:grid-cols-2 md:gap-8 lg:gap-16">
           <div className="relative">
             <img
               className="absolute top-0 hidden -translate-y-1/2 md:block left-1/2"
-              // style="width: calc(50% + 4rem);"
+              style={{ width: 'calc(50% + 4rem)' }}
               src="/icons/curved-dotted-line.svg"
               alt=""
             />
@@ -46,7 +46,7 @@ export default function Programs() {
             </div>
             <img
               className="hidden md:block absolute bottom-0 left-1/2 translate-y-[90%]"
-              // style="width: calc(50% + 4rem);"
+              style={{ width: 'calc(50% + 4rem)' }}
               src="/icons/looped-dotted-line.svg"
               alt=""
             />
