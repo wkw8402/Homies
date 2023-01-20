@@ -1,45 +1,118 @@
 ---
-title: "Welcome!"
-preheader: "Thank you for signing up, time to get started"
+title: 'Welcome!'
+preheader: 'Thank you for signing up, time to get started'
 bodyClass: bg-gray-100 dark-mode:bg-gray-999
 ---
 
 <extends src="src/layouts/main.html">
   <block name="template">
-    <p class="text-2xl sm:leading-32 text-black dark-mode:text-white font-semibold m-0 mb-36 font-serif">
-      Welcome. Time to get started.
+    <p
+      class="m-0 text-2xl font-semibold text-black sm:leading-32 dark-mode:text-white mb-36"
+    >
+      Thank you for reaching out to Homies!
     </p>
     <p class="m-0 mb-24">
-      Thanks for signing up to our service. To get started, do something by clicking the big button below
+      We appreciate your interest in our program. We will be in touch with you
+      shortly to help answer any questions you may have about the program.
     </p>
-    <a
-      href="https://example.com"
-      class="inline-block uppercase py-16 px-24 text-base font-semibold text-center no-underline text-white bg-blue-500 hover:bg-blue-600"
-    >
-      <!--[if mso
-        ]><i
-          style="
-            letter-spacing: 24px;
-            mso-font-width: -100%;
-            mso-text-raise: 30px;
-          "
-          >&#8202;</i
-        ><!
-      [endif]-->
-      <span style="mso-text-raise: 16px">Do the thing</span>
-      <!--[if mso
-        ]><i style="letter-spacing: 24px; mso-font-width: -100%">&#8202;</i><!
-      [endif]-->
-    </a>
+
+    <div class="mb-24">
+      <a
+        href="https://example.com"
+        class="relative inline-block px-24 py-16 text-base font-semibold text-center text-white no-underline bg-blue-600 rounded-full hover:bg-blue-700"
+      >
+        <!--[if mso
+          ]><i
+            style="
+              letter-spacing: 24px;
+              mso-font-width: -100%;
+              mso-text-raise: 30px;
+            "
+            >&#8202;</i
+          ><!
+        [endif]-->
+        <span style="mso-text-raise: 16px">Schedule a call</span>
+
+        <!--[if mso
+          ]><i style="letter-spacing: 24px; mso-font-width: -100%">&#8202;</i><!
+        [endif]-->
+      </a>
+    </div>
+
+    <p class="m-0 mb-24">
+      In the meantime, you may already know someone who would make a great
+      supportive roommate for you. Below is a list of potential supportive
+      roommates who may be a great match for you.
+    </p>
+
+    <p class="m-0 mb-24">
+      <a
+        target="_blank"
+        href="https://www.meethomies.com/my-roommate"
+        class="text-blue-700 no-underline hover:underline"
+        >Already have your supportive roommate? Let us know 👈</a
+      >
+    </p>
+
+    <p class="font-semibold">List of potential supportive roommate options:</p>
+    <ul class="mb-24">
+      <li>Friend</li>
+      <li>Family member (sibling, parent, cousin, etc.)</li>
+      <li>Neighbor</li>
+      <li>Co-worker</li>
+      <li>Former or current staff member</li>
+      <li>Someone from your school or university</li>
+      <li>Someone from your place of worship</li>
+    </ul>
+
+    <p class="m-0 mb-24">
+      If you don't already have someone in mind, please don't hesitate to reach
+      out to us. We would be more than happy to help you find the perfect
+      supportive roommate.
+    </p>
+
+    <p class="font-semibold">Next steps:</p>
+    <ul class="mb-24">
+      <li>
+        <a
+          target="_blank"
+          href="https://www.meethomies.com"
+          class="text-blue-700 no-underline hover:underline"
+          >Schedule a call to learn more</a
+        >
+      </li>
+      <li>
+        <a
+          target="_blank"
+          href="https://www.facebook.com/profile.php?id=100087589933242"
+          class="text-blue-700 no-underline hover:underline"
+          >Join us on Facebook
+        </a>
+      </li>
+    </ul>
+
+    <p class="m-0 mb-24">Thank you again for your interest in Homies.</p>
+    <p class="m-0 mb-24">
+      Sincerely,
+      <br />
+      <span class="font-medium">Garrett & the Homies ❤️</span>
+    </p>
+
     <table class="w-full">
       <tr>
         <td class="py-32">
-          <hr class="border-gray-100 border-b-0" />
+          <hr class="border-b-0 border-gray-100" />
         </td>
       </tr>
     </table>
-    <p class="m-0 mb-16 text-gray-500">
-      You are receiving this message because you signed up to account at https://example.com. Manage your notification preferences <a class="text-gray-500" href="https://example.com">here</a>.
-    </p>
+    <!-- <p class="m-0 mb-16 text-sm text-gray-500">
+      You are receiving this message because you filled out the contact form on
+      <a
+        href="https://www.meethomies.com"
+        target="_blank"
+        class="text-blue-600 underline"
+        >meethomies.com</a
+      >.
+    </p> -->
   </block>
 </extends>

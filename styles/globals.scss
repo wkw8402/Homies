@@ -40,11 +40,21 @@ ul {
   margin: 0;
 }
 
-ul {
-  padding: 0;
-  list-style: none;
-}
+// ul {
+//   padding: 0;
+//   list-style: none;
+// }
 
-.faq a {
-  @apply text-blue-600;
+.faq {
+  p {
+    @apply mb-4;
+  }
+
+  a {
+    @apply text-blue-600;
+  }
+
+  ul {
+    @apply list-disc list-inside pl-4 pb-4;
+  }
 }

@@ -111,7 +111,7 @@ export default function ContactInformation() {
                   Call us
                 </h5>
                 <p className="mt-1.5 text-base text-purple-800 leading-relaxed">
-                  <a href="tel:+19512918279">+1 (951) 291-8279</a>
+                  <a href="tel:+19512918279">(951) 291-8279</a>
                 </p>
               </div>
             </div>

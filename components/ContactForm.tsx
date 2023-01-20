@@ -1,4 +1,5 @@
 import axios from 'axios';
+import classNames from 'classnames';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -184,7 +185,11 @@ const ContactForm = () => {
         <div className="flex justify-start mt-6">
           <button
             disabled={loading}
-            className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600"
+            className={classNames(
+              loading &&
+                'animate-button-background bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 text-white',
+              'text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600'
+            )}
           >
             {loading ? 'Sending...' : 'Send message'}
           </button>

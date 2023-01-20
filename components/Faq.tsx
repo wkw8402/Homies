@@ -5,17 +5,24 @@ const faqs = [
     question: 'What is Life-Sharing?',
     answer: (
       <>
-        Lifesharing supports individuals with disabilities to live with
-        qualified adults who provide support in their home. <br />
-        <br /> Lifesharing means living with and sharing life experiences with
-        supportive persons who form a caring household. Lifesharing is
-        recognized as both a close personal relationship and a place to live.
-        Lifesharers offer individuals the opportunity to be part of a family and
-        to participate in community life. Lifesharers and individuals are
-        carefully matched and supported by qualified professionals to achieve
-        the person's program objectives. Birth families are encouraged to be
-        part of the matching process and continue to have close relationships
-        with individuals who choose a lifesharing option.
+        <p>
+          Lifesharing supports individuals with disabilities to live with
+          qualified adults who provide support in their home.
+        </p>
+
+        <p>
+          Lifesharing means living with and sharing life experiences with
+          supportive persons who form a caring household. Lifesharing is
+          recognized as both a close personal relationship and a place to live.
+        </p>
+        <p>
+          Lifesharers offer individuals the opportunity to be part of a family
+          and to participate in community life. Lifesharers and individuals are
+          carefully matched and supported by qualified professionals to achieve
+          the person's program objectives. Birth families are encouraged to be
+          part of the matching process and continue to have close relationships
+          with individuals who choose a lifesharing option.
+        </p>
       </>
     ),
   },
@@ -23,9 +30,11 @@ const faqs = [
     question: 'If I become a supportive roommate, can I keep my current job?',
     answer: (
       <>
-        Yes, you have the freedom to pick your own hours. Most supportive
-        roommates have a job during the day (9am-5pm) and provide support for
-        their roommate in the late evening and early morning hours.
+        <p>
+          Yes, you have the freedom to pick your own hours. Most supportive
+          roommates have a job during the day (9am-5pm) and provide support for
+          their roommate in the late evening and early morning hours.
+        </p>
       </>
     ),
   },
@@ -33,8 +42,10 @@ const faqs = [
     question: 'I have a family, can I still be a supportive roommate?',
     answer: (
       <>
-        Of course, a lot of individuals with disabilities are looking to live
-        with families.
+        <p>
+          Of course, a lot of individuals with disabilities are looking to live
+          with families.
+        </p>
       </>
     ),
   },
@@ -42,9 +53,11 @@ const faqs = [
     question: 'What is the salary for a supportive roommate?',
     answer: (
       <>
-        The salary for supportive roommates range from $12,000- $40,000
-        tax-free. It will depend on how many hours of support a week you provide
-        for your Homie.
+        <p>
+          The salary for supportive roommates range from $12,000- $40,000
+          tax-free. It will depend on how many hours of support a week you
+          provide for your Homie.
+        </p>
       </>
     ),
   },
@@ -52,14 +65,18 @@ const faqs = [
     question: 'What are some of the responsibilities for Supportive Roommates?',
     answer: (
       <>
-        The most important requirement is that supportive roommates are there
-        overnight. Other duties might include: hanging out with your homie,
-        eating dinner together, cooking, going to a sporting events together,
-        transporting your homie to their job or event, reminding homie to pay
-        bills or take medication, and personal care. <br /> <br /> The
-        responsibilities will vary depending on the individual. The goal is for
-        this to be such a compatible match that this doesn&rsquo;t really feel
-        like work! You are living with your homie.
+        <p>
+          The most important requirement is that supportive roommates are there
+          overnight. Other duties might include: hanging out with your homie,
+          eating dinner together, cooking, going to a sporting events together,
+          transporting your homie to their job or event, reminding homie to pay
+          bills or take medication, and personal care.
+        </p>
+        <p>
+          The responsibilities will vary depending on the individual. The goal
+          is for this to be such a compatible match that this doesn&rsquo;t
+          really feel like work! You are living with your homie.
+        </p>
       </>
     ),
   },
@@ -72,10 +89,12 @@ const faqs = [
     question: 'How long does it take to find your Homie?',
     answer: (
       <>
-        It can take anywhere from 1 to 6 months to find your roommate! We
-        suggest meeting several times prior to moving in together. This is
-        something you don&rsquo;t want to rush, our matchmaking team at Homies
-        will help you find your perfect match!
+        <p>
+          It can take anywhere from 1 to 6 months to find your roommate! We
+          suggest meeting several times prior to moving in together. This is
+          something you don&rsquo;t want to rush, our matchmaking team at Homies
+          will help you find your perfect match!
+        </p>
       </>
     ),
   },
@@ -113,15 +132,17 @@ const faqs = [
     question: 'How is this funded?',
     answer: (
       <>
-        California Regional Centers and Self Determination Program.
-        <br /> <br /> To learn more about Self-Determination, please visit:{' '}
-        <a
-          href="https://www.dds.ca.gov/initiatives/sdp/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          https://www.dds.ca.gov/initiatives/sdp/
-        </a>
+        <p>California Regional Centers and Self Determination Program.</p>
+        <p>
+          To learn more about Self-Determination, please visit:{' '}
+          <a
+            href="https://www.dds.ca.gov/initiatives/sdp/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://www.dds.ca.gov/initiatives/sdp/
+          </a>
+        </p>
       </>
     ),
   },
@@ -129,26 +150,32 @@ const faqs = [
     question: 'How is the income tax-free?',
     answer: (
       <>
-        The tax law allows individuals who receive family foster care payments
-        to exclude them from gross income if all the following conditions are
-        met: <br /> <br />
-        <ul className="ml-4">
-          <li>
-            &ndash; Payments are made pursuant to a foster care program of a
-            State, and payments are paid by a State or political subdivision
-            thereof, or a qualified agency;
-          </li>
-          <li>
-            &ndash; and payments are paid to a foster care provider for the care
-            of a qualified foster individual in the foster care provider&rsquo;s
-            home.
-          </li>
-        </ul>
-        <br /> Since Homies is a service that connects two people that live in
-        their own home on their own lease (and not in a group home or
-        institutionalized setting), the income to the care provider is tax-free.{' '}
-        <br /> <br /> Remember to consult your tax professional with any tax
-        questions.
+        <div>
+          <p>
+            The tax law allows individuals who receive family foster care
+            payments to exclude them from gross income if all the following
+            conditions are met:
+          </p>
+          <ul>
+            <li>
+              Payments are made pursuant to a foster care program of a State,
+              and payments are paid by a State or political subdivision thereof,
+              or a qualified agency;
+            </li>
+            <li>
+              and payments are paid to a foster care provider for the care of a
+              qualified foster individual in the foster care provider&rsquo;s
+              home.
+            </li>
+          </ul>
+        </div>
+        <p>
+          Since Homies is a service that connects two people that live in their
+          own home on their own lease (and not in a group home or
+          institutionalized setting), the income to the care provider is
+          tax-free.
+        </p>
+        <p>Remember to consult your tax professional with any tax questions.</p>
       </>
     ),
   },
@@ -156,32 +183,38 @@ const faqs = [
     question: 'How can I sign up for Self Determination?',
     answer: (
       <>
-        Connect with a local Independent Facilitator to learn more about how to
-        sign up for Self Determination. Here is a growing list of contacts that
-        can help you navigate the landscape. If you know of other resources
-        please let us know!
-        <br />
-        <br />
-        <a
-          href="https://phoenixfacilitation.org"
-          target="_blank"
-          rel="noreferrer"
-        >
-          https://phoenixfacilitation.org - Contact Naomi Hagel at
-          naomi@gophoenix.org. She is an independent facilitator that
-          specializes in self determination.
-          <br />
-          <br />
-        </a>
-        <a
-          href="https://www.thecasdpnetwork.org"
-          target="_blank"
-          rel="noreferrer"
-        >
-          https://www.thecasdpnetwork.org
-        </a>{' '}
-        - A valuable resource connecting self-determining Californian&rsquo;s
-        with independent facilitators and other service providers.
+        <p>
+          Connect with a local Independent Facilitator to learn more about how
+          to sign up for Self Determination. Here is a growing list of contacts
+          that can help you navigate the landscape. If you know of other
+          resources please let us know!
+        </p>
+        <ul>
+          <li>
+            <a
+              href="https://phoenixfacilitation.org"
+              target="_blank"
+              rel="noreferrer"
+            >
+              phoenixfacilitation.org
+            </a>{' '}
+            - Contact Naomi Hagel at{' '}
+            <a href="mailto:naomi@gophoenix.org">naomi@gophoenix.org</a>. She is
+            an independent facilitator that specializes in self determination.
+          </li>
+          <li>
+            <a
+              href="https://www.thecasdpnetwork.org"
+              target="_blank"
+              rel="noreferrer"
+            >
+              thecasdpnetwork.org
+            </a>{' '}
+            - A valuable resource connecting self-determining
+            Californian&rsquo;s with independent facilitators and other service
+            providers.
+          </li>
+        </ul>
       </>
     ),
   },
@@ -189,21 +222,22 @@ const faqs = [
     question: 'What disqualifies me from being a supportive roommate?',
     answer: (
       <>
-        An individual can be disqualified based on information from Califonriaor
-        any other state that includes:
-        <br />
-        <ul className="ml-4">
+        <p>
+          An individual can be disqualified based on information from
+          Califonriaor any other state that includes:
+        </p>
+        <ul>
           <li>
-            - a conviction, admission, or Alford plea, to any of the crimes
-            listed in California statutes
+            a conviction, admission, or Alford plea, to any of the crimes listed
+            in California statutes
           </li>
           <li>
-            - a preponderance of evidence that the subject committed an act that
+            a preponderance of evidence that the subject committed an act that
             meets the definition of any of the crimes listed in California
             Statues
           </li>
           <li>
-            - a finding of substantiated maltreatment of a minor or vulnerable
+            a finding of substantiated maltreatment of a minor or vulnerable
             adult that is determined to be serious and/or recurring as defined
             in California Statutes
           </li>
@@ -215,15 +249,17 @@ const faqs = [
     question: 'How do you make sure supportive roommates are safe?',
     answer: (
       <>
-        We require full legal name and phone numbers, so that we can call to
-        verify. We also run background checks through the state criminal court
-        system as well as "Dru Sjodin National Sex Offender" system.
-        <br />
-        <br />
-        We also offer guidance on how to engage with connections to ensure
-        safety. There is zero tolerance for behavior that breaks our rules;
-        those that do engage in inappropriate behavior will be flagged and
-        banned from our system.
+        <p>
+          We require full legal name and phone numbers, so that we can call to
+          verify. We also run background checks through the state criminal court
+          system as well as "Dru Sjodin National Sex Offender" system.
+        </p>
+        <p>
+          We also offer guidance on how to engage with connections to ensure
+          safety. There is zero tolerance for behavior that breaks our rules;
+          those that do engage in inappropriate behavior will be flagged and
+          banned from our system.
+        </p>
       </>
     ),
   },
@@ -252,7 +288,7 @@ export default function Faq() {
             alt=""
           />
         </div>
-        <ul className="relative mt-12 space-y-6">
+        <div className="relative mt-12 space-y-6">
           {faqs.map((question, index) => (
             <FaqDropdown
               key={question.question}
@@ -260,7 +296,7 @@ export default function Faq() {
               answer={question.answer}
             />
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ module.exports = {
   theme: {
     screens: {
       sm: { max: '600px' },
-      'dark-mode': { raw: '(prefers-color-scheme: dark)' },
+      // 'dark-mode': { raw: '(prefers-color-scheme: dark)' },
     },
     extend: {
       colors: {

@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
         <div className="sm:order-2 lg:order-none lg:col-span-3 lg:mx-auto">
           <h6 className="relative text-xl font-bold tracking-wide text-purple-900">
-            <span className="relative z-20">Contact us</span>
+            <span className="relative z-20">Contact Us</span>
           </h6>
           <ul className="flex flex-col mt-6 space-y-5">
             <li className="flex flex-shrink-0">
@@ -98,7 +98,7 @@ export default function Footer() {
                   Phone
                 </h5>
                 <p className="mt-0.5 text-sm text-purple-800 leading-relaxed text-opacity-90">
-                  <a href="tel:+19512918279">+1 (951) 291-8279</a>
+                  <a href="tel:+19512918279">(951) 291-8279</a>
                 </p>
               </div>
             </li>
@@ -106,8 +106,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-col justify-between max-w-md py-8 mx-auto sm:flex-row sm:max-w-none lg:max-w-screen-2xl">
-        <span className="text-base text-purple-800/90">
-          &copy; 2022-2023 Homies&trade;. All rights reserved.
+        <span className="text-sm text-purple-800/90">
+          Copyright &copy; 2022-2023 Homies&trade; — All rights reserved.
         </span>
       </div>
     </footer>

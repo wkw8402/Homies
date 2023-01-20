@@ -523,7 +523,7 @@ const PrivacyPolicyContent = () => {
                 </p>
               </li>
               <li>
-                <p>By phone number: +1 (951) 291-8279</p>
+                <p>By phone number: (951) 291-8279</p>
               </li>
             </ul>
           </div>

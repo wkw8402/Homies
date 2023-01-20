@@ -13,8 +13,8 @@
       content="telephone=no, date=no, address=no, email=no"
     />
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-    <meta name="color-scheme" content="light dark"> 
-    <meta name="supported-color-schemes" content="light dark">
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
     <!--[if mso]>
       <noscript>
         <xml>
@@ -37,7 +37,7 @@
         h4,
         h5,
         h6 {
-          font-family: "Segoe UI", sans-serif;
+          font-family: 'Segoe UI', sans-serif;
           mso-line-height-rule: exactly;
         }
       </style>
@@ -48,8 +48,8 @@
     <if condition="page.css">
       <style data-embed>
         :root {
-          color-scheme: light dark;
-          supported-color-schemes: light dark;
+          color-scheme: light;
+          supported-color-schemes: light;
         }
       </style>
       <style>
@@ -85,13 +85,15 @@
       <component src="src/components/header.html"></component>
       <table class="w-full font-sans">
         <tr>
-          <td align="center" class="bg-gray-100 dark-mode:bg-gray-999">
+          <td align="center" class="bg-gray-100">
             <table class="w-600 sm:w-full">
               <tr>
                 <td align="center" class="sm:px-24">
                   <table class="w-full mb-48">
                     <tr>
-                      <td class="bg-white dark-mode:bg-gray-989 text-gray-800 dark-mode:text-gray-979 text-base text-left p-48 sm:px-24 leading-24">
+                      <td
+                        class="p-48 text-base text-left text-gray-800 bg-white sm:px-24 leading-24"
+                      >
                         <block name="template"></block>
                       </td>
                     </tr>
