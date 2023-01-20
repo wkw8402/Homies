@@ -12,8 +12,8 @@ const Header = () => {
               <div className="flex-grow-0 flex-shrink-0 w-40 text-xl font-black">
                 <Link href="/">
                   <Image
-                    width={200}
-                    height={100}
+                    width={160}
+                    height={50.75}
                     className="h-auto"
                     src="/images/logo.png"
                     alt="Homies"

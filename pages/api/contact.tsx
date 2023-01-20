@@ -8,8 +8,8 @@ const mailConfig = {
   port: 465, // or 587
   secure: true, // true for 465, false for other ports
   auth: {
-    user: process.env.NEXT_PUBLIC_GMAIL_USER, // your gmail account
-    pass: process.env.NEXT_PUBLIC_GMAIL_PASS, // your gmail app password
+    user: process.env.GMAIL_USER, // your gmail account
+    pass: process.env.GMAIL_PASS, // your gmail app password
   },
 };
 
