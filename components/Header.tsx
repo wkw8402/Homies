@@ -241,12 +241,12 @@ const Header = () => {
             </div>
 
             <div className="hidden md:block">
-              <a
+              <Link
                 className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600"
-                href="contact"
+                href="/contact"
               >
                 Get in touch
-              </a>
+              </Link>
             </div>
 
             <div className="flex-grow-0 flex-shrink-0 block w-40 md:hidden">
