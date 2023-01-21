@@ -5,14 +5,14 @@ const nodemailer = require('nodemailer');
 
 // Config
 const mailConfig = {
-  jsonTransport: true,
-  // host: 'smtp.gmail.com',
-  // port: 465, // or 587
-  // secure: true, // true for 465, false for other ports
-  // auth: {
-  //   user: process.env.GMAIL_USER, // your gmail account
-  //   pass: process.env.GMAIL_PASS, // your gmail app password
-  // },
+  // jsonTransport: true,
+  host: 'smtp.gmail.com',
+  port: 465, // or 587
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: process.env.GMAIL_USER, // your gmail account
+    pass: process.env.GMAIL_PASS, // your gmail app password
+  },
 };
 
 const adminEmail = 'Garrett Ackerman <garrett@meethomies.com>';
@@ -61,7 +61,9 @@ async function sendEmails(req, res) {
     .replace('%MESSAGE%', message);
 
   try {
-    const mail = {
+    let mail;
+
+    mail = {
       from: adminEmail,
       to: recipEmail, // list of receivers
       subject: `${name}, thanks for reaching out!`, // Subject line
@@ -69,24 +71,23 @@ async function sendEmails(req, res) {
       html: sendHtml, // html body
     };
 
-    previewEmail(mail).then(console.log).catch(console.error);
+    if (process.env.NODE_ENV === 'development') {
+      previewEmail(mail);
+    }
 
-    return;
+    let info;
+    if (process.env.NODE_ENV === 'production') {
+      // Send our customer-bound email
+      info = await transporter.sendMail(mail);
 
-    // Send our customer-bound email
-    let info = await transporter
-      .sendMail(mail)
-      .then(console.log)
-      .catch(console.error);
-
-    if (!info.messageId) {
-      console.log('failed');
-      res.status(200).json({
-        status: 0,
-        message:
-          'Sorry, we are having some technical difficulties. Please send us an email instead.',
-      });
-      return;
+      if (!info.messageId) {
+        res.status(200).json({
+          status: 0,
+          message:
+            'Sorry, we are having some technical difficulties. Please send us an email instead.',
+        });
+        return;
+      }
     }
 
     sendHtml = template
@@ -102,25 +103,30 @@ async function sendEmails(req, res) {
       .replace('%PHONE%', phone)
       .replace('%MESSAGE%', message);
 
-    info = await transporter.sendMail({
+    mail = {
       from: adminEmail,
       to: adminEmail, // list of receivers
       subject: req.body.subject ? req.body.subject : `New Message From ${name}`, // Subject line
       text: sendTxt, // plain text body
       html: sendHtml, // html body
-    });
+    };
 
-    if (info.messageId) {
-      console.log('success');
-      res.status(200).json({ status: 1 });
-    } else {
-      console.log('failed');
+    if (process.env.NODE_ENV === 'development') {
+      previewEmail(mail).then(console.log).catch(console.error);
+    }
 
-      res.status(200).json({
-        status: 0,
-        message:
-          'Sorry, we are having some technical difficulties. Please send us an email instead.',
-      });
+    if (process.env.NODE_ENV === 'production') {
+      info = await transporter.sendMail(mail);
+
+      if (info.messageId) {
+        res.status(200).json({ status: 1 });
+      } else {
+        res.status(200).json({
+          status: 0,
+          message:
+            'Sorry, we are having some technical difficulties. Please send us an email instead.',
+        });
+      }
     }
   } catch (e) {
     console.log(e);
@@ -130,6 +136,5 @@ async function sendEmails(req, res) {
         'Sorry, we are having some technical difficulties. Please send us an email instead.',
     });
   }
-  console.log('hit');
   return;
 }
