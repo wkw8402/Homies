@@ -18,10 +18,19 @@ const MyRoommateForm = () => {
       email: '',
       phone: '',
       message: '',
+      roommateName: '',
+      roommateKnow: '',
+      roommateEmail: '',
+      housing: '',
+      housingAddress: '',
+      reference: '',
+      otherDetails: '',
     },
   });
 
   const name = watch('name');
+  const housing = watch('housing');
+
   const onSubmit = async (data) => {
     setLoading(true);
 
@@ -88,23 +97,25 @@ const MyRoommateForm = () => {
         name="contact-form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div>
+        <div className="w-full mt-12 text-2xl font-semibold border-b border-b-gray-300">
+          Your Info
+        </div>
+        <div className="mt-6">
           <label
             htmlFor="name"
             className="ml-0.5 text-purple-900 font-medium text-lg"
           >
-            Name *
+            Full name *
           </label>
           <input
             id="name"
             type="text"
             {...register('name', { required: true })}
             name="name"
-            placeholder="Your name"
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           />
           {errors.name && (
-            <p className="text-sm text-red-500">Please enter your name</p>
+            <p className="text-sm text-red-500">Please enter your full name</p>
           )}
         </div>
 
@@ -113,7 +124,7 @@ const MyRoommateForm = () => {
             htmlFor="email"
             className="ml-0.5 text-purple-900 font-medium text-lg"
           >
-            Email *
+            Email address *
           </label>
           <input
             id="email"
@@ -126,7 +137,6 @@ const MyRoommateForm = () => {
               },
             })}
             name="email"
-            placeholder="Your email address"
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           />
           {errors.email && (
@@ -139,7 +149,7 @@ const MyRoommateForm = () => {
             htmlFor="phone"
             className="ml-0.5 text-purple-900 font-medium text-lg"
           >
-            Phone *
+            Phone number *
           </label>
           <input
             id="phone"
@@ -148,7 +158,6 @@ const MyRoommateForm = () => {
               required: true,
             })}
             name="phone"
-            placeholder="Your phone number"
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           />
           {errors.phone && (
@@ -158,26 +167,203 @@ const MyRoommateForm = () => {
           )}
         </div>
 
+        <div className="w-full mt-12 text-2xl font-semibold border-b border-b-gray-300">
+          Roommate Info
+        </div>
+
+        <div className="mt-6">
+          <label
+            htmlFor="roommateName"
+            className="ml-0.5 text-purple-900 font-medium text-lg"
+          >
+            Roommate's full name *
+          </label>
+          <input
+            id="roommateName"
+            type="text"
+            {...register('roommateName', { required: true })}
+            name="roommateName"
+            className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
+          />
+          {errors.roommateName && (
+            <p className="text-sm text-red-500">
+              Please enter your roommate's name
+            </p>
+          )}
+        </div>
+
+        <div className="mt-6">
+          <label
+            htmlFor="roommateKnow"
+            className="ml-0.5 text-purple-900 font-medium text-lg"
+          >
+            How do you know your roommate? *
+          </label>
+          <select
+            id="roommateKnow"
+            {...register('roommateKnow', {
+              required: true,
+            })}
+            name="roommateKnow"
+            placeholder="Select an option..."
+            className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
+          >
+            <option disabled value="">
+              Select an option...
+            </option>
+            <option value="friend">Friend</option>
+            <option value="mother">Mother</option>
+            <option value="father">Father</option>
+            <option value="sister">Sister</option>
+            <option value="brother">Brother</option>
+            <option value="aunt">Aunt</option>
+            <option value="uncle">Uncle</option>
+            <option value="cousin">Cousin</option>
+            <option value="grandparent">Grandparent</option>
+            <option value="classmate">Classmate</option>
+            <option value="other">Other</option>
+          </select>
+          {errors.roommateKnow && (
+            <p className="text-sm text-red-500">
+              Please select how you know your roommate
+            </p>
+          )}
+        </div>
+
+        <div className="mt-6">
+          <label
+            htmlFor="roommateEmail"
+            className="ml-0.5 text-purple-900 font-medium text-lg"
+          >
+            Roommate's email address (if you know it)
+          </label>
+          <input
+            id="roommateEmail"
+            type="email"
+            {...register('roommateEmail', {
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Please enter a valid email address',
+              },
+            })}
+            name="roommateEmail"
+            className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
+          />
+          {errors.roommateEmail && (
+            <p className="text-sm text-red-500">{`${errors.roommateEmail?.message}`}</p>
+          )}
+        </div>
+
+        <div className="w-full mt-12 text-2xl font-semibold border-b border-b-gray-300">
+          Housing
+        </div>
+
+        <div className="mt-6">
+          <label
+            htmlFor="housing"
+            className="ml-0.5 text-purple-900 font-medium text-lg"
+          >
+            Do you have housing already? *
+          </label>
+          <select
+            id="housing"
+            {...register('housing', {
+              required: true,
+            })}
+            name="housing"
+            placeholder="Select an option..."
+            className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
+          >
+            <option disabled value="">
+              Select an option...
+            </option>
+            <option value="yesmine">
+              Yes, I have an extra bedroom in my house
+            </option>
+            <option value="yesroommate">
+              Yes, I will be living in my roommate's house
+            </option>
+            <option value="yestogether">
+              Yes, we have picked out housing together
+            </option>
+            <option value="nolooking">
+              No, but we are looking for a place
+            </option>
+            <option value="nonotstarted">No, I haven't started looking</option>
+            <option value="unsure">I am unsure</option>
+            <option value="other">Other</option>
+          </select>
+          {errors.housing && (
+            <p className="text-sm text-red-500">{`${errors.email?.message}`}</p>
+          )}
+        </div>
+
+        {housing.includes('yes') && (
+          <div className="mt-6">
+            <label
+              htmlFor="housingAddress"
+              className="ml-0.5 text-purple-900 font-medium text-lg"
+            >
+              What is the address? *
+            </label>
+            <input
+              id="housingAddress"
+              type="text"
+              {...register('housingAddress')}
+              name="housingAddress"
+              className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none h-14 placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
+            />
+          </div>
+        )}
+
+        <div className="w-full mt-12 text-2xl font-semibold border-b border-b-gray-300">
+          Final Details
+        </div>
+
+        <div className="mt-6">
+          <label
+            htmlFor="reference"
+            className="ml-0.5 text-purple-900 font-medium text-lg"
+          >
+            How did you hear about Homies? *
+          </label>
+          <select
+            id="reference"
+            {...register('reference')}
+            name="housing"
+            placeholder="Select an option..."
+            className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
+          >
+            <option disabled value="">
+              Select an option...
+            </option>
+            <option value="Facebook">
+              Social Media Post (Facebook, Instagram, etc.)
+            </option>
+            <option value="Facebook">Facebook Group</option>
+            <option value="Google">Google Search</option>
+            <option value="Friend">Friend</option>
+            <option value="Family">Family Member</option>
+            <option value="Friend">Another Homie</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
         <div className="mt-6">
           <label
             htmlFor="message"
             className="ml-0.5 text-purple-900 font-medium text-lg"
           >
-            Message *
+            Other details *
           </label>
           <textarea
             id="message"
-            {...register('message', { required: true })}
+            {...register('message')}
             name="message"
             placeholder="Hi, I'd like to learn more about the Homies pilot program."
             rows={5}
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           ></textarea>
-          {errors.message && (
-            <p className="text-sm text-red-500">
-              Please include more information with your request
-            </p>
-          )}
         </div>
 
         <div className="flex justify-start mt-6">
@@ -189,7 +375,7 @@ const MyRoommateForm = () => {
               'text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600'
             )}
           >
-            {loading ? 'Sending...' : 'Send message'}
+            {loading ? 'Submitting...' : 'Submit'}
           </button>
         </div>
       </form>
