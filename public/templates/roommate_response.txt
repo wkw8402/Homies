@@ -1,0 +1,32 @@
+Congrats on taking the first step to independence!
+
+We've included a copy of your responses below. We will be in touch with you shortly to help answer any questions you may have about the program.
+
+Your info:
+Name: %NAME%
+Email: %EMAIL%
+Phone: %PHONE%
+
+Roommate's info:
+Name: %ROOMMATENAME%
+How do you know your roommate?: %ROOMMATEKNOW%
+Email: %ROOMMATEEMAIL%
+
+Housing info:
+Housing: %HOUSING%
+Address: %HOUSINGADDRESS%
+
+Final details:
+Reference: %REFERENCE%
+Other details: %MESSAGE%
+
+If any of the information above is incorrect or incomplete, please reply to this email and let us know.
+
+Next steps:
+- Schedule a call to see what's next
+- Join us on Facebook
+
+Thank you again for your interest in Homies.
+
+Sincerely,
+Garrett & The Homies Team ❤️

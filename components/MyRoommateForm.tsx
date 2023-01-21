@@ -17,7 +17,6 @@ const MyRoommateForm = () => {
       name: '',
       email: '',
       phone: '',
-      message: '',
       roommateName: '',
       roommateKnow: '',
       roommateEmail: '',
@@ -36,7 +35,7 @@ const MyRoommateForm = () => {
 
     const res = await axios({
       method: 'POST',
-      url: '/api/contact',
+      url: '/api/my-roommate',
       data: data,
     })
       .then((res) => {
@@ -221,6 +220,11 @@ const MyRoommateForm = () => {
             <option value="cousin">Cousin</option>
             <option value="grandparent">Grandparent</option>
             <option value="classmate">Classmate</option>
+            <option value="coworker">Co-worker</option>
+            <option value="staff">Former/current staff</option>
+            <option value="neighbor">Neighbor</option>
+            <option value="religious">Religious Group</option>
+            <option value="volunteer">Volunteer Group</option>
             <option value="other">Other</option>
           </select>
           {errors.roommateKnow && (
@@ -268,7 +272,7 @@ const MyRoommateForm = () => {
           <select
             id="housing"
             {...register('housing', {
-              required: true,
+              required: 'Please select if you have housing already',
             })}
             name="housing"
             placeholder="Select an option..."
@@ -289,12 +293,12 @@ const MyRoommateForm = () => {
             <option value="nolooking">
               No, but we are looking for a place
             </option>
-            <option value="nonotstarted">No, I haven't started looking</option>
+            <option value="nonotstarted">No, we haven't started looking</option>
             <option value="unsure">I am unsure</option>
             <option value="other">Other</option>
           </select>
           {errors.housing && (
-            <p className="text-sm text-red-500">{`${errors.email?.message}`}</p>
+            <p className="text-sm text-red-500">{`${errors.housing?.message}`}</p>
           )}
         </div>
 
@@ -329,8 +333,11 @@ const MyRoommateForm = () => {
           </label>
           <select
             id="reference"
-            {...register('reference')}
-            name="housing"
+            {...register('reference', {
+              required:
+                'Please select where you heard about the Homies program',
+            })}
+            name="reference"
             placeholder="Select an option..."
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           >
@@ -347,20 +354,23 @@ const MyRoommateForm = () => {
             <option value="Friend">Another Homie</option>
             <option value="Other">Other</option>
           </select>
+          {errors.reference && (
+            <p className="text-sm text-red-500">{`${errors.reference?.message}`}</p>
+          )}
         </div>
 
         <div className="mt-6">
           <label
-            htmlFor="message"
+            htmlFor="otherDetails"
             className="ml-0.5 text-purple-900 font-medium text-lg"
           >
-            Other details *
+            Other details (optional)
           </label>
           <textarea
-            id="message"
-            {...register('message')}
-            name="message"
-            placeholder="Hi, I'd like to learn more about the Homies pilot program."
+            id="otherDetails"
+            {...register('otherDetails')}
+            name="otherDetails"
+            placeholder="Anything else you want us to know?"
             rows={5}
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           ></textarea>
@@ -375,7 +385,7 @@ const MyRoommateForm = () => {
               'text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600'
             )}
           >
-            {loading ? 'Submitting...' : 'Submit'}
+            {loading ? 'Sending...' : 'Submit'}
           </button>
         </div>
       </form>
