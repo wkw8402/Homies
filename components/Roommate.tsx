@@ -1,4 +1,4 @@
-import MyRoommateForm from './MyRoommateForm';
+import RoommateForm from './RoommateForm';
 
 const roommateOptions = [
   'Friend',
@@ -11,7 +11,7 @@ const roommateOptions = [
   'Someone from your volunteer group',
 ];
 
-export default function MyRoommate() {
+export default function Roommate() {
   return (
     <>
       <section className="px-4 pt-16 sm:px-6 lg:px-8">
@@ -50,7 +50,7 @@ export default function MyRoommate() {
       <section className="pt-20 pb-48 overflow-hidden lg:pt-12 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto">
           <div className="w-full px-4 py-6 mx-auto bg-white shadow-xl sm:py-10 sm:rounded-3xl lg:mr-0 lg:ml-auto sm:p-16 lg:p-12 xl:p-14">
-            <MyRoommateForm />
+            <RoommateForm />
           </div>
         </div>
       </section>

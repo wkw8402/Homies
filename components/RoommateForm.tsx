@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const MyRoommateForm = () => {
+const RoommateForm = () => {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -35,7 +35,7 @@ const MyRoommateForm = () => {
 
     const res = await axios({
       method: 'POST',
-      url: '/api/my-roommate',
+      url: '/api/roommate',
       data: data,
     })
       .then((res) => {
@@ -61,11 +61,7 @@ const MyRoommateForm = () => {
           Thank you, {name}!
         </h3>
         <div className="mt-4 space-y-4 font-medium text-purple-900">
-          <p>
-            We can't wait to tell you all about the Homies pilot program and how
-            you can get involved.
-          </p>
-          <p>We will be reaching out to you soon.</p>
+          <p>We got your submission. We will be reaching out to you soon.</p>
           <p>
             Please make sure to check your inbox and spam folders for an email
             from us.
@@ -393,4 +389,4 @@ const MyRoommateForm = () => {
   );
 };
 
-export default MyRoommateForm;
+export default RoommateForm;
