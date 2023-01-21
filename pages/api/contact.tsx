@@ -34,9 +34,9 @@ async function sendEmails(req, res) {
   // Fetch our template files
 
   const template = await getPubFile('/templates/template.html');
-  const custHtml = await getPubFile('/templates/customer.html');
+  const custHtml = await getPubFile('/templates/contact_response.html');
   const adminHtml = await getPubFile('/templates/admin.html');
-  const custTxt = await getPubFile('/templates/customer.txt');
+  const custTxt = await getPubFile('/templates/contact_response.txt');
   const adminTxt = await getPubFile('/templates/admin.txt');
 
   const name = req.body.name;

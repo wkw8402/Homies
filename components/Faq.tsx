@@ -273,21 +273,7 @@ export default function Faq() {
           <h2 className="text-purple-900 h2">Frequently asked questions</h2>
           <p className="max-w-2xl mt-4 text-xl leading-relaxed text-purple-800 lg:text-left"></p>
         </div>
-        <ul className="relative mt-12 space-y-6">
-          <ul className="relative mt-12 space-y-6"></ul>
-        </ul>
-        <div>
-          <img
-            className="absolute hidden h-auto w-28 -left-60 top-10 2xl:block"
-            src="/icons/question-mark.svg"
-            alt=""
-          />
-          <img
-            className="absolute hidden h-auto w-28 -right-60 bottom-10 2xl:block"
-            src="/icons/bulb.svg"
-            alt=""
-          />
-        </div>
+
         <div className="relative mt-12 space-y-6">
           {faqs.map((question, index) => (
             <FaqDropdown
