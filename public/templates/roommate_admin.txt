@@ -1,0 +1,21 @@
+New Found Roommate From Website
+
+The following information was submitted:
+
+Homies info:
+Name: %NAME%
+Email: %EMAIL%
+Phone: %PHONE%
+
+Roommate's info:
+Name: %ROOMMATENAME%
+How do you know your roommate?: %ROOMMATEKNOW%
+Email: %ROOMMATEEMAIL%
+
+Housing info:
+Housing: %HOUSING%
+Address: %HOUSINGADDRESS%
+
+Final details:
+Reference: %REFERENCE%
+Other details: %MESSAGE%

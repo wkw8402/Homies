@@ -15,7 +15,7 @@ const mailConfig = {
   },
 };
 
-const adminEmail = 'Garrett Ackerman <garrett@meethomies.com>';
+const adminEmail = 'Homies <hello@meethomies.com>';
 
 // Function for grabbing template files
 async function getPubFile(file) {
@@ -34,9 +34,9 @@ async function sendEmails(req, res) {
   // Fetch our template files
   const template = await getPubFile('/templates/template.html');
   const custHtml = await getPubFile('/templates/roommate_response.html');
-  const adminHtml = await getPubFile('/templates/admin.html');
+  const adminHtml = await getPubFile('/templates/roommate_admin.html');
   const custTxt = await getPubFile('/templates/roommate_response.txt');
-  const adminTxt = await getPubFile('/templates/admin.txt');
+  const adminTxt = await getPubFile('/templates/roommate_admin.txt');
 
   let {
     name,
@@ -114,13 +114,25 @@ async function sendEmails(req, res) {
       .replace('%NAME%', name)
       .replace('%EMAIL%', email)
       .replace('%PHONE%', phone)
-      .replace('%MESSAGE%', otherDetails);
+      .replace('%ROOMMATENAME%', roommateName)
+      .replace('%ROOMMATEKNOW%', roommateKnow)
+      .replace('%ROOMMATEEMAIL%', roommateEmail || 'N/A')
+      .replace('%HOUSING%', housing)
+      .replace('%HOUSINGADDRESS%', housingAddress || 'N/A')
+      .replace('%REFERENCE%', reference)
+      .replace('%MESSAGE%', otherDetails || 'N/A');
 
     sendTxt = adminTxt
       .replace('%NAME%', name)
       .replace('%EMAIL%', email)
       .replace('%PHONE%', phone)
-      .replace('%MESSAGE%', otherDetails);
+      .replace('%ROOMMATENAME%', roommateName)
+      .replace('%ROOMMATEKNOW%', roommateKnow)
+      .replace('%ROOMMATEEMAIL%', roommateEmail || 'N/A')
+      .replace('%HOUSING%', housing)
+      .replace('%HOUSINGADDRESS%', housingAddress || 'N/A')
+      .replace('%REFERENCE%', reference)
+      .replace('%MESSAGE%', otherDetails || 'N/A');
 
     mail = {
       from: adminEmail,

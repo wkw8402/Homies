@@ -15,7 +15,7 @@ const mailConfig = {
   },
 };
 
-const adminEmail = 'Garrett Ackerman <garrett@meethomies.com>';
+const adminEmail = 'Homies <hello@meethomies.com>';
 
 // Function for grabbing template files
 async function getPubFile(file) {
@@ -35,9 +35,9 @@ async function sendEmails(req, res) {
 
   const template = await getPubFile('/templates/template.html');
   const custHtml = await getPubFile('/templates/contact_response.html');
-  const adminHtml = await getPubFile('/templates/admin.html');
+  const adminHtml = await getPubFile('/templates/contact_admin.html');
   const custTxt = await getPubFile('/templates/contact_response.txt');
-  const adminTxt = await getPubFile('/templates/admin.txt');
+  const adminTxt = await getPubFile('/templates/contact_admin.txt');
 
   const name = req.body.name;
   const email = req.body.email;

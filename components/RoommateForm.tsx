@@ -80,7 +80,7 @@ const RoommateForm = () => {
     <>
       <div>
         <h3 className="text-2xl font-bold text-purple-900">
-          I Have My Supportive Roommate
+          I found my Supportive Roommate
         </h3>
         <p className="text-purple-800 mt-0.5 text-opacity-90">
           Please fill out the form to expedite your supportive roommate process.

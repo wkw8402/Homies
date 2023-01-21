@@ -15,7 +15,7 @@ const mailConfig = {
   // },
 };
 
-const adminEmail = 'Garrett Ackerman <garrett@meethomies.com>';
+const adminEmail = 'Homies <hello@meethomies.com>';
 
 // Function for grabbing template files
 async function getPubFile(file) {
