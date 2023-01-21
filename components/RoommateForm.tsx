@@ -79,11 +79,12 @@ const RoommateForm = () => {
   return (
     <>
       <div>
-        <h3 className="text-2xl font-bold text-purple-900">
-          I found my Supportive Roommate
+        <h3 className="mb-4 text-2xl font-bold text-purple-900 leading-tighter">
+          I have found my Supportive Roommate
         </h3>
         <p className="text-purple-800 mt-0.5 text-opacity-90">
-          Please fill out the form to expedite your supportive roommate process.
+          Please fill out this form if you have already found your Supportive
+          Roommate. You'll need to answer a few questions about your situation.
         </p>
       </div>
 

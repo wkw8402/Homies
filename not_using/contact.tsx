@@ -75,8 +75,6 @@ async function sendEmails(req, res) {
 
     previewEmail(mail).then(console.log).catch(console.error);
 
-    return;
-
     // Send our customer-bound email
     let info = await transporter
       .sendMail(mail)
