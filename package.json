@@ -13,6 +13,7 @@
     "classnames": "^2.3.2",
     "next": "latest",
     "nodemailer": "^6.9.0",
+    "preview-email": "^3.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.42.1"

@@ -23,7 +23,6 @@ const ContactForm = () => {
 
   const name = watch('name');
   const onSubmit = async (data) => {
-    console.log(data);
     setLoading(true);
 
     const res = await axios({
@@ -55,7 +54,7 @@ const ContactForm = () => {
         </h3>
         <div className="mt-4 space-y-4 font-medium text-purple-900">
           <p>
-            We can't wait to tell you all about the Homies Pilot Program and how
+            We can't wait to tell you all about the Homies pilot program and how
             you can get involved.
           </p>
           <p>We will be reaching out to you soon.</p>
@@ -66,7 +65,7 @@ const ContactForm = () => {
           <p>
             Sincerely,
             <br />
-            Garrett
+            The Homies Team ❤️
           </p>
         </div>
       </>
@@ -76,9 +75,7 @@ const ContactForm = () => {
   return (
     <>
       <div>
-        <h3 className="text-2xl font-bold text-purple-900">
-          Send us a message
-        </h3>
+        <h3 className="text-2xl font-bold text-purple-900">Get in touch</h3>
         <p className="text-purple-800 mt-0.5 text-opacity-90">
           Please fill out the form to learn more about the Homies pilot program.
           We will be in touch shortly.

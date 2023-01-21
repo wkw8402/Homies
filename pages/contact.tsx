@@ -8,7 +8,7 @@ const Contact = () => {
   return (
     <>
       <Head>
-        <title>Join the Homies Pilot Program | Homies</title>
+        <title>Join the Homies pilot program | Homies</title>
       </Head>
       <div className="bg-gradient-to-b from-purple-25 to-purple-50">
         <Header />

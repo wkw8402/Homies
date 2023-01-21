@@ -32,6 +32,7 @@ async function sendEmails(req, res) {
   let transporter = nodemailer.createTransport(mailConfig);
 
   // Fetch our template files
+  const customerTemplate = await getPubFile('/templates/contact.html');
 
   const template = await getPubFile('/templates/template.html');
   const custHtml = await getPubFile('/templates/customer.html');
@@ -48,7 +49,8 @@ async function sendEmails(req, res) {
   const recipEmail = `${name} <${email}>`;
 
   // Format our customer-bound email from received form data
-  let sendHtml = custHtml
+  let sendHtml = template
+    .replace('%BODY%', custHtml)
     .replace('%NAME%', name)
     .replace('%EMAIL%', email)
     .replace('%PHONE%', phone)
@@ -60,13 +62,15 @@ async function sendEmails(req, res) {
     .replace('%PHONE%', phone)
     .replace('%MESSAGE%', message);
 
+  let templateHtml = customerTemplate.replace('%NAME%', name);
+
   try {
     const mail = {
       from: adminEmail,
       to: recipEmail, // list of receivers
-      subject: `${name}, thanks for reaching out!`, // Subject line
+      subject: `${name}, thanks for your request`, // Subject line
       text: sendTxt, // plain text body
-      html: sendHtml, // html body
+      html: templateHtml, // html body
     };
 
     previewEmail(mail).then(console.log).catch(console.error);
