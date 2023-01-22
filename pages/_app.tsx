@@ -1,7 +1,11 @@
+import { SessionProvider } from 'next-auth/react';
 import Script from 'next/script';
 import '../styles/globals.scss';
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
     <>
       {process.env.NODE_ENV === 'production' && (
@@ -21,7 +25,9 @@ export default function App({ Component, pageProps }) {
         </>
       )}
 
-      <Component {...pageProps} />
+      <SessionProvider session={session} refetchInterval={5 * 60}>
+        <Component {...pageProps} />
+      </SessionProvider>
     </>
   );
 }

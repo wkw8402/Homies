@@ -7,7 +7,7 @@ const roommateOptions = [
   'Co-worker',
   'Former or current staff member',
   'Someone from your school or university',
-  'Someone from your church or place of worship',
+  'Someone from your place of worship',
   'Someone from your volunteer group',
 ];
 
