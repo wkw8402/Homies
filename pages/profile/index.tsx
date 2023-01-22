@@ -66,11 +66,13 @@ const MyProfilePage = ({ profile }) => {
                 </button>
               </p>
               <ProfileForm profile={profile} />
-              <div className="flex flex-col space-y-4">
-                <Link target={'_blank'} href={`/profile/${profile.id}`}>
-                  View Public Profile
-                </Link>
-              </div>
+              {profile && (
+                <div className="flex flex-col space-y-4">
+                  <Link target={'_blank'} href={`/profile/${profile?.id}`}>
+                    View Public Profile
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </section>
