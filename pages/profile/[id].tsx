@@ -1,5 +1,5 @@
 import { getSession } from 'next-auth/react';
-import React from 'react';
+import prisma from '../../lib/prismadb';
 
 const ProfilePage = ({ profile }) => {
   return (
