@@ -27,27 +27,21 @@ const ProfilePage = ({ profile }) => {
 export default ProfilePage;
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
+  let profile = await prisma.profile.findUnique({
+    select: {
+      name: true,
+      location: true,
+      bio: true,
+    },
+    where: {
+      id: context.params.id,
+    },
+  });
 
-  let profile = null;
-
-  if (session) {
-    profile = await prisma.profile.findUnique({
-      select: {
-        name: true,
-        location: true,
-        bio: true,
-      },
-      where: {
-        id: context.params.id,
-      },
-    });
-
-    if (!profile) {
-      return {
-        notFound: true,
-      };
-    }
+  if (!profile) {
+    return {
+      notFound: true,
+    };
   }
 
   return {
