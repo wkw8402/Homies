@@ -1,10 +1,14 @@
 import classNames from 'classnames';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
+  const profile = session?.profile;
 
   return (
     <>
@@ -241,12 +245,36 @@ const Header = () => {
             </div>
 
             <div className="hidden md:block">
-              <Link
-                className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600"
-                href="/contact"
-              >
-                Get in touch
-              </Link>
+              {profile ? (
+                <>
+                  <div className="items-center justify-between hidden md:flex lg:space-x-4">
+                    <Link
+                      className="text-lg font-semibold text-purple-900 hover:no-underline"
+                      href={`/profile/${profile.id}`}
+                    >
+                      <div className="relative p-0.5 group">
+                        <span className="relative z-10 text-lg font-medium text-purple-700 duration-300 ease-in-out group-hover:text-purple-600">
+                          View Profile
+                        </span>
+                        <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
+                      </div>
+                    </Link>
+                    <Link
+                      className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600"
+                      href="/profile"
+                    >
+                      My Profile
+                    </Link>
+                  </div>
+                </>
+              ) : (
+                <Link
+                  className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600"
+                  href="/contact"
+                >
+                  Get in touch
+                </Link>
+              )}
             </div>
 
             <div className="flex-grow-0 flex-shrink-0 block w-40 md:hidden">

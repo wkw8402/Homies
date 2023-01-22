@@ -69,7 +69,7 @@ export default function Programs() {
               </div>
             </div>
           </div>
-          <div className="relative w-full px-8 py-10 mt-12 sm:p-12 md:mt-0 md:col-start-2 md:px-8 md:py-10 lg:p-12 md:-translate-y-80 bg-blue-50 rounded-3xl">
+          <div className="relative w-full px-8 py-10 mt-12 sm:p-12 md:mt-0 md:col-start-2 md:px-8 md:py-10 lg:p-12 md:-translate-y-80 bg-indigo-50 rounded-3xl">
             <div className="flex flex-col justify-between">
               <div className="flex-1">
                 <h3 className="text-purple-900 h3">

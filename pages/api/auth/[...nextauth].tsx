@@ -23,8 +23,21 @@ const options = {
   ],
 
   callbacks: {
-    session({ session, token, user }) {
+    async session({ session, token, user }) {
       session.user.id = user.id;
+      session.user.admin = user.admin;
+
+      const profile = await prisma.profile.findUnique({
+        select: {
+          id: true,
+        },
+        where: {
+          userId: user.id,
+        },
+      });
+
+      session.profile = profile;
+
       return session;
     },
   },
