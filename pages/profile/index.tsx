@@ -1,4 +1,5 @@
 import { getSession, signIn, signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ProfileForm from '../../components/ProfileForm';
@@ -20,7 +21,12 @@ const MyProfilePage = ({ profile }) => {
           <div className="container px-4 mx-auto">
             <div className="max-w-md mx-auto text-center">
               <Link className="inline-block mb-24" href="/">
-                <img width={200} src="/images/logo.png" alt="" />
+                <Image
+                  width={160}
+                  height={50.75}
+                  src="/images/logo.png"
+                  alt=""
+                />
               </Link>
               <ul className="flex mb-4 space-x-4">
                 <li>

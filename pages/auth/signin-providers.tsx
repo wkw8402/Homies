@@ -1,3 +1,4 @@
+import { Provider } from 'next-auth/providers';
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
 
 export default function SignIn({ providers }) {
@@ -18,7 +19,7 @@ export default function SignIn({ providers }) {
   } else {
     return (
       <div>
-        {Object.values(providers).map((provider) => (
+        {Object.values(providers).map((provider: Provider) => (
           <div key={provider.name}>
             <button onClick={() => signIn(provider.id)}>
               Sign in with {provider.name}
