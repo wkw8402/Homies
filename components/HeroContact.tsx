@@ -34,7 +34,7 @@ export default function HeroContact() {
             className="absolute hidden w-20 rotate-90 opacity-75 lg:block -right-16 top-1/2"
           />
 
-          <div className="relative z-10 w-full px-4 py-10 mx-auto bg-white shadow-xl rounded-3xl lg:mr-0 lg:ml-auto sm:p-16 lg:p-12 xl:p-14">
+          <div className="relative z-10 w-full px-4 py-10 mx-auto mb-10 bg-white shadow-xl rounded-3xl lg:mr-0 lg:ml-auto sm:p-16 lg:p-12 xl:p-14">
             <ContactForm />
           </div>
         </div>

@@ -11,7 +11,7 @@ const AdminPage = ({ profiles }) => {
       <Head>
         <title>Admin | Homies</title>
       </Head>
-      <div className="min-h-screen py-8 bg-gray-100">
+      <div className="py-8">
         <div className="px-4 mx-auto sm:px-6 max-w-7xl lg:px-8">
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">

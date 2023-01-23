@@ -13,7 +13,7 @@ const ProfilePage = ({ profile }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="min-h-screen bg-gradient-to-b from-purple-25 to-purple-50">
+      <div className="bg-gradient-to-b from-purple-25 to-purple-50">
         <Header />
 
         <section className="px-4 py-6 sm:px-6">

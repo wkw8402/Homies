@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html>
+    <Html className="h-full bg-purple-25">
       <Head>
         <meta charSet="UTF-8" />
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -35,7 +35,8 @@ export default function Document() {
         />
         <meta name="apple-mobile-web-app-title" content="Homies" />
       </Head>
-      <body>
+
+      <body className="h-full">
         <Main />
         <NextScript />
       </body>
