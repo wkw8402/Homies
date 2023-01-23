@@ -8,7 +8,7 @@ const AdminPage = ({ profiles }) => {
   return (
     <>
       <div className="min-h-screen py-8 bg-gray-100">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto sm:px-6 max-w-7xl lg:px-8">
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
               <h1 className="text-xl font-semibold text-gray-900">
@@ -81,7 +81,7 @@ const AdminPage = ({ profiles }) => {
                               router.push(`/admin/profile/${profile.id}`);
                             }
                           }}
-                          key={profile.email}
+                          key={profile.id}
                         >
                           <td
                             className={classNames(
@@ -118,7 +118,7 @@ const AdminPage = ({ profiles }) => {
                               'whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden lg:table-cell'
                             )}
                           >
-                            {profile.user?.email}
+                            {profile.user.email}
                           </td>
 
                           <td

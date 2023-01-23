@@ -1,4 +1,5 @@
 import { SessionProvider } from 'next-auth/react';
+import NextNProgress from 'nextjs-progressbar';
 import Script from 'next/script';
 import '../styles/globals.scss';
 
@@ -26,6 +27,7 @@ export default function App({
       )}
 
       <SessionProvider session={session} refetchInterval={5 * 60}>
+        <NextNProgress />
         <Component {...pageProps} />
       </SessionProvider>
     </>

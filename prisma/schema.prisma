@@ -47,6 +47,8 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
   admin         Boolean?  @default(false)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @map("updated_at")
   accounts      Account[]
   sessions      Session[]
   Profile       Profile?
@@ -55,13 +57,15 @@ model User {
 }
 
 model Profile {
-  id       String  @id @default(cuid())
-  userId   String  @unique @map("user_id")
-  name     String?
-  bio      String?
-  image    String?
-  location String?
-  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  userId    String   @unique @map("user_id")
+  name      String?
+  bio       String?
+  image     String?
+  location  String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("profiles")
 }
