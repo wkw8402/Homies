@@ -6,10 +6,12 @@ import Header from '../../components/Header';
 import prisma from '../../lib/prismadb';
 
 const ProfilePage = ({ profile }) => {
+  const title = `${profile.name}'s Profile on Homies`;
+
   return (
     <>
       <Head>
-        <title>{profile.name}'s Profile on Homies</title>
+        <title>{title}</title>
       </Head>
       <div className="min-h-screen bg-gradient-to-b from-purple-25 to-purple-50">
         <Header />
