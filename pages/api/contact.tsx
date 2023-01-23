@@ -42,6 +42,7 @@ async function sendEmails(req, res) {
   const name = req.body.name;
   const email = req.body.email;
   const phone = req.body.phone;
+  const reference = req.body.reference;
   const message = req.body.message;
 
   // Format our recipient email address
@@ -95,12 +96,14 @@ async function sendEmails(req, res) {
       .replace('%NAME%', name)
       .replace('%EMAIL%', email)
       .replace('%PHONE%', phone)
+      .replace('%REFERENCE%', reference)
       .replace('%MESSAGE%', message);
 
     sendTxt = adminTxt
       .replace('%NAME%', name)
       .replace('%EMAIL%', email)
       .replace('%PHONE%', phone)
+      .replace('%REFERENCE%', reference)
       .replace('%MESSAGE%', message);
 
     mail = {

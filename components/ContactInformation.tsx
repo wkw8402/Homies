@@ -79,7 +79,9 @@ export default function ContactInformation() {
                   Email us
                 </h5>
                 <p className="mt-1.5 text-base text-purple-800 leading-relaxed">
-                  <a href="mailto:hello@meethomies.com">hello@meethomies.com</a>
+                  <a className="underline" href="mailto:hello@meethomies.com">
+                    hello@meethomies.com
+                  </a>
                 </p>
               </div>
             </div>
@@ -111,7 +113,9 @@ export default function ContactInformation() {
                   Call us
                 </h5>
                 <p className="mt-1.5 text-base text-purple-800 leading-relaxed">
-                  <a href="tel:+19512918279">(951) 291-8279</a>
+                  <a className="underline" href="tel:+19512918279">
+                    (951) 291-8279
+                  </a>
                 </p>
               </div>
             </div>

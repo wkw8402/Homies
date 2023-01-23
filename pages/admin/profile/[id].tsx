@@ -85,7 +85,7 @@ export default AdminProfilePage;
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  if (!session.user.admin) {
+  if (!session?.user.admin) {
     return {
       notFound: true,
     };

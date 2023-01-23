@@ -18,6 +18,7 @@ const ContactForm = () => {
       email: '',
       phone: '',
       message: '',
+      reference: '',
     },
   });
 
@@ -154,6 +155,39 @@ const ContactForm = () => {
             <p className="text-sm text-red-500">
               Please enter your phone number
             </p>
+          )}
+        </div>
+
+        <div className="mt-6">
+          <label
+            htmlFor="reference"
+            className="ml-0.5 text-purple-900 font-medium text-lg"
+          >
+            How did you hear about Homies? *
+          </label>
+          <select
+            id="reference"
+            {...register('reference', {
+              required:
+                'Please select where you heard about the Homies program',
+            })}
+            name="reference"
+            className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
+          >
+            <option disabled>Select an option...</option>
+
+            <option value="Facebook">
+              Social Media Post (Facebook, Instagram, etc.)
+            </option>
+            <option value="Facebook">Facebook Group</option>
+            <option value="Google">Google Search</option>
+            <option value="Friend">Friend</option>
+            <option value="Family">Family Member</option>
+            <option value="Friend">Another Homie</option>
+            <option value="Other">Other</option>
+          </select>
+          {errors.reference && (
+            <p className="text-sm text-red-500">{`${errors.reference?.message}`}</p>
           )}
         </div>
 

@@ -68,7 +68,9 @@ export default function Footer() {
                   Email
                 </h5>
                 <p className="mt-0.5 text-sm text-purple-800 leading-relaxed text-opacity-90">
-                  <a href="mailto:hello@meethomies.com">hello@meethomies.com</a>
+                  <a className="underline" href="mailto:hello@meethomies.com">
+                    hello@meethomies.com
+                  </a>
                 </p>
               </div>
             </li>
@@ -98,7 +100,9 @@ export default function Footer() {
                   Phone
                 </h5>
                 <p className="mt-0.5 text-sm text-purple-800 leading-relaxed text-opacity-90">
-                  <a href="tel:+19512918279">(951) 291-8279</a>
+                  <a className="underline" href="tel:+19512918279">
+                    (951) 291-8279
+                  </a>
                 </p>
               </div>
             </li>

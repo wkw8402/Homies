@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import ProfileForm from '../../components/ProfileForm';
@@ -13,65 +14,69 @@ const MyProfilePage = ({ profile }) => {
   const loading = status === 'loading';
   const router = useRouter();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (!session && !loading) {
+      router.push('/auth/signin');
+    }
+  }, [loading]);
 
-  if (session) {
-    return (
-      <>
-        <Head>
-          <title>California's First Life-Sharing Program | Homies</title>
-        </Head>
-        <div className="bg-gradient-to-b from-purple-25 to-purple-50">
-          <Header />
+  return (
+    <>
+      <Head>
+        <title>My Profile | Homies</title>
+      </Head>
+      <div className="min-h-screen bg-gradient-to-b from-purple-25 to-purple-50">
+        <Header />
 
-          <section className="py-16 overflow-hidden xl:pb-56">
-            <div className="container px-4 mx-auto">
-              <div className="max-w-md mx-auto text-center">
-                <h2 className="mb-4 text-5xl font-bold leading-tight text-center font-heading tracking-px-n">
-                  Your Homies Profile
-                </h2>
-                <p className="mb-12 text-lg font-medium leading-normal text-gray-600">
-                  Please note the data shared will be visible on your public
-                  profile. You can always make updates.
-                </p>
-                <p className="mb-4 text-left text-gray-600">
-                  Logged in as: <b>{session.user.email}</b>{' '}
-                  <button
-                    className="font-medium text-indigo-600 underline"
-                    onClick={() => signOut()}
-                  >
-                    (sign out)
-                  </button>
-                </p>
-                <ProfileForm profile={profile} />
-                {profile && (
-                  <div className="flex flex-col space-y-4">
-                    <Link target={'_blank'} href={`/profile/${profile?.id}`}>
-                      View Public Profile
-                    </Link>
-                  </div>
-                )}
-              </div>
+        <section className="py-16 overflow-hidden xl:pb-56">
+          <div className="container px-4 mx-auto">
+            <div className="max-w-md mx-auto text-center">
+              <h2 className="mb-4 text-5xl font-bold leading-tight text-center font-heading tracking-px-n">
+                My Homies Profile
+              </h2>
+              <p className="mb-12 text-lg font-medium leading-normal text-gray-600">
+                Please note the data shared will be visible on your public
+                profile. You can always make updates.
+              </p>
+
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                session && (
+                  <>
+                    <p className="mb-4 text-left text-gray-600">
+                      Logged in as: <b>{session.user.email}</b>{' '}
+                      <button
+                        className="font-medium text-indigo-600 underline"
+                        onClick={() => signOut()}
+                      >
+                        (sign out)
+                      </button>
+                    </p>
+                    <ProfileForm profile={profile} />
+                    {profile && (
+                      <div className="flex flex-col space-y-4">
+                        <Link
+                          target={'_blank'}
+                          href={`/profile/${profile?.id}`}
+                        >
+                          View Public Profile
+                        </Link>
+                      </div>
+                    )}
+                  </>
+                )
+              )}
             </div>
-          </section>
-        </div>
-
-        <div className="w-full h-40 sm:h-48 xl:h-52 bg-gradient-to-b from-purple-50 to-yellow-100"></div>
-
-        <Footer />
-      </>
-    );
-  } else {
-    router.push('/auth/signin');
-    return (
-      <div>
-        You are not logged in! <br />
-        <button onClick={() => signIn()}>Sign in</button>
+          </div>
+        </section>
       </div>
-    );
-  }
+
+      <div className="w-full h-40 sm:h-48 xl:h-52 bg-gradient-to-b from-purple-50 to-yellow-100"></div>
+
+      <Footer />
+    </>
+  );
 };
 
 export default MyProfilePage;

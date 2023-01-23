@@ -1,6 +1,7 @@
 import { getCsrfToken, signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
@@ -9,9 +10,11 @@ export default function SignIn({ csrfToken }) {
   const loading = status === 'loading';
   const router = useRouter();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (!session && !loading) {
+      router.push('/auth/signin');
+    }
+  }, [loading]);
 
   if (session) {
     router.replace('/profile');
@@ -21,7 +24,7 @@ export default function SignIn({ csrfToken }) {
     return (
       <>
         <Head>
-          <title>California's First Life-Sharing Program | Homies</title>
+          <title>Login or Create a Profile | Homies</title>
         </Head>
         <div className="min-h-screen bg-gradient-to-b from-purple-25 to-purple-50">
           <Header />
@@ -30,11 +33,14 @@ export default function SignIn({ csrfToken }) {
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
               <div className="max-w-xl mx-auto text-center">
                 <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-                  Login or Create Homies Profile
+                  Sign In or Create a Profile
                 </h2>
                 <p className="mt-4 text-base font-normal leading-7 text-gray-600 lg:text-lg lg:mt-6 lg:leading-8">
                   Homies allows you to create a public profile to share with
                   your friends and family to find the perfect roommate.
+                </p>
+                <p className="mt-4 text-base font-normal leading-7 text-gray-600 lg:text-lg lg:mt-6 lg:leading-8">
+                  Enter your email address to get started.
                 </p>
               </div>
 

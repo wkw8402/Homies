@@ -247,7 +247,7 @@ const Header = () => {
             <div className="hidden md:block">
               {profile ? (
                 <>
-                  <div className="items-center justify-between hidden md:flex lg:space-x-4">
+                  <div className="items-center justify-between hidden md:flex md:space-x-4">
                     <Link
                       className="text-lg font-semibold text-purple-900 hover:no-underline"
                       href={`/profile/${profile.id}`}
