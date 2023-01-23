@@ -3,18 +3,23 @@ import prisma from '../../../lib/prismadb';
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { format } from 'date-fns';
+import Head from 'next/head';
 
 const AdminProfilePage = ({ profile }) => {
+  const title = `${profile.user.name || profile.name} | Admin | Homies}`;
+
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <div className="min-h-screen bg-gray-100">
-        <Link className="inline-flex items-center p-4 sm:p-8" href="/admin">
-          <ArrowLeftCircleIcon className="w-8 h-8 mr-2" aria-hidden="true" />
-          Back to Admin
-        </Link>
-
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <Link className="inline-flex items-center p-3 sm:py-8" href="/admin">
+            <ArrowLeftCircleIcon className="w-8 h-8 mr-2" aria-hidden="true" />
+            Back to Admin
+          </Link>
+          <div className="mx-auto max-w-7xl">
             <div className="overflow-hidden bg-white shadow sm:rounded-lg">
               <div className="px-4 py-5 sm:px-6">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">

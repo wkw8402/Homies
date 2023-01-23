@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { getSession } from 'next-auth/react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import prisma from '../../lib/prismadb';
 
@@ -7,6 +8,9 @@ const AdminPage = ({ profiles }) => {
   const router = useRouter();
   return (
     <>
+      <Head>
+        <title>Admin | Homies</title>
+      </Head>
       <div className="min-h-screen py-8 bg-gray-100">
         <div className="px-4 mx-auto sm:px-6 max-w-7xl lg:px-8">
           <div className="sm:flex sm:items-center">
@@ -57,12 +61,12 @@ const AdminPage = ({ profiles }) => {
                           Email
                         </th>
 
-                        <th
+                        {/* <th
                           scope="col"
                           className="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pr-4 pl-3 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8"
                         >
                           <span className="sr-only">Edit</span>
-                        </th>
+                        </th> */}
                       </tr>
                     </thead>
                     <tbody className="bg-white">
@@ -121,7 +125,7 @@ const AdminPage = ({ profiles }) => {
                             {profile.user.email}
                           </td>
 
-                          <td
+                          {/* <td
                             className={classNames(
                               profileIdx !== profiles.length - 1
                                 ? 'border-b border-gray-200'
@@ -136,7 +140,7 @@ const AdminPage = ({ profiles }) => {
                               Edit
                               <span className="sr-only">, {profile.name}</span>
                             </a>
-                          </td>
+                          </td> */}
                         </tr>
                       ))}
                     </tbody>
