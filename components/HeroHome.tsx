@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 const HeroHome = () => {
@@ -48,7 +49,9 @@ const HeroHome = () => {
 
         <div className="flex flex-col justify-center max-w-3xl mx-auto mt-16 lg:mt-0 lg:max-w-none lg:col-span-6">
           <div className="relative">
-            <img
+            <Image
+              width={624}
+              height={669}
               className="w-full h-auto rounded-2xl"
               src="/images/hero-home.jpg"
               alt="Homies Photo Collage"
