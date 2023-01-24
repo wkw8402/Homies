@@ -1,13 +1,10 @@
-import { QuestionMarkCircleIcon } from '@heroicons/react/20/solid';
-import { ArrowPathRoundedSquareIcon } from '@heroicons/react/24/outline';
-import { profile } from 'console';
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import Spinner from '../../components/Spinner';
+import Loading from '../../components/Loading';
 
 const EditProfile = () => {
   const { data: session, status } = useSession();
@@ -32,12 +29,7 @@ const EditProfile = () => {
         <Header />
 
         <section className="py-8 mx-auto max-w-7xl sm:px-6">
-          {loading && (
-            <div className="flex items-center justify-center">
-              <Spinner className="mr-1" />
-              Loading...
-            </div>
-          )}
+          {loading && <Loading />}
           {!loading && session && (
             <form action="#" method="POST">
               <div className="shadow sm:overflow-hidden sm:rounded-md">
@@ -55,6 +47,18 @@ const EditProfile = () => {
                   </div>
 
                   <div className="grid grid-cols-4 gap-6 mt-6">
+                    <div className="col-span-4 sm:col-span-4">
+                      <label
+                        htmlFor="email-address"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Email address
+                      </label>
+                      <div className="block w-full py-2 mt-1 font-medium sm:text-sm">
+                        {user.email}
+                      </div>
+                    </div>
+
                     <div className="col-span-4 sm:col-span-2">
                       <label
                         htmlFor="first-name"
@@ -87,18 +91,6 @@ const EditProfile = () => {
                       />
                     </div> */}
 
-                    <div className="col-span-4 sm:col-span-4">
-                      <label
-                        htmlFor="email-address"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Email address
-                      </label>
-                      <div className="block w-full py-2 mt-1 font-medium sm:text-sm">
-                        {user.email}
-                      </div>
-                    </div>
-
                     <div className="col-span-4 sm:col-span-2">
                       <label
                         htmlFor="postal-code"
@@ -115,7 +107,7 @@ const EditProfile = () => {
                       />
                     </div>
 
-                    <div className="hidden sm:flex sm:col-span-2"></div>
+                    {/* <div className="hidden sm:flex sm:col-span-2"></div> */}
 
                     <div className="col-span-4 sm:col-span-2">
                       <label

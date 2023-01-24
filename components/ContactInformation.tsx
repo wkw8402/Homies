@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ContactInformation() {
   return (
-    <section className="relative w-full px-4 pt-24 bg-white -mb-52 -translate-y-52 sm:px-6 lg:px-8">
+    <section className="relative w-full px-4 pt-24 pb-1 bg-white sm:px-6 lg:px-8">
       <div className="max-w-xl mx-auto lg:max-w-screen-xl">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-32">
           <div className="flex items-center">

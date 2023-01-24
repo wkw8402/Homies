@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Head from 'next/head';
 import Link from 'next/link';
 import Avatar from 'react-avatar';
@@ -18,7 +19,7 @@ const ProfilePage = ({ profile }) => {
 
         <section className="px-4 py-6 sm:px-6">
           <div className="max-w-screen-xl mx-auto">
-            <div className="mb-6 border border-gray-300 rounded-xl">
+            <div className="mb-6 bg-white border border-gray-300 rounded-xl">
               <div className="relative">
                 <div className="block object-cover w-full h-72" />
                 <div className="absolute bottom-0 left-0 flex flex-wrap items-end justify-between w-full p-6">
@@ -33,7 +34,6 @@ const ProfilePage = ({ profile }) => {
                       </h5>
                       <div className="text-gray-600">
                         Looking for a Supportive Roommate
-                        <br /> in {profile.location}
                       </div>
                     </div>
                   </div>
@@ -48,7 +48,65 @@ const ProfilePage = ({ profile }) => {
             </div>
             <div className="flex flex-wrap -mx-3">
               <div className="w-full px-3 mb-6 lg:w-1/3 lg:mb-0">
-                <div className="p-3 mb-6 border border-gray-300 rounded-xl">
+                <div className="p-3 mb-6 bg-white border border-gray-300 rounded-xl">
+                  <table className="w-full">
+                    <tbody className="bg-white">
+                      <tr>
+                        <td
+                          className={classNames(
+                            'border-b border-gray-200',
+                            'whitespace-nowrap p-3 text-sm font-medium text-gray-900'
+                          )}
+                        >
+                          Age
+                        </td>
+                        <td
+                          className={classNames(
+                            'border-b border-gray-200',
+                            'whitespace-nowrap p-3 text-sm text-gray-500 table-cell'
+                          )}
+                        >
+                          {profile.age || 21} years old
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          className={classNames(
+                            'border-b border-gray-200',
+                            'whitespace-nowrap p-3 text-sm font-medium text-gray-900'
+                          )}
+                        >
+                          Gender
+                        </td>
+                        <td
+                          className={classNames(
+                            'border-b border-gray-200',
+                            'whitespace-nowrap p-3 text-sm text-gray-500 table-cell'
+                          )}
+                        >
+                          {profile.gender || 'Male'}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          className={classNames(
+                            'whitespace-nowrap p-3 text-sm font-medium text-gray-900'
+                          )}
+                        >
+                          Desired Location
+                        </td>
+                        <td
+                          className={classNames(
+                            'whitespace-nowrap p-3 text-sm text-gray-500 table-cell'
+                          )}
+                        >
+                          {profile.location}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="p-3 mb-6 bg-white border border-gray-300 rounded-xl">
                   <ul>
                     <li>
                       <a
@@ -68,7 +126,7 @@ const ProfilePage = ({ profile }) => {
                     </li>
                   </ul>
                 </div>
-                <div className="p-3 border border-gray-300 rounded-xl">
+                <div className="p-3 bg-white border border-gray-300 rounded-xl">
                   <ul>
                     <li>
                       <a
@@ -98,7 +156,7 @@ const ProfilePage = ({ profile }) => {
                 </div>
               </div>
               <div className="w-full px-3 lg:w-2/3">
-                <div className="p-6 border border-gray-300 rounded-xl">
+                <div className="p-6 mb-6 bg-white border border-gray-300 rounded-xl">
                   <div className="pb-6 mb-6 border-b border-gray-300">
                     <h3 className="mb-6 text-lg font-semibold text-black">
                       About Me
@@ -110,17 +168,43 @@ const ProfilePage = ({ profile }) => {
                     <h3 className="mb-6 text-lg font-semibold text-black">
                       Roommate Preferences
                     </h3>
-                    <div className="-mb-3">
-                      <span className="inline-block px-4 py-2 mb-3 mr-3 leading-6 text-gray-900 bg-gray-300 rounded-full">
-                        Wordpress Developer
+                    <div className="-mb-3 font-medium">
+                      <span className="inline-block px-4 py-2 mb-3 mr-3 leading-6 text-gray-900 bg-gray-200 rounded-full">
+                        Non-Drinker
                       </span>
-                      <span className="inline-block px-4 py-2 mb-3 mr-3 leading-6 text-gray-900 bg-gray-300 rounded-full">
-                        CSS Developer
+                      <span className="inline-block px-4 py-2 mb-3 mr-3 leading-6 text-gray-900 bg-gray-200 rounded-full">
+                        Non-Smoker
                       </span>
-                      <span className="inline-block px-4 py-2 mb-3 leading-6 text-gray-900 bg-gray-300 rounded-full">
-                        IT Support Tracking
+                      <span className="inline-block px-4 py-2 mb-3 leading-6 text-gray-900 bg-gray-200 rounded-full">
+                        Wheelchair Accessibility
                       </span>
                     </div>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-white border border-gray-300 rounded-xl">
+                  <h3 className="mb-4 text-lg font-semibold text-black">
+                    Interested in living with {profile.name}?
+                  </h3>
+                  <p className="mb-4 text-gray-700">
+                    {profile.name} is looking for a caregiver-roommate. If you
+                    or someone you know might be interested in living with{' '}
+                    {profile.name}, please contact us or share this profile to
+                    help spread the word!
+                  </p>
+                  <div className="">
+                    <Link
+                      className="inline-block w-full px-6 py-3 mb-3 mr-3 font-medium text-center text-white transition duration-200 bg-indigo-600 rounded-full md:w-64 hover:bg-indigo-700"
+                      href="/contact"
+                    >
+                      Contact {profile.name}
+                    </Link>
+                    <Link
+                      className="inline-block w-full px-6 py-3 font-medium text-center text-gray-900 transition duration-200 border border-gray-400 rounded-full md:w-64 hover:bg-gray-100"
+                      href="/contact"
+                    >
+                      Share Profile
+                    </Link>
                   </div>
                 </div>
               </div>

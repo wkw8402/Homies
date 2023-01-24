@@ -27,7 +27,7 @@ export default function App({
       )}
 
       <SessionProvider session={session} refetchInterval={5 * 60}>
-        <NextNProgress />
+        <NextNProgress options={{ showSpinner: false }} />
         <Component {...pageProps} />
       </SessionProvider>
     </>

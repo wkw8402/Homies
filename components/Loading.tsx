@@ -24,4 +24,13 @@ const Spinner = (props) => {
   );
 };
 
-export default Spinner;
+const Loading = () => {
+  return (
+    <div className="flex items-center justify-center">
+      <Spinner className="mr-1" />
+      Loading...
+    </div>
+  );
+};
+
+export default Loading;

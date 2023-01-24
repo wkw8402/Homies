@@ -1,12 +1,13 @@
 import { Provider } from 'next-auth/providers';
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
+import Loading from '../../components/Loading';
 
 export default function SignIn({ providers }) {
   const { data: session, status } = useSession();
   const loading = status === 'loading';
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (session) {

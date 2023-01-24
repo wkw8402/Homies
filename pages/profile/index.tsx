@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
 import ProfileForm from '../../components/ProfileForm';
 import prisma from '../../lib/prismadb';
 
@@ -40,7 +41,7 @@ const MyProfilePage = ({ profile }) => {
               </p>
 
               {loading ? (
-                <div>Loading...</div>
+                <Loading />
               ) : (
                 session && (
                   <>
