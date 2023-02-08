@@ -23,6 +23,14 @@ export default function App({
           gtag('config', 'G-J1Z72RYK2X');
           `}
           </Script>
+          <Script
+            strategy="afterInteractive"
+            type="text/javascript"
+            id="hs-script-loader"
+            async
+            defer
+            src="//js-na1.hs-scripts.com/23979052.js"
+          />
         </>
       )}
 
