@@ -109,6 +109,7 @@ async function sendEmails(req, res) {
     mail = {
       from: adminEmail,
       to: adminEmail, // list of receivers
+      replyTo: recipEmail,
       subject: req.body.subject ? req.body.subject : `New Message From ${name}`, // Subject line
       text: sendTxt, // plain text body
       html: sendHtml, // html body

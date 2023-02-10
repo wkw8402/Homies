@@ -1,10 +1,7 @@
-New Message From Website
+New message regarding Homies:
 
-The following information was submitted:
-
-Name: %NAME%
-Email: %EMAIL%
-Phone: %PHONE%
-Reference: %REFERENCE%
-Message:
-%MESSAGE%
+%NAME%
+%EMAIL%
+%PHONE%
+Referred by %REFERENCE%
+"%MESSAGE%"
