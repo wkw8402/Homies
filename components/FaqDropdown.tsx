@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React, { useRef, useState } from 'react';
 
-export default function FaqDropdown({ question, answer }) {
-  const [open, setOpen] = useState(false);
+export default function FaqDropdown({ question, answer, expanded = false }) {
+  const [open, setOpen] = useState(expanded);
   const scrollRef = useRef(null);
 
   return (
@@ -42,7 +42,7 @@ export default function FaqDropdown({ question, answer }) {
           maxHeight: open ? scrollRef.current?.scrollHeight : 0,
         }}
       >
-        <div className="mt-3 text-base leading-relaxed text-purple-800 sm:text-lg">
+        <div className="mt-3 text-base leading-relaxed text-purple-800 opacity-70 sm:text-lg">
           {answer}
         </div>
       </div>

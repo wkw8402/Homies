@@ -5,6 +5,7 @@ const faqs = [
   {
     question: 'What is Life-Sharing?',
     home: true,
+    expanded: true,
     answer: (
       <>
         <p>
@@ -285,6 +286,7 @@ export default function Faq({ home = false }) {
             (question, index) =>
               ((home && question.home) || !home) && (
                 <FaqDropdown
+                  expanded={question.expanded && home}
                   key={question.question}
                   question={question.question}
                   answer={question.answer}

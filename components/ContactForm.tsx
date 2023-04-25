@@ -76,7 +76,7 @@ const ContactForm = () => {
   return (
     <>
       <div>
-        <h3 className="text-2xl font-bold text-purple-900">Get in touch</h3>
+        <h3 className="text-2xl font-bold text-purple-900">Contact us</h3>
         <p className="text-purple-800 mt-0.5 text-opacity-90">
           Please fill out the form to learn more about the Homies pilot program.
           We will be in touch shortly.
@@ -163,13 +163,13 @@ const ContactForm = () => {
             htmlFor="reference"
             className="ml-0.5 text-purple-900 font-medium text-lg"
           >
-            How did you hear about Homies? *
+            How did you hear about Homies?
           </label>
           <select
             id="reference"
             {...register('reference', {
-              required:
-                'Please select where you heard about the Homies program',
+              // required:
+              //   'Please select where you heard about the Homies program',
             })}
             name="reference"
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
