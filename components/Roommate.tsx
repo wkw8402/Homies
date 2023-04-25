@@ -18,7 +18,7 @@ export default function Roommate() {
         <div className="max-w-screen-xl mx-auto">
           <div className="relative">
             <h2 className="mx-auto text-center text-purple-900 h2">
-              Finding Your Supportive Roommate
+              Finding your Supportive Roommate
             </h2>
             <p className="mx-auto mt-4 text-xl leading-relaxed prose prose-lg text-center text-purple-800 sm:prose-xl sm:mt-12">
               You may already know someone who would make a great supportive
@@ -47,12 +47,12 @@ export default function Roommate() {
         </div>
       </section>
 
-      <section className="pt-20 pb-48 overflow-hidden lg:pt-12 sm:px-6 lg:px-8">
-        <div className="max-w-xl mx-auto">
+      <section className="h-20 overflow-hidden lg:pt-12 sm:px-6 lg:px-8">
+        {/* <div className="max-w-xl mx-auto">
           <div className="w-full px-4 py-6 mx-auto bg-white shadow-xl sm:py-10 sm:rounded-3xl lg:mr-0 lg:ml-auto sm:p-16 lg:p-12 xl:p-14">
             <RoommateForm />
           </div>
-        </div>
+        </div> */}
       </section>
     </>
   );

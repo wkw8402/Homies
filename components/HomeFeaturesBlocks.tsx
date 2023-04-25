@@ -167,10 +167,10 @@ export default function HomeFeaturesBlocks() {
 
             <div className="mt-6">
               <Link
-                href="/contact"
+                href="/roommate"
                 className="font-medium text-white bg-purple-600 btn-sm hover:bg-purple-500 group"
               >
-                Join the pilot program
+                Finding your roommate
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 ml-3 group-hover:animate-horizontal-bounce"

@@ -28,7 +28,7 @@ const Home = () => {
 
       <Programs />
 
-      <Faq />
+      <Faq home={true} />
 
       <CallToAction />
 

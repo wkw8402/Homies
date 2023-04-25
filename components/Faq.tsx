@@ -1,8 +1,10 @@
+import Link from 'next/link';
 import FaqDropdown from './FaqDropdown';
 
 const faqs = [
   {
     question: 'What is Life-Sharing?',
+    home: true,
     answer: (
       <>
         <p>
@@ -63,6 +65,7 @@ const faqs = [
   },
   {
     question: 'What are some of the responsibilities for Supportive Roommates?',
+
     answer: (
       <>
         <p>
@@ -87,6 +90,7 @@ const faqs = [
   },
   {
     question: 'How long does it take to find your Homie?',
+    home: true,
     answer: (
       <>
         <p>
@@ -121,6 +125,7 @@ const faqs = [
   },
   {
     question: 'Which areas do you serve?',
+    home: true,
     answer: (
       <>
         The entire state of California. We are accepting individuals who want to
@@ -247,6 +252,7 @@ const faqs = [
   },
   {
     question: 'How do you make sure supportive roommates are safe?',
+    home: true,
     answer: (
       <>
         <p>
@@ -265,7 +271,7 @@ const faqs = [
   },
 ];
 
-export default function Faq() {
+export default function Faq({ home = false }) {
   return (
     <section className="py-20 bg-yellow-100 sm:py-28">
       <div className="px-4 mx-auto lg:max-w-screen-lg sm:px-6 lg:px-8">
@@ -275,14 +281,45 @@ export default function Faq() {
         </div>
 
         <div className="relative mt-12 space-y-6">
-          {faqs.map((question, index) => (
-            <FaqDropdown
-              key={question.question}
-              question={question.question}
-              answer={question.answer}
-            />
-          ))}
+          {faqs.map(
+            (question, index) =>
+              ((home && question.home) || !home) && (
+                <FaqDropdown
+                  key={question.question}
+                  question={question.question}
+                  answer={question.answer}
+                />
+              )
+          )}
         </div>
+
+        {home && (
+          <div className="flex justify-center mt-12 xl:mt-14">
+            <Link
+              href="/faq"
+              className="text-lg font-semibold text-purple-900 bg-yellow-500 btn hover:bg-yellow-600 group"
+            >
+              See all
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 ml-3 group-hover:animate-horizontal-bounce"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <line x1="15" y1="16" x2="19" y2="12" />
+                <line x1="15" y1="8" x2="19" y2="12" />
+              </svg>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -4,6 +4,29 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+const links = [
+  {
+    name: 'Home',
+    href: '/',
+  },
+  // {
+  //   name: 'Finding Your Roommate',
+  //   href: '/roommate',
+  // },
+  // {
+  //   name: 'How It Works',
+  //   href: '/how-it-works',
+  // },
+  {
+    name: 'FAQ',
+    href: '/faq',
+  },
+  {
+    name: 'Contact Us',
+    href: '/contact',
+  },
+];
+
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { data: session, status } = useSession();
@@ -99,22 +122,20 @@ const Header = () => {
         <nav className="flex items-center max-w-screen-xl pt-5 mx-auto">
           <div className="flex items-center justify-between w-full">
             <div className="items-center justify-between hidden md:flex md:space-x-6 lg:space-x-10">
-              <Link href="/" className="hover:no-underline">
-                <div className="relative p-0.5 group">
-                  <span className="relative z-10 text-lg font-medium text-purple-700 duration-300 ease-in-out group-hover:text-purple-600">
-                    Home
-                  </span>
-                  <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
-                </div>
-              </Link>
-              <Link href="/roommate" className="hover:no-underline">
-                <div className="relative p-0.5 group">
-                  <span className="relative z-10 text-lg font-medium text-purple-700 duration-300 ease-in-out group-hover:text-purple-600">
-                    Finding Your Roommate
-                  </span>
-                  <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
-                </div>
-              </Link>
+              {links.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="hover:no-underline"
+                >
+                  <div className="relative p-0.5 group">
+                    <span className="relative z-10 text-lg font-medium text-purple-700 duration-300 ease-in-out group-hover:text-purple-600">
+                      {link.name}
+                    </span>
+                    <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
+                  </div>
+                </Link>
+              ))}
 
               {/* <div className="relative" x-data="{ open: false }">
                 <button
@@ -233,15 +254,6 @@ const Header = () => {
                   </div>
                 </div>
               </div> */}
-
-              <Link href="/contact" className="hover:no-underline">
-                <div className="relative p-0.5 group">
-                  <span className="relative z-10 text-lg font-medium text-purple-700 duration-300 ease-in-out group-hover:text-purple-600">
-                    Contact Us
-                  </span>
-                  <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
-                </div>
-              </Link>
             </div>
 
             <div className="hidden md:block">
