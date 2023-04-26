@@ -374,6 +374,6 @@ export const getStaticProps = async (context) => {
       post,
       blocks: blocksWithChildren,
     },
-    revalidate: 1000,
+    revalidate: 100,
   };
 };
