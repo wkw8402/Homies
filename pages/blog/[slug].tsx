@@ -326,9 +326,16 @@ export const getStaticProps = async (context) => {
     (post: any) => getPropertyText(post.properties.Slug) === slug
   );
 
+  if (!post) {
+    return {
+      props: {},
+      notFound: true,
+    };
+  }
+
   const blocks: any = await getBlocks(post.id);
 
-  if (!post || !blocks?.length) {
+  if (!blocks.length) {
     return {
       props: {},
       notFound: true,
