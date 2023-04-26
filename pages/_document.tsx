@@ -1,10 +1,16 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
+  const ogImage =
+    (process.env.VERCEL_URL
+      ? 'https://' + process.env.VERCEL_URL
+      : 'http://localhost:3000') + '/api/blog/og';
   return (
     <Html className="h-full bg-purple-25">
       <Head>
         <meta charSet="UTF-8" />
+        <meta name="og:image" content={ogImage} />
+
         <link rel="shortcut icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
