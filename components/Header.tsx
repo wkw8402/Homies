@@ -351,32 +351,20 @@ const Header = () => {
               >
                 <div className="flex flex-col items-center justify-center w-full h-full">
                   <div className="flex flex-col items-center w-full mx-auto space-y-6 justify-evenly">
-                    <Link href="/" className="hover:no-underline">
-                      <div className="relative p-0.5 group">
-                        <span className="relative z-10 text-2xl font-medium duration-300 ease-in-out text-purple-50 group-hover:text-white">
-                          Home
-                        </span>
-                        <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
-                      </div>
-                    </Link>
-
-                    <Link href="/roommate" className="hover:no-underline">
-                      <div className="relative p-0.5 group">
-                        <span className="relative z-10 text-2xl font-medium duration-300 ease-in-out text-purple-50 group-hover:text-white">
-                          Finding a Roommate
-                        </span>
-                        <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
-                      </div>
-                    </Link>
-
-                    <Link href="/contact" className="hover:no-underline">
-                      <div className="relative p-0.5 group">
-                        <span className="relative z-10 text-2xl font-medium duration-300 ease-in-out text-purple-50 group-hover:text-white">
-                          Contact Us
-                        </span>
-                        <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
-                      </div>
-                    </Link>
+                    {links.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className="hover:no-underline"
+                      >
+                        <div className="relative p-0.5 group">
+                          <span className="relative z-10 text-2xl font-medium duration-300 ease-in-out text-purple-50 group-hover:text-white">
+                            {link.name}
+                          </span>
+                          <span className="absolute bottom-0 h-1.5 duration-300 ease-in-out origin-bottom transform scale-x-0 bg-yellow-400 rounded-lg -left-1 -right-1 group-hover:scale-x-100"></span>
+                        </div>
+                      </Link>
+                    ))}
 
                     {/* <Link
                       className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold leading-normal text-center text-purple-900 duration-300 ease-in-out bg-yellow-400 rounded-full"
