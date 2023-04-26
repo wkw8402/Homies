@@ -9,11 +9,6 @@ import { getDatabase, getPropertyText } from '../../lib/notion';
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
-  const ogImage =
-    (process.env.VERCEL_URL
-      ? 'https://' + process.env.VERCEL_URL
-      : 'http://localhost:3000') + '/api/blog/og?title=Blog';
-
   return (
     <>
       <Head>
@@ -23,7 +18,6 @@ export default function Home({ posts }) {
           name="og:description"
           content="Keep up to date with the latest articles, company updates, and more."
         />
-        <meta name="og:image" content={ogImage} />
       </Head>
       <div className="bg-gradient-to-b from-purple-25 to-purple-50">
         <Header />

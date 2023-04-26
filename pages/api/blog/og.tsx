@@ -17,7 +17,9 @@ export default async function handler(request: NextRequest) {
 
     const hasTitle = searchParams.has('title');
 
-    const title = hasTitle ? searchParams.get('title')?.slice(0, 100) : '';
+    const title = hasTitle
+      ? searchParams.get('title')?.slice(0, 100)
+      : "California's First Life-Sharing Program for Neurodiverse Adults";
     return new ImageResponse(
       (
         // Modified based on https://tailwindui.com/components/marketing/sections/cta-sections

@@ -106,12 +106,6 @@ export default function Post({ post, blocks }) {
   }
 
   const title = post.properties.Name.title[0].plain_text;
-  const ogImage =
-    (process.env.VERCEL_URL
-      ? 'https://' + process.env.VERCEL_URL
-      : 'http://localhost:3000') +
-    '/api/blog/og?title=' +
-    title;
 
   return (
     <>
@@ -122,7 +116,6 @@ export default function Post({ post, blocks }) {
           name="og:description"
           content="Keep up to date with the latest articles, company updates, and more."
         />
-        <meta name="og:image" content={ogImage} />
       </Head>
       <div className="bg-gradient-to-b from-purple-25 to-purple-50">
         <Header />
