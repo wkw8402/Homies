@@ -10,6 +10,7 @@ export default function Document() {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="og:image" content={ogImage} />
+        <meta name="theme-color" content="#f4f0fc" />
 
         <link rel="shortcut icon" href="/favicon.ico" />
         <link
