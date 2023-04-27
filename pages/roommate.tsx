@@ -9,7 +9,7 @@ const RoommatePage = () => {
   return (
     <>
       <Head>
-        <title>I Have My Roommate | Homies</title>
+        <title>Finding My Supportive Roommate | Homies</title>
       </Head>
       <div className="bg-gradient-to-b from-purple-25 to-purple-50">
         <Header />

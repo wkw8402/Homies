@@ -4,7 +4,7 @@ export default function Document() {
   const ogImage =
     (process.env.VERCEL_URL
       ? 'https://' + process.env.VERCEL_URL
-      : 'http://localhost:3000') + '/api/blog/og';
+      : 'http://localhost:3000') + '/og.png';
   return (
     <Html className="h-full bg-purple-25">
       <Head>
@@ -32,7 +32,6 @@ export default function Document() {
         />
         <link rel="manifest" href="/site.webmanifest"></link>
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#fff" />
         <meta name="application-name" content="Homies" />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />

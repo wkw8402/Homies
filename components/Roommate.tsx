@@ -1,10 +1,10 @@
 import RoommateForm from './RoommateForm';
 
 const roommateOptions = [
-  'Friend',
-  'Family member',
-  'Neighbor',
-  'Co-worker',
+  'Friends',
+  'Family members',
+  'Neighbors',
+  'Co-workers',
   'Former or current staff member',
   'Someone from your school or university',
   'Someone from your place of worship',
@@ -18,7 +18,7 @@ export default function Roommate() {
         <div className="max-w-screen-xl mx-auto">
           <div className="relative">
             <h2 className="mx-auto text-center text-purple-900 h2">
-              Finding your Supportive Roommate
+              Finding My Supportive Roommate
             </h2>
             <p className="mx-auto mt-4 text-xl leading-relaxed prose prose-lg text-center text-purple-800 sm:prose-xl sm:mt-12">
               You may already know someone who would make a great supportive
