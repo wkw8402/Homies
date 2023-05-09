@@ -313,18 +313,18 @@ export default function Post({ post, blocks }) {
   );
 }
 
-export const getStaticPaths = async () => {
-  const database = await getDatabase(databaseId);
-  return {
-    paths: database.map(
-      (post: any) => `/blog/${getPropertyText(post.properties.Slug)}`
-    ),
-    // fallback: true,
-    fallback: 'blocking',
-  };
-};
+// export const getStaticPaths = async () => {
+//   const database = await getDatabase(databaseId);
+//   return {
+//     paths: database.map(
+//       (post: any) => `/blog/${getPropertyText(post.properties.Slug)}`
+//     ),
+//     // fallback: true,
+//     fallback: 'blocking',
+//   };
+// };
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { slug } = context.params;
   const pages = await getDatabase(databaseId);
   const post = pages.find(
@@ -374,6 +374,6 @@ export const getStaticProps = async (context) => {
       post,
       blocks: blocksWithChildren,
     },
-    revalidate: 60 * 20,
+    // revalidate: 60 * 20,
   };
 };
