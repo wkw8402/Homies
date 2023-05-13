@@ -347,19 +347,6 @@ const faqs = [
         <ul>
           <li>
             <a
-              href="https://phoenixfacilitation.org"
-              target="_blank"
-              rel="noreferrer"
-            >
-              https://phoenixfacilitation.org
-            </a>{' '}
-            - Phoenix Facilitation offers Person-Centered Thinking Training,
-            Person-Centered Planning, Independent Facilitation, Advocacy,
-            training, and education regarding the California Regional Center
-            system.
-          </li>
-          <li>
-            <a
               href="https://www.thecasdpnetwork.org"
               target="_blank"
               rel="noreferrer"
