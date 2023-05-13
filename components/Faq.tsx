@@ -353,9 +353,10 @@ const faqs = [
             >
               https://phoenixfacilitation.org
             </a>{' '}
-            - Contact Naomi Hagel at{' '}
-            <a href="mailto:naomi@gophoenix.org">naomi@gophoenix.org</a>. She is
-            an independent facilitator that specializes in self-determination.
+            - Phoenix Facilitation offers Person-Centered Thinking Training,
+            Person-Centered Planning, Independent Facilitation, Advocacy,
+            training, and education regarding the California Regional Center
+            system.
           </li>
           <li>
             <a
