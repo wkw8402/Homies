@@ -411,7 +411,7 @@ const faqs = [
     ),
   },
   {
-    question: 'Does my Homie have to pay for rent?',
+    question: 'Does my roommate have to pay for rent?',
     type: FaqType.SupportiveRoommates,
     answer: (
       <>
@@ -440,7 +440,7 @@ const faqs = [
     ),
   },
   {
-    question: 'How long does it take to find your Homie?',
+    question: 'How long does it take to find your roommate?',
     type: FaqType.General,
 
     answer: (
@@ -488,15 +488,15 @@ const faqs = [
       <>
         <p>
           The most important requirement is that supportive roommates are there
-          overnight. Other duties might include: hanging out with your Homie,
+          overnight. Other duties might include: hanging out with your roommate,
           eating dinner together, cooking, going to sporting events together,
-          transporting your Homie to their job or event, reminding your Homie to
-          pay bills or take medication.
+          transporting your roommate to their job or event, reminding your
+          roommate to pay bills or take medication.
         </p>
         <p>
           The responsibilities will vary depending on the individual. The goal
           is for this to be such a compatible match that it doesn’t really feel
-          like work! You are living with your Homie.
+          like work! You can think of it as living with a friend.
         </p>
       </>
     ),
@@ -509,7 +509,7 @@ const faqs = [
         <p>
           The annual salary for supportive roommates ranges from $10,000 to
           $50,000 tax-free. It will depend on how many hours of support a week
-          you provide for your Homie.
+          you provide for your roommate.
         </p>
       </>
     ),
