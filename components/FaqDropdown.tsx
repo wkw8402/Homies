@@ -6,7 +6,7 @@ export default function FaqDropdown({ question, answer, expanded = false }) {
   const scrollRef = useRef(null);
 
   return (
-    <div className="w-full px-5 py-6 bg-white sm:px-12 sm:py-8 rounded-3xl faq">
+    <div className="w-full px-5 py-6 mt-6 bg-white sm:px-12 sm:py-8 rounded-3xl faq">
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center justify-between w-full text-lg sm:text-xl group"
