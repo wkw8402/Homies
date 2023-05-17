@@ -89,7 +89,6 @@ const faqs = [
     question:
       'What happens if a supportive roommate needs time off or has an emergency?',
     type: FaqType.General,
-
     answer: (
       <>
         <p>
@@ -122,7 +121,6 @@ const faqs = [
     question:
       'How can I provide feedback or suggestions to improve the Homies program?',
     type: FaqType.General,
-
     answer: (
       <>
         <p>
@@ -151,7 +149,6 @@ const faqs = [
     question:
       "Are there any additional costs or fees associated with using Homies' services?",
     type: FaqType.General,
-
     answer: (
       <>
         <p>
@@ -165,7 +162,6 @@ const faqs = [
   {
     question: 'How does Homies handle disputes or conflicts between roommates?',
     type: FaqType.General,
-
     answer: (
       <>
         <p>
@@ -181,7 +177,6 @@ const faqs = [
     question:
       'What training or resources are provided for supportive roommates to better assist individuals with disabilities?',
     type: FaqType.General,
-
     answer: (
       <>
         <p>
@@ -214,7 +209,6 @@ const faqs = [
       'How does Homies support both parties throughout the roommate relationship?',
     type: FaqType.General,
     home: true,
-
     answer: (
       <>
         <p>
@@ -363,7 +357,6 @@ const faqs = [
   {
     question: 'How is Homies funded?',
     type: FaqType.General,
-
     answer: (
       <>
         <p>
@@ -384,7 +377,6 @@ const faqs = [
   {
     question: 'Which areas do you serve?',
     type: FaqType.General,
-
     answer: (
       <>
         <p>
@@ -530,7 +522,7 @@ const faqs = [
   },
   {
     question: 'If I become a supportive roommate, can I keep my current job?',
-    type: FaqType.Homies,
+    type: FaqType.SupportiveRoommates,
     answer: (
       <>
         <p>
