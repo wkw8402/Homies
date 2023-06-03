@@ -575,7 +575,7 @@ const faqs = [
   return acc;
 }, {});
 
-const renderTypeId = (type: FaqType) => {
+const renderTypeId = (type: string) => {
   switch (type) {
     case FaqType.General:
       return 'general';
