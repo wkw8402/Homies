@@ -2,8 +2,8 @@ import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
   const ogImage =
-    (process.env.VERCEL_URL
-      ? 'https://' + process.env.VERCEL_URL
+    (process.env.NEXT_PUBLIC_BASE_URL
+      ? process.env.NEXT_PUBLIC_BASE_URL
       : 'http://localhost:3000') + '/og.png';
   return (
     <Html className="h-full bg-purple-25">
