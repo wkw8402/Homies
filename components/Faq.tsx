@@ -3,7 +3,7 @@ import FaqDropdown from './FaqDropdown';
 
 // enum for FAQ type
 enum FaqType {
-  General = 'General',
+  General = 'General Questions',
   Homies = 'For Neurodivergent Individuals',
   SupportiveRoommates = 'For Supportive Roommates/Caregivers',
 }
@@ -536,6 +536,7 @@ const faqs = [
   {
     question: 'Who can be my supportive roommate?',
     type: FaqType.Homies,
+
     home: true,
     answer: (
       <>
@@ -574,6 +575,17 @@ const faqs = [
   return acc;
 }, {});
 
+const renderTypeId = (type: FaqType) => {
+  switch (type) {
+    case FaqType.General:
+      return 'general';
+    case FaqType.SupportiveRoommates:
+      return 'supportive-roommates';
+    case FaqType.Homies:
+      return 'neurodivergent-individuals';
+  }
+};
+
 export default function Faq({ home = false }) {
   return (
     <section className="py-20 bg-yellow-100 sm:py-28">
@@ -581,12 +593,47 @@ export default function Faq({ home = false }) {
         <div className="max-w-2xl">
           <h2 className="text-purple-900 h2">Frequently asked questions</h2>
           <p className="max-w-2xl mt-4 text-xl leading-relaxed text-purple-800 lg:text-left"></p>
+          {!home && (
+            <div>
+              <ul className="space-y-2 list-disc list-inside">
+                <li>
+                  <a
+                    href="#general"
+                    className="text-purple-900 hover:underline"
+                  >
+                    {FaqType.General}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#neurodivergent-individuals"
+                    className="text-purple-900 hover:underline"
+                  >
+                    {FaqType.Homies}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#supportive-roommates"
+                    className="text-purple-900 hover:underline"
+                  >
+                    {FaqType.SupportiveRoommates}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
         {Object.keys(faqs).map((type) => (
           <div key={type}>
             {!home && (
-              <h3 className="mt-16 mb-12 text-purple-900 h3">{type}</h3>
+              <h3
+                className="mt-16 mb-12 text-purple-900 h3"
+                id={renderTypeId(type)}
+              >
+                {type}
+              </h3>
             )}
             <div className="relative">
               {faqs[type].map(
