@@ -24,12 +24,13 @@ export const onboardingPages = [
   },
   {
     step: 'login',
-    title: 'Please enter the 6-digit code sent to your email address',
-    description: 'The code was sent to {{email}}.',
+    title: 'Check Your Email',
+    description:
+      'Please enter the 6-digit code sent to your email address. The code was sent to {{email}}.',
     blocks: [
       {
         question: 'Enter code:',
-        placeholder: '',
+        placeholder: '000000',
         fieldName: 'code',
         fieldType: 'text',
         options: null,

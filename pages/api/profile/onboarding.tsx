@@ -1,9 +1,12 @@
+import { onboardingPages } from '../../../lib/onboardingPages';
+
 let userDB = {
   completedSteps: [],
 };
 
 export default function handler(req, res) {
-  const allSteps = ['name', 'gender', 'address', 'city', 'state', 'zip'];
+  // const allSteps = ['name', 'gender', 'address', 'city', 'state', 'zip'];
+  const allSteps = onboardingPages.map((page) => page.step);
 
   if (req.method === 'GET') {
     const missingSteps = allSteps.filter(
