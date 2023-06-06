@@ -1,11 +1,15 @@
 export const onboardingPages = [
   {
     step: 'name',
+    title: 'Your Name',
+    description:
+      'Please enter the name of the individual that will be utilizing the Homies program.',
     blocks: [
       {
         question: 'What is your full name?',
-        placeholder: 'First Last',
+        placeholder: '',
         fieldName: 'name',
+        autoFocus: true,
         fieldType: 'text',
         options: null,
         rules: { required: 'Name is required' },
@@ -15,6 +19,8 @@ export const onboardingPages = [
   },
   {
     step: 'gender',
+    title: 'How do you identify?',
+    description: 'Select the gender you identify with.',
     blocks: [
       {
         question: 'What is your gender?',
@@ -23,7 +29,9 @@ export const onboardingPages = [
         options: [
           { label: 'Male', value: 'Male' },
           { label: 'Female', value: 'Female' },
-          { label: 'Other', value: 'Other' },
+          { label: 'Non-Binary', value: 'Non-Binary' },
+          { label: 'Prefer not to say', value: 'Prefer not to say' },
+          { label: 'Other...', value: 'other' },
         ],
         rules: { required: 'Gender selection is required' },
         dbField: 'user_gender',
@@ -32,6 +40,9 @@ export const onboardingPages = [
   },
   {
     step: 'address',
+    title: 'Current Mailing Address',
+    description:
+      'Let us know where you currently live so we can send you your information to your home.',
     blocks: [
       {
         question: 'Address',
@@ -127,6 +138,8 @@ export const onboardingPages = [
   },
   {
     step: 'regional-center',
+    title: 'Regional Center',
+    description: 'Select the regional center you work with in California.',
     blocks: [
       {
         question: 'Select your Regional Center',
@@ -224,6 +237,9 @@ export const onboardingPages = [
   },
   {
     step: 'lifestyle',
+    title: 'Lifestyle/Habits',
+    description:
+      'We need this information to find the perfect roommate for you to match your lifestyle and habits.',
     blocks: [
       {
         question: 'Do you smoke?',
@@ -252,13 +268,66 @@ export const onboardingPages = [
         fieldName: 'cleaning',
         fieldType: 'radio',
         options: [
-          { label: 'Daily', value: 'Daily' },
-          { label: 'Weekly', value: 'Weekly' },
-          { label: 'Monthly', value: 'Monthly' },
-          { label: 'I don`t clean', value: 'None' },
+          { label: 'Daily', value: 'daily' },
+          { label: 'Weekly', value: 'weekly' },
+          { label: 'Monthly', value: 'monthly' },
+          { label: 'Every once in awhile', value: 'sometimes' },
+          { label: `I don't clean`, value: 'none' },
+        ],
+        dbField: 'alcohol',
+      },
+      {
+        question: 'What time do you usually go to bed?',
+        fieldName: 'bedtime',
+        fieldType: 'radio',
+        options: [
+          { label: 'Early bird (early to bed, early to rise)', value: 'early' },
+          { label: 'Night owl (late to bed, late to rise)', value: 'late' },
+          {
+            label: 'It varies (sometimes early, sometimes late)',
+            value: 'varies',
+          },
         ],
         dbField: 'alcohol',
       },
     ],
   },
 ];
+
+// formatting
+
+const formatting = {
+  step: 'lifestyle',
+  title: 'Lifestyle/Habits',
+  description:
+    'We need this information to find the perfect roommate for you to match your lifestyle and habits.',
+  blocks: [
+    {
+      question: 'Do you smoke?',
+      fieldName: 'smoke',
+      fieldType: 'radio',
+      options: [
+        { label: 'Yes', value: 'Yes' },
+        { label: 'No', value: 'No' },
+        { label: 'Sometimes', value: 'Sometimes' },
+      ],
+      dbField: 'smoke',
+    },
+    {
+      question: 'Do you drink alcohol?',
+      fieldName: 'alcohol',
+      fieldType: 'text',
+      options: null,
+    },
+    {
+      question: 'How often do you clean your living space?',
+      fieldName: 'cleaning',
+      fieldType: 'select',
+      options: [
+        { label: 'Daily', value: 'daily' },
+        { label: 'Weekly', value: 'weekly' },
+        { label: 'Monthly', value: 'monthly' },
+      ],
+    },
+  ],
+};
