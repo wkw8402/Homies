@@ -1,19 +1,76 @@
 export const onboardingPages = [
   {
+    step: 'get-started',
+    title: 'Welcome to Homies',
+    description:
+      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the email you use to login. \n\nIf you already have an account, please enter your email below.',
+    blocks: [
+      {
+        question: 'Email Address',
+        placeholder: '',
+        fieldName: 'email',
+        fieldType: 'text',
+        options: null,
+        rules: {
+          required: 'Email address is required',
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: 'Invalid email address',
+          },
+        },
+        dbField: 'user_email',
+      },
+    ],
+  },
+  {
+    step: 'login',
+    title: 'Please enter the 6-digit code sent to your email address',
+    description: 'The code was sent to {{email}}.',
+    blocks: [
+      {
+        question: 'Enter code:',
+        placeholder: '',
+        fieldName: 'code',
+        fieldType: 'text',
+        options: null,
+        rules: {
+          required: 'Please enter the code',
+        },
+        dbField: 'code',
+      },
+    ],
+  },
+  {
     step: 'name',
-    title: 'Your Name',
+    title: 'Full Name',
     description:
       'Please enter the name of the individual that will be utilizing the Homies program.',
     blocks: [
       {
-        question: 'What is your full name?',
-        placeholder: '',
+        question: 'What is your name?',
+        placeholder: 'John Appleseed',
         fieldName: 'name',
         autoFocus: true,
         fieldType: 'text',
         options: null,
         rules: { required: 'Name is required' },
         dbField: 'user_name',
+      },
+    ],
+  },
+  {
+    step: 'phone',
+    title: 'Phone Number',
+    description: 'Please enter the phone number we can reach you at.',
+    blocks: [
+      {
+        question: 'What is your phone number?',
+        placeholder: '(951) 456-7890',
+        fieldName: 'phone',
+        fieldType: 'text',
+        options: null,
+        rules: { required: 'Phone number is required' },
+        dbField: 'user_phone',
       },
     ],
   },

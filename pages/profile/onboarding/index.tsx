@@ -1,18 +1,16 @@
 import axios from 'axios';
 
 const Home = () => {
-  return (
-    <div>
-      <h1>Welcome to the multi-step form</h1>
-    </div>
-  );
+  return <></>;
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const protocol = req.headers['x-forwarded-proto'] || 'http'; // Use the appropriate protocol (e.g., "https" when using SSL)
+  const host = req.headers['x-forwarded-host'] || req.headers.host;
+  const publicURL = `${protocol}://${host}`;
   try {
-    const response = await axios.get(
-      'http://localhost:3000/api/profile/onboarding'
-    );
+    const response = await axios.get(`${publicURL}/api/profile/onboarding`);
     const steps = response.data;
     const currentStep = steps[0] || 'complete';
 
