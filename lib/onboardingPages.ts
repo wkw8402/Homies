@@ -448,6 +448,7 @@ export const onboardingPages = [
         description: 'Do you prefer your roommate to be a specific gender?',
         fieldName: 'roommatePreferences',
         fieldType: 'checkbox',
+        rules: { required: 'Please select an option' },
         defaultValue: [],
         options: [
           { label: 'Cis-Male', value: 'Male' },
@@ -471,7 +472,7 @@ export const onboardingPages = [
       {
         question: 'How do you feel about guests?',
         fieldName: 'guests',
-        fieldType: 'select',
+        fieldType: 'radio',
         options: [
           { label: 'The more the merrier', value: 'merrier' },
           { label: 'Occasional guests are fine', value: 'occasional' },
@@ -482,7 +483,7 @@ export const onboardingPages = [
       {
         question: 'Are you okay with sharing food or other items?',
         fieldName: 'sharing',
-        fieldType: 'select',
+        fieldType: 'radio',
         options: [
           { label: "Yes, I don't mind sharing", value: 'yesSharing' },
           { label: 'Some things, but not all', value: 'someSharing' },
@@ -502,7 +503,7 @@ export const onboardingPages = [
         question:
           'How do you usually handle conflict or issues with roommates?',
         fieldName: 'conflictResolution',
-        fieldType: 'select',
+        fieldType: 'radio',
         options: [
           {
             label: 'Discuss the issue directly but respectfully',
@@ -520,7 +521,7 @@ export const onboardingPages = [
         question:
           "What's your preferred method of communication for important matters?",
         fieldName: 'communicationMethod',
-        fieldType: 'select',
+        fieldType: 'radio',
         options: [
           { label: 'Face to face conversation', value: 'faceToFace' },
           { label: 'Phone call', value: 'phoneCall' },

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import classNames from 'classnames';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Loading from '../../../components/Loading';
 import Button from '../../../components/shared/Button';
 import { onboardingPages } from '../../../lib/onboardingPages';
-import Image from 'next/image';
 
 const FormStep = () => {
   const router = useRouter();
@@ -73,25 +73,35 @@ const FormStep = () => {
     }
   }, [isReady, currentFormPage]);
 
+  // Create an empty queue
+  let queue = Promise.resolve();
+
   const handleCheckboxChange = (block, optionValue) => {
-    const currentValues = watch(block.fieldName);
-    const isCurrentlyChecked = currentValues.includes(optionValue);
+    // Enqueue the operation
+    queue = queue.then(
+      () =>
+        new Promise((resolve) => {
+          const currentValues = watch(block.fieldName);
+          const isCurrentlyChecked = currentValues.includes(optionValue);
 
-    if (isCurrentlyChecked) {
-      // if the checkbox is currently checked, uncheck it
-      setValue(
-        block.fieldName,
-        currentValues.filter((value) => value !== optionValue)
-      );
-    } else {
-      // if the checkbox is currently unchecked, check it
-      setValue(block.fieldName, [...currentValues, optionValue]);
-    }
-    trigger(block.fieldName);
+          if (isCurrentlyChecked) {
+            // if the checkbox is currently checked, uncheck it
+            setValue(
+              block.fieldName,
+              currentValues.filter((value) => value !== optionValue)
+            );
+          } else {
+            // if the checkbox is currently unchecked, check it
+            setValue(block.fieldName, [...currentValues, optionValue]);
+          }
+          if (errors[block.fieldName]) {
+            trigger(block.fieldName);
+          }
+
+          resolve();
+        })
+    );
   };
-
-  console.log(getValues());
-  console.log('watch', watch('interests'));
 
   return (
     <div className="min-h-screen from-purple-50 bg-gradient-to-b pb-10 to-purple-100">
@@ -181,7 +191,9 @@ const FormStep = () => {
                             key={option.value}
                             onClick={() => {
                               setValue(block.fieldName, option.value);
-                              trigger(block.fieldName);
+                              if (errors[block.fieldName]) {
+                                trigger(block.fieldName);
+                              }
                             }}
                             className={classNames(
                               // if the value of the radio button is equal to the value of the option, then add the border-black class
@@ -191,9 +203,13 @@ const FormStep = () => {
                                 : 'hover:border-gray-300 hover:text-black text-gray-500 hover:bg-gray-50'
                             )}
                           >
-                            <label className="cursor-pointer">
+                            <label
+                              onClick={(e) => e.stopPropagation()}
+                              className="cursor-pointer"
+                            >
                               <input
                                 autoFocus={index === 0 && i === 0}
+                                onClick={(e) => e.stopPropagation()}
                                 type={block.fieldType}
                                 {...register(block.fieldName, block.rules)}
                                 value={option.value}
@@ -209,9 +225,10 @@ const FormStep = () => {
                         {block.options.map((option, i) => (
                           <div
                             key={option.value}
-                            onClick={() =>
-                              handleCheckboxChange(block, option.value)
-                            }
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleCheckboxChange(block, option.value);
+                            }}
                             className={classNames(
                               // if the value of the radio button is equal to the value of the option, then add the border-black class
                               'border px-3 py-3 rounded relative flex items-center cursor-pointer',
@@ -227,12 +244,6 @@ const FormStep = () => {
                               {...register(block.fieldName, block.rules)}
                               id={option.value} // needed for the label to work correctly
                               value={option.value}
-                              checked={
-                                !!watch(block.fieldName)?.includes(option.value)
-                              }
-                              onChange={() =>
-                                handleCheckboxChange(block, option.value)
-                              }
                               className="mr-3 rounded"
                             />
                             <label
