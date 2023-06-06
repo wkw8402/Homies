@@ -40,9 +40,9 @@ export const onboardingPages = [
   },
   {
     step: 'address',
-    title: 'Current Mailing Address',
+    title: 'Current Address',
     description:
-      'Let us know where you currently live so we can send you your information to your home.',
+      'Let us know where you currently live so we can send you information about the Homies program.',
     blocks: [
       {
         question: 'Address',
@@ -139,7 +139,8 @@ export const onboardingPages = [
   {
     step: 'regional-center',
     title: 'Regional Center',
-    description: 'Select the regional center you work with in California.',
+    description:
+      'Select the regional center you work with in California. If you\'re not sure which regional center you work with, please select "Not sure".',
     blocks: [
       {
         question: 'Select your Regional Center',
@@ -223,21 +224,31 @@ export const onboardingPages = [
           },
           {
             label: `Not sure`,
-            value: 'Not sure',
+            value: 'unknown',
           },
           {
-            label: `Other`,
-            value: 'Other',
+            label: `Other...`,
+            value: 'other',
           },
         ],
         rules: { required: 'Regional center selection is required' },
         dbField: 'regional_center',
       },
+      {
+        showIf: { fieldName: 'regionalCenter', value: 'other' },
+        // question: 'Other Regional Center',
+        description:
+          'Since you selected "Other" above, please enter your regional center here.',
+        rules: { required: 'Please fill out this field' },
+        fieldName: 'otherRegionalCenter',
+        fieldType: 'text',
+        dbField: 'regionalCenter',
+      },
     ],
   },
   {
     step: 'lifestyle',
-    title: 'Lifestyle/Habits',
+    title: 'Lifestyle & Habits',
     description:
       'We need this information to find the perfect roommate for you to match your lifestyle and habits.',
     blocks: [
