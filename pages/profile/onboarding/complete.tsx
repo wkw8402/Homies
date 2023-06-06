@@ -1,5 +1,6 @@
-import { ClockIcon } from '@heroicons/react/24/outline';
-import React, { useCallback, useEffect, useRef } from 'react';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
+import { useCallback, useEffect, useRef } from 'react';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const canvasStyles: any = {
@@ -62,13 +63,28 @@ export default function Realistic() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-screen bg-blue-50">
-        <ClockIcon className="h-24 w-24 text-purple-500 mb-4" />
+      <div className="flex flex-col px-8 text-center justify-center space-y-4 items-center h-screen bg-blue-50">
+        <CheckCircleIcon className="h-24 w-24 text-green-600 mb-4" />
         <h2 className="text-2xl font-bold text-purple-700 mb-2">
-          Thanks for completing your profile.
+          Thanks for completing your Homies profile!
         </h2>
         <p className="text-purple-600">
-          We'll be in touch with you soon if you've been approved.
+          We'll review your responses and call or email you in 1-2 business
+          days.
+        </p>
+        <p className="text-purple-600">
+          If you'd like to speak with us sooner, please email us at{' '}
+          <a className="underline" href="mailto:hello@meethomies.com">
+            hello@meethomies.com
+          </a>{' '}
+          or call us at <a href="tel:9512918279">951-291-8279</a>.
+        </p>
+        <p className="text-purple-600">
+          You can also review and update your responses{' '}
+          <Link href="/profile" className="underline">
+            here
+          </Link>
+          .
         </p>
       </div>
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />

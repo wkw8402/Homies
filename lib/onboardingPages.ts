@@ -245,6 +245,7 @@ export const onboardingPages = [
         question: 'Do you smoke?',
         fieldName: 'smoke',
         fieldType: 'radio',
+        rules: { required: 'Please select an option' },
         options: [
           { label: 'Yes', value: 'Yes' },
           { label: 'No', value: 'No' },
@@ -256,6 +257,7 @@ export const onboardingPages = [
         question: 'Do you drink alcohol?',
         fieldName: 'alcohol',
         fieldType: 'radio',
+        rules: { required: 'Please select an option' },
         options: [
           { label: 'Yes', value: 'Yes' },
           { label: 'No', value: 'No' },
@@ -267,6 +269,7 @@ export const onboardingPages = [
         question: 'How often do you clean your living space?',
         fieldName: 'cleaning',
         fieldType: 'radio',
+        rules: { required: 'Please select an option' },
         options: [
           { label: 'Daily', value: 'daily' },
           { label: 'Weekly', value: 'weekly' },
@@ -280,6 +283,7 @@ export const onboardingPages = [
         question: 'What time do you usually go to bed?',
         fieldName: 'bedtime',
         fieldType: 'radio',
+        rules: { required: 'Please select an option' },
         options: [
           { label: 'Early bird (early to bed, early to rise)', value: 'early' },
           { label: 'Night owl (late to bed, late to rise)', value: 'late' },
@@ -289,6 +293,51 @@ export const onboardingPages = [
           },
         ],
         dbField: 'alcohol',
+      },
+    ],
+  },
+  {
+    step: 'pets',
+    title: 'Pets & Animals',
+    description:
+      'We need this information to find the perfect roommate for you to match your lifestyle and habits.',
+    blocks: [
+      {
+        question: 'Do you have any pets?',
+        fieldName: 'pets',
+        fieldType: 'radio',
+        rules: { required: 'Please select an option' },
+        options: [
+          { label: 'Yes', value: 'Yes' },
+          { label: 'No', value: 'No' },
+        ],
+        dbField: 'pets',
+      },
+      {
+        showIf: { fieldName: 'pets', value: 'Yes' },
+        question: 'Share a little about your pets!',
+        description: 'What kind of animals do you have? What are their names?',
+        rules: { required: 'Please tell us about your pets' },
+        fieldName: 'petsDescription',
+        fieldType: 'textarea',
+        dbField: 'petsDescription',
+      },
+      {
+        question: 'Are you open to living with someone who has pets?',
+        fieldName: 'openPets',
+        rules: { required: 'Please select an option' },
+        fieldType: 'radio',
+        options: [
+          { label: 'Yes, I love all pets', value: 'yes' },
+          { label: 'Yes, but only dogs', value: 'yes-dogs' },
+          { label: 'Yes, but only cats', value: 'yes-cats' },
+          {
+            label: 'Yes, but only under certain circumstances',
+            value: 'yes-other',
+          },
+          { label: 'No', value: 'no' },
+        ],
+        dbField: 'openPets',
       },
     ],
   },
