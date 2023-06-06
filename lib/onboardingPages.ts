@@ -304,6 +304,50 @@ export const onboardingPages = [
       },
     ],
   },
+
+  {
+    step: 'about-you',
+    title: 'About You',
+    description:
+      'We ask for this information so we can find a great roommate match for you.',
+    blocks: [
+      {
+        question: 'What are your interests & hobbies?',
+        description: "Select as many as you'd like.",
+        fieldName: 'interests',
+        fieldType: 'checkbox',
+        defaultValue: [],
+        rules: { required: 'Select your favorite interests and hobbies' },
+        options: [
+          ...[
+            { label: 'Reading', value: 'reading' },
+            { label: 'Exercising', value: 'exercising' },
+            { label: 'Gaming', value: 'gaming' },
+            { label: 'Cooking', value: 'cooking' },
+            { label: 'Watching TV', value: 'watching_tv' },
+            { label: 'Listening to Music', value: 'listening_to_music' },
+            { label: 'Playing Music', value: 'playing_music' },
+            { label: 'Sports', value: 'sports' },
+            { label: 'Traveling', value: 'traveling' },
+            { label: 'Shopping', value: 'shopping' },
+            { label: 'Volunteering', value: 'volunteering' },
+            { label: 'Socializing', value: 'socializing' },
+          ].sort((a, b) => a.label.localeCompare(b.label)),
+          { label: 'Other...', value: 'other' },
+        ],
+        dbField: 'interests',
+      },
+      {
+        showIf: { fieldName: 'interests', value: 'other' },
+        description:
+          'Since you selected "Other" above, please enter your other interests.',
+        rules: { required: 'Please fill out this field' },
+        fieldName: 'otherInterests',
+        fieldType: 'textarea',
+        dbField: 'regionalCenter',
+      },
+    ],
+  },
   {
     step: 'lifestyle/habits',
     title: 'Lifestyle & Habits',
@@ -360,6 +404,7 @@ export const onboardingPages = [
         question: 'What is your sleep schedule like?',
         fieldName: 'sleepSchedule',
         fieldType: 'radio',
+        rules: { required: 'Please select an option' },
         options: [
           {
             label: 'Early bird (awake early, sleep early)',
@@ -369,6 +414,119 @@ export const onboardingPages = [
           { label: 'Mixed (varies daily)', value: 'mixed' },
         ],
         dbField: 'sleepSchedule',
+      },
+    ],
+  },
+  {
+    step: 'lifestyle/social',
+    title: 'Lifestyle & Habits',
+    description:
+      'We need this information to find the perfect roommate for you to match your lifestyle and habits.',
+    blocks: [
+      {
+        question: 'Do you enjoy hosting gatherings or parties?',
+        fieldName: 'parties',
+        fieldType: 'radio',
+        rules: { required: 'Please select an option' },
+        options: [
+          { label: 'Yes', value: 'Yes' },
+          { label: 'No', value: 'No' },
+          { label: 'Sometimes', value: 'Sometimes' },
+        ],
+        dbField: 'parties',
+      },
+    ],
+  },
+  {
+    step: 'roommate-preferences/basics',
+    title: 'Roommate Preferences',
+    description:
+      'Let us know your preferences to help find a compatible roommate.',
+    blocks: [
+      {
+        question: 'Gender Preference (Select all that apply)',
+        description: 'Do you prefer your roommate to be a specific gender?',
+        fieldName: 'roommatePreferences',
+        fieldType: 'checkbox',
+        defaultValue: [],
+        options: [
+          { label: 'Cis-Male', value: 'Male' },
+          { label: 'Cis-Female', value: 'Female' },
+          { label: 'Transgender Male', value: 'T-Male' },
+          { label: 'Transgender Female', value: 'T-Female' },
+
+          { label: 'Non-Binary', value: 'Non-Binary' },
+          { label: 'No preference', value: 'No Preference' },
+        ],
+        dbField: 'roommate.gender',
+      },
+    ],
+  },
+  {
+    step: 'roommate-preferences/sharing',
+    title: 'Roommate Preferences',
+    description:
+      'Let us know your preferences to help find a compatible roommate.',
+    blocks: [
+      {
+        question: 'How do you feel about guests?',
+        fieldName: 'guests',
+        fieldType: 'select',
+        options: [
+          { label: 'The more the merrier', value: 'merrier' },
+          { label: 'Occasional guests are fine', value: 'occasional' },
+          { label: 'Prefer no guests', value: 'noGuests' },
+        ],
+        dbField: 'guests',
+      },
+      {
+        question: 'Are you okay with sharing food or other items?',
+        fieldName: 'sharing',
+        fieldType: 'select',
+        options: [
+          { label: "Yes, I don't mind sharing", value: 'yesSharing' },
+          { label: 'Some things, but not all', value: 'someSharing' },
+          { label: 'I prefer to keep my things separate', value: 'noSharing' },
+        ],
+        dbField: 'sharing',
+      },
+    ],
+  },
+  {
+    step: 'roommate-preferences/conflict',
+    title: 'Roommate Conflicts',
+    description:
+      'Let us know your preferences to help find a compatible roommate.',
+    blocks: [
+      {
+        question:
+          'How do you usually handle conflict or issues with roommates?',
+        fieldName: 'conflictResolution',
+        fieldType: 'select',
+        options: [
+          {
+            label: 'Discuss the issue directly but respectfully',
+            value: 'discuss',
+          },
+          { label: 'Avoid confrontation, keep it to myself', value: 'avoid' },
+          {
+            label: 'Seek a mediator or third-party intervention',
+            value: 'mediator',
+          },
+        ],
+        dbField: 'conflictResolution',
+      },
+      {
+        question:
+          "What's your preferred method of communication for important matters?",
+        fieldName: 'communicationMethod',
+        fieldType: 'select',
+        options: [
+          { label: 'Face to face conversation', value: 'faceToFace' },
+          { label: 'Phone call', value: 'phoneCall' },
+          { label: 'Text or email', value: 'textEmail' },
+        ],
+        dbField: 'communicationMethod',
       },
     ],
   },

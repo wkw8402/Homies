@@ -21,6 +21,7 @@ const FormStep = () => {
     handleSubmit,
     setValue,
     trigger,
+    getValues,
     reset,
     watch,
     formState: { errors },
@@ -72,6 +73,26 @@ const FormStep = () => {
     }
   }, [isReady, currentFormPage]);
 
+  const handleCheckboxChange = (block, optionValue) => {
+    const currentValues = watch(block.fieldName);
+    const isCurrentlyChecked = currentValues.includes(optionValue);
+
+    if (isCurrentlyChecked) {
+      // if the checkbox is currently checked, uncheck it
+      setValue(
+        block.fieldName,
+        currentValues.filter((value) => value !== optionValue)
+      );
+    } else {
+      // if the checkbox is currently unchecked, check it
+      setValue(block.fieldName, [...currentValues, optionValue]);
+    }
+    trigger(block.fieldName);
+  };
+
+  console.log(getValues());
+  console.log('watch', watch('interests'));
+
   return (
     <div className="min-h-screen from-purple-50 bg-gradient-to-b pb-10 to-purple-100">
       <div className="w-full max-w-lg mx-auto py-5 px-4">
@@ -105,7 +126,10 @@ const FormStep = () => {
               (block, index) =>
                 (!block.showIf ||
                   (block.showIf &&
-                    watch(block.showIf.fieldName) === block.showIf.value)) && (
+                    watch(block.showIf.fieldName) === block.showIf.value) ||
+                  watch(block.showIf.fieldName)?.includes(
+                    block.showIf.value
+                  )) && (
                   <div key={index} className="mb-6 sm:mb-8">
                     <label className="block text-gray-700 font-bold mb-2">
                       {block.question}
@@ -119,7 +143,7 @@ const FormStep = () => {
                       <select
                         defaultValue={''}
                         autoFocus={index === 0}
-                        className="shadow appearance-none text-lg border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none text-lg border border-gray-300 rounded-md w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         {...register(block.fieldName, block.rules)}
                       >
                         <option value="" disabled>
@@ -147,7 +171,7 @@ const FormStep = () => {
                       <textarea
                         autoFocus={index === 0}
                         {...register(block.fieldName, block.rules)}
-                        className="shadow appearance-none border text-lg rounded w-full py-3 min-h-[40px] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border border-gray-300 text-lg rounded-md w-full py-3 min-h-[40px] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder={block.placeholder}
                       />
                     ) : block.fieldType === 'radio' ? (
@@ -161,7 +185,7 @@ const FormStep = () => {
                             }}
                             className={classNames(
                               // if the value of the radio button is equal to the value of the option, then add the border-black class
-                              'border px-3 py-3 rounded flex items-center cursor-pointer',
+                              'border px-3 py-3 rounded-md flex items-center cursor-pointer',
                               option.value === watch(block.fieldName)
                                 ? 'border-black bg-gray-100 text-black font-medium hover:border-black'
                                 : 'hover:border-gray-300 hover:text-black text-gray-500 hover:bg-gray-50'
@@ -185,26 +209,36 @@ const FormStep = () => {
                         {block.options.map((option, i) => (
                           <div
                             key={option.value}
-                            onClick={() => {
-                              setValue(block.fieldName, option.value);
-                            }}
+                            onClick={() =>
+                              handleCheckboxChange(block, option.value)
+                            }
                             className={classNames(
                               // if the value of the radio button is equal to the value of the option, then add the border-black class
-                              {
-                                'border-black bg-gray-100':
-                                  option.value === watch(block.fieldName),
-                              },
-                              'border px-3 py-3 rounded flex items-center hover:bg-gray-100 cursor-pointer hover:border-black'
+                              'border px-3 py-3 rounded relative flex items-center cursor-pointer',
+                              watch(block.fieldName)?.includes(option.value)
+                                ? 'border-black bg-gray-100 text-black font-medium hover:border-black'
+                                : 'hover:border-gray-300 hover:text-black text-gray-500 hover:bg-gray-50'
                             )}
                           >
-                            <label>
-                              <input
-                                autoFocus={index === 0}
-                                type={block.fieldType}
-                                {...register(block.fieldName, block.rules)}
-                                value={option.value}
-                                className="mr-3 mb-0.5 rounded"
-                              />
+                            <input
+                              key={option.value}
+                              onClick={(e) => e.stopPropagation()}
+                              type="checkbox"
+                              {...register(block.fieldName, block.rules)}
+                              id={option.value} // needed for the label to work correctly
+                              value={option.value}
+                              checked={
+                                !!watch(block.fieldName)?.includes(option.value)
+                              }
+                              onChange={() =>
+                                handleCheckboxChange(block, option.value)
+                              }
+                              className="mr-3 rounded"
+                            />
+                            <label
+                              onClick={(e) => e.stopPropagation()}
+                              htmlFor={option.value}
+                            >
                               {option.label}
                             </label>
                           </div>
@@ -213,7 +247,7 @@ const FormStep = () => {
                     ) : block.fieldType === 'html' ? (
                       <textarea
                         {...register(block.fieldName, block.rules)}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border border-gray-300 outline-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder={block.placeholder}
                       />
                     ) : null}
