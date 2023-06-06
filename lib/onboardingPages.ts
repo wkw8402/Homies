@@ -1,9 +1,9 @@
 export const onboardingPages = [
   {
     step: 'get-started',
-    title: 'Welcome to Homies',
+    title: 'Welcome to Homies!',
     description:
-      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the email you use to login. \n\nIf you already have an account, please enter your email below.',
+      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the email you use to log in.',
     blocks: [
       {
         question: 'Email Address',
@@ -29,7 +29,7 @@ export const onboardingPages = [
       'Please enter the 6-digit code sent to your email address. The code was sent to {{email}}.',
     blocks: [
       {
-        question: 'Enter code:',
+        question: 'Enter Code',
         placeholder: '000000',
         fieldName: 'code',
         fieldType: 'text',
@@ -43,7 +43,7 @@ export const onboardingPages = [
   },
   {
     step: 'name',
-    title: 'Full Name',
+    title: 'Your Full Name',
     description:
       'Please enter the name of the individual that will be utilizing the Homies program.',
     blocks: [
@@ -305,7 +305,7 @@ export const onboardingPages = [
     ],
   },
   {
-    step: 'lifestyle',
+    step: 'lifestyle/habits',
     title: 'Lifestyle & Habits',
     description:
       'We need this information to find the perfect roommate for you to match your lifestyle and habits.',
@@ -334,6 +334,14 @@ export const onboardingPages = [
         ],
         dbField: 'alcohol',
       },
+    ],
+  },
+  {
+    step: 'lifestyle/daily',
+    title: 'Lifestyle & Habits',
+    description:
+      'We need this information to find the perfect roommate for you to match your lifestyle and habits.',
+    blocks: [
       {
         question: 'How often do you clean your living space?',
         fieldName: 'cleaning',
@@ -346,22 +354,21 @@ export const onboardingPages = [
           { label: 'Every once in awhile', value: 'sometimes' },
           { label: `I don't clean`, value: 'none' },
         ],
-        dbField: 'alcohol',
+        dbField: 'cleaning',
       },
       {
-        question: 'What time do you usually go to bed?',
-        fieldName: 'bedtime',
+        question: 'What is your sleep schedule like?',
+        fieldName: 'sleepSchedule',
         fieldType: 'radio',
-        rules: { required: 'Please select an option' },
         options: [
-          { label: 'Early bird (early to bed, early to rise)', value: 'early' },
-          { label: 'Night owl (late to bed, late to rise)', value: 'late' },
           {
-            label: 'It varies (sometimes early, sometimes late)',
-            value: 'varies',
+            label: 'Early bird (awake early, sleep early)',
+            value: 'earlyBird',
           },
+          { label: 'Night owl (awake late, sleep late)', value: 'nightOwl' },
+          { label: 'Mixed (varies daily)', value: 'mixed' },
         ],
-        dbField: 'alcohol',
+        dbField: 'sleepSchedule',
       },
     ],
   },

@@ -12,7 +12,7 @@ const FormStep = () => {
   const router = useRouter();
   const {
     isReady,
-    query: { step },
+    query: { step: stepArray },
   } = router;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +26,7 @@ const FormStep = () => {
     formState: { errors },
   } = useForm({ reValidateMode: 'onChange', mode: 'onSubmit' });
 
+  const step = (stepArray as string[])?.join('/');
   const currentFormPage = onboardingPages.find((page) => page.step === step);
   const currentFormPageIndex = onboardingPages.findIndex(
     (page) => page.step === step
@@ -72,7 +73,7 @@ const FormStep = () => {
   }, [isReady, currentFormPage]);
 
   return (
-    <div className="min-h-screen from-purple-50 bg-gradient-to-b pb-10 to-purple-200">
+    <div className="min-h-screen from-purple-50 bg-gradient-to-b pb-10 to-purple-100">
       <div className="w-full max-w-lg mx-auto py-5 px-4">
         <div className="flex items-center justify-left mt-2 mb-6">
           <Image
@@ -89,7 +90,7 @@ const FormStep = () => {
           </div>
         ) : (
           <form
-            className="bg-white h-full shadow-xl rounded-lg px-6 sm:px-8 pt-6 pb-8 mb-8"
+            className="bg-white border border-gray-200 h-full shadow-xl rounded-lg px-6 sm:px-8 pt-6 pb-8 mb-8"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="mb-8">

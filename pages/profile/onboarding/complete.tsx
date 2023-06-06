@@ -63,7 +63,7 @@ export default function Realistic() {
 
   return (
     <>
-      <div className="flex flex-col px-8 text-center justify-center space-y-4 items-center h-screen bg-blue-50">
+      <div className="flex flex-col px-8 text-center justify-center space-y-4 items-center h-screen from-white bg-gradient-to-b pb-10 to-purple-100">
         <CheckCircleIcon className="h-24 w-24 text-green-600 mb-4" />
         <h2 className="text-2xl font-bold text-purple-700 mb-2">
           Thanks for completing your Homies profile!
