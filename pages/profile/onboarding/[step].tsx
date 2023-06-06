@@ -19,9 +19,10 @@ const FormStep = () => {
     register,
     handleSubmit,
     setValue,
+    trigger,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({ reValidateMode: 'onChange', mode: 'onChange' });
 
   const currentFormPage = onboardingPages.find((page) => page.step === step);
   const currentFormPageIndex = onboardingPages.findIndex(
@@ -61,11 +62,14 @@ const FormStep = () => {
 
   if (!currentFormPage) {
     return (
-      <div className="w-full max-w-sm mx-auto mt-5">
+      <div className="w-full max-w-md mx-auto py-5">
         <div
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8"
           onSubmit={handleSubmit(onSubmit)}
         >
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold">Loading...</h2>
+          </div>
           <Loading />
         </div>
       </div>
@@ -73,14 +77,18 @@ const FormStep = () => {
   }
 
   return (
-    <div className="w-full max-w-sm mx-auto mt-5">
+    <div className="w-full max-w-md mx-auto py-5">
       <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold">{currentFormPage.title}</h2>
+          <p className="text-gray-600">{currentFormPage.description}</p>
+        </div>
         {currentFormPage?.blocks.map((block, index) => (
           <div key={index} className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-gray-700 font-bold mb-2">
               {block.question}
             </label>
             {block.fieldType === 'select' ? (
@@ -105,6 +113,7 @@ const FormStep = () => {
             ) : block.fieldType === 'text' ? (
               <input
                 type={block.fieldType}
+                autoFocus={index === 0}
                 {...register(block.fieldName, block.rules)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder={block.placeholder}
@@ -113,9 +122,10 @@ const FormStep = () => {
               <div className="space-y-2 mb-8">
                 {block.options.map((option, index) => (
                   <div
-                    key={index}
+                    key={option.value}
                     onClick={() => {
                       setValue(block.fieldName, option.value);
+                      trigger(block.fieldName);
                     }}
                     className={classNames(
                       // if the value of the radio button is equal to the value of the option, then add the border-black class
@@ -127,6 +137,7 @@ const FormStep = () => {
                   >
                     <label className="cursor-pointer">
                       <input
+                        autoFocus={index === 0}
                         type={block.fieldType}
                         {...register(block.fieldName, block.rules)}
                         value={option.value}
