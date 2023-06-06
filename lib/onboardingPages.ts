@@ -222,4 +222,43 @@ export const onboardingPages = [
       },
     ],
   },
+  {
+    step: 'lifestyle',
+    blocks: [
+      {
+        question: 'Do you smoke?',
+        fieldName: 'smoke',
+        fieldType: 'radio',
+        options: [
+          { label: 'Yes', value: 'Yes' },
+          { label: 'No', value: 'No' },
+          { label: 'Sometimes', value: 'Sometimes' },
+        ],
+        dbField: 'smoke',
+      },
+      {
+        question: 'Do you drink alcohol?',
+        fieldName: 'alcohol',
+        fieldType: 'radio',
+        options: [
+          { label: 'Yes', value: 'Yes' },
+          { label: 'No', value: 'No' },
+          { label: 'Sometimes', value: 'Sometimes' },
+        ],
+        dbField: 'alcohol',
+      },
+      {
+        question: 'How often do you clean your living space?',
+        fieldName: 'cleaning',
+        fieldType: 'radio',
+        options: [
+          { label: 'Daily', value: 'Daily' },
+          { label: 'Weekly', value: 'Weekly' },
+          { label: 'Monthly', value: 'Monthly' },
+          { label: 'I don`t clean', value: 'None' },
+        ],
+        dbField: 'alcohol',
+      },
+    ],
+  },
 ];

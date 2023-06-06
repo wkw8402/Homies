@@ -1,11 +1,11 @@
 import axios from 'axios';
+import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Loading from '../../../components/Loading';
 import Button from '../../../components/shared/Button';
 import { onboardingPages } from '../../../lib/onboardingPages';
-import Loading from '../../../components/Loading';
-import classNames from 'classnames';
 
 const FormStep = () => {
   const router = useRouter();
@@ -110,6 +110,34 @@ const FormStep = () => {
                 placeholder={block.placeholder}
               />
             ) : block.fieldType === 'radio' ? (
+              <div className="space-y-2 mb-8">
+                {block.options.map((option, index) => (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setValue(block.fieldName, option.value);
+                    }}
+                    className={classNames(
+                      // if the value of the radio button is equal to the value of the option, then add the border-black class
+                      'border px-3 py-3 rounded flex items-center cursor-pointer',
+                      option.value === watch(block.fieldName)
+                        ? 'border-black bg-gray-100 text-black font-medium hover:border-black'
+                        : 'hover:border-gray-300 hover:text-black text-gray-500 hover:bg-gray-50'
+                    )}
+                  >
+                    <label className="cursor-pointer">
+                      <input
+                        type={block.fieldType}
+                        {...register(block.fieldName, block.rules)}
+                        value={option.value}
+                        className="mr-3 mb-0.5 cursor-pointer"
+                      />
+                      {option.label}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            ) : block.fieldType === 'checkbox' ? (
               <div className="space-y-2">
                 {block.options.map((option, index) => (
                   <div
@@ -131,24 +159,13 @@ const FormStep = () => {
                         type={block.fieldType}
                         {...register(block.fieldName, block.rules)}
                         value={option.value}
-                        className="mr-3 mb-0.5"
+                        className="mr-3 mb-0.5 rounded"
                       />
                       {option.label}
                     </label>
                   </div>
                 ))}
               </div>
-            ) : block.fieldType === 'checkbox' ? (
-              block.options.map((option, index) => (
-                <label key={index}>
-                  <input
-                    type={block.fieldType}
-                    {...register(block.fieldName, block.rules)}
-                    value={option.value}
-                  />
-                  {option.label}
-                </label>
-              ))
             ) : block.fieldType === 'html' ? (
               <textarea
                 {...register(block.fieldName, block.rules)}
@@ -159,7 +176,7 @@ const FormStep = () => {
 
             {errors[block.fieldName] && (
               <p className="text-red-500 mt-1 text-xs italic">
-                {errors[block.fieldName].message}
+                {errors[block.fieldName].message as string}
               </p>
             )}
           </div>
