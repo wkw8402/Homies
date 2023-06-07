@@ -33,7 +33,7 @@ export default function Footer() {
           </h6>
           <ul className="mt-6 text-lg divide-y divide-purple-400/20">
             <li className="py-2 font-medium text-purple-700 duration-300 ease-in-out hover:text-purple-600">
-              <Link href="/blog">Our Blog</Link>
+              <Link href="/blog">Updates</Link>
             </li>
             <li className="py-2 font-medium text-purple-700 duration-300 ease-in-out hover:text-purple-600">
               <Link href="/privacy-policy">Privacy Policy</Link>

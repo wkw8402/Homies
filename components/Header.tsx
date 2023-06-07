@@ -22,7 +22,7 @@ const links = [
     href: '/faq',
   },
   {
-    name: 'Our Blog',
+    name: 'Updates',
     href: '/blog',
   },
   {

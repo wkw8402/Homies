@@ -40,7 +40,7 @@ export default async function handler(request: NextRequest) {
         //         width={300}
         //         src={'https://www.meethomies.com/images/logo.png'}
         //       />
-        //       <div tw="text-[100px] font-sans">Our Blog</div>
+        //       <div tw="text-[100px] font-sans">Updates</div>
         //     </div>
         //   </div>
 

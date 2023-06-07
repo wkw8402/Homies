@@ -12,7 +12,7 @@ export default function Home({ posts }) {
   return (
     <>
       <Head>
-        <title>Our Blog | Homies</title>
+        <title>Updates | Homies</title>
         <meta name="og:title" content="Blog | Homies" />
         <meta
           name="og:description"
@@ -26,7 +26,7 @@ export default function Home({ posts }) {
           <div className="max-w-screen-xl mx-auto">
             <div className="mx-auto max-w-7xl">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Our Blog
+                Updates
               </h2>
               <p className="mt-2 text-lg leading-8 text-gray-600">
                 Keep up to date with the latest articles, company updates, and
