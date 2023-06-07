@@ -2,7 +2,7 @@ import axios from 'axios';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Loading from '../../../components/Loading';
 import Button from '../../../components/shared/Button';
@@ -103,6 +103,26 @@ const FormStep = () => {
     );
   };
 
+  const renderProgressBar = useMemo(() => {
+    const progress = currentFormPageIndex + 1 + '/' + onboardingPages.length;
+    const progressPercentage = Math.round(
+      (currentFormPageIndex / onboardingPages.length) * 100
+    );
+
+    return (
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center">
+          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500 text-white mr-2">
+            {progress}
+          </div>
+        </div>
+        <div className="text-sm text-gray-600">
+          {progressPercentage}% completed
+        </div>
+      </div>
+    );
+  }, [currentFormPageIndex]);
+
   return (
     <div className="min-h-screen from-purple-50 bg-gradient-to-b pb-10 to-purple-100">
       <div className="w-full max-w-lg mx-auto py-5 px-4">
@@ -124,6 +144,7 @@ const FormStep = () => {
             className="bg-white border border-gray-200 h-full shadow-xl rounded-lg px-6 sm:px-8 pt-6 pb-8 mb-8"
             onSubmit={handleSubmit(onSubmit)}
           >
+            {renderProgressBar}
             <div className="mb-8">
               <h2 className="text-2xl leading-snug mb-4 font-semibold">
                 {currentFormPage.title}

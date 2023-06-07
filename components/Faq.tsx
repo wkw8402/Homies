@@ -54,6 +54,38 @@ const faqs = [
     ),
   },
   {
+    question: 'Who can be my supportive roommate?',
+    type: FaqType.Homies,
+
+    home: true,
+    answer: (
+      <>
+        <p>
+          There are many options for individuals who can become your supportive
+          roommate, such as:
+        </p>
+        <ul>
+          <li>A friend</li>
+          <li>A neighbor</li>
+          <li>A co-worker</li>
+          <li>Family members (parent, brother, sister, cousin, etc.)</li>
+          <li>Former or current staff</li>
+          <li>Someone from your school or university</li>
+          <li>Someone from your place of worship</li>
+          <li>
+            Someone who has a job during the day and wants to be a roommate in
+            the evening
+          </li>
+        </ul>
+        <p>
+          Homies believes in the importance of choice and will work with you to
+          find a supportive roommate who is compatible with your lifestyle,
+          interests, and needs.
+        </p>
+      </>
+    ),
+  },
+  {
     question:
       'Can family members be involved in the selection process for a supportive roommate?',
     type: FaqType.Homies,
@@ -529,38 +561,6 @@ const faqs = [
           Yes, you have the freedom to pick your own hours. Most supportive
           roommates have a job during the day (9am-5pm) and provide support for
           their roommate in the late evening and early morning hours.
-        </p>
-      </>
-    ),
-  },
-  {
-    question: 'Who can be my supportive roommate?',
-    type: FaqType.Homies,
-
-    home: true,
-    answer: (
-      <>
-        <p>
-          There are many options for individuals who can become your supportive
-          roommate, such as:
-        </p>
-        <ul>
-          <li>A friend</li>
-          <li>A neighbor</li>
-          <li>A co-worker</li>
-          <li>Family members (parent, brother, sister, cousin, etc.)</li>
-          <li>Former or current staff</li>
-          <li>Someone from your school or university</li>
-          <li>Someone from your place of worship</li>
-          <li>
-            Someone who has a job during the day and wants to be a roommate in
-            the evening
-          </li>
-        </ul>
-        <p>
-          Homies believes in the importance of choice and will work with you to
-          find a supportive roommate who is compatible with your lifestyle,
-          interests, and needs.
         </p>
       </>
     ),
