@@ -109,15 +109,28 @@ const FormStep = () => {
       (currentFormPageIndex / onboardingPages.length) * 100
     );
 
+    if (currentFormPageIndex === 0) {
+      return null;
+    }
+
     return (
       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center">
-          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500 text-white mr-2">
+        {/* <div className="flex items-center">
+          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-300 text-white mr-2">
             {progress}
           </div>
+        </div> */}
+        <div className="flex-1 items-center h-2 justify-center rounded-full relative">
+          <div
+            className="bg-purple-300 rounded-full z-10 absolute inset-0"
+            style={{
+              width: `${progressPercentage}%`,
+            }}
+          />
+          <div className="bg-gray-100 rounded-full absolute inset-0" />
         </div>
-        <div className="text-sm text-gray-600">
-          {progressPercentage}% completed
+        <div className="text-sm text-gray-600 ml-2">
+          {progressPercentage}% complete
         </div>
       </div>
     );
