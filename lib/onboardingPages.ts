@@ -3,13 +3,46 @@ export const onboardingPages = [
     step: 'get-started',
     title: 'Welcome to Homies!',
     description:
-      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the email you use to log in.',
+      'Homies is a program that helps individuals with disabilities find a more independent living situation. \n\nWe pair people with disabilities with a friend, family member or compatible supportive roommate. \n\nWe are excited to help you get started!',
+    blocks: [
+      {
+        question: 'I am signing up as a...',
+        placeholder: '',
+        fieldName: 'user_type',
+        blockType: 'radio',
+        options: [
+          {
+            label: 'Neurodivergent individual',
+            description:
+              'Select this option if you are signing up for a loved one.',
+            value: 'homie',
+          },
+          {
+            label: 'Caregiver roommate, family member or friend',
+            description:
+              'I want to take care of and live with a neurodivergent individual.',
+            value: 'supporter',
+          },
+        ],
+        rules: {
+          required: 'Email address is required',
+        },
+        dbField: 'user_type',
+      },
+    ],
+  },
+  {
+    step: 'get-started/email',
+    title: "Let's Create Your Account",
+    description:
+      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the credentials you use to log in.',
     blocks: [
       {
         question: 'Email Address',
-        placeholder: '',
+        placeholder: 'name@example.com',
         fieldName: 'email',
-        fieldType: 'text',
+        blockType: 'text',
+        description: "We'll send you updates via email about your application.",
         options: null,
         rules: {
           required: 'Email address is required',
@@ -20,27 +53,43 @@ export const onboardingPages = [
         },
         dbField: 'user_email',
       },
-    ],
-  },
-  {
-    step: 'login',
-    title: 'Check Your Email',
-    description:
-      'Please enter the 6-digit code sent to your email address. The code was sent to {{email}}.',
-    blocks: [
       {
-        question: 'Enter Code',
-        placeholder: '000000',
-        fieldName: 'code',
-        fieldType: 'text',
+        question: 'Create a Password',
+        placeholder: '********',
+        description: 'Your password must be at least 8 characters.',
+        fieldName: 'password',
+        blockType: 'password',
         options: null,
         rules: {
-          required: 'Please enter the code',
+          required: 'Password is required',
+          minLength: {
+            value: 8,
+            message: 'Password must be at least 8 characters',
+          },
         },
-        dbField: 'code',
+        dbField: 'user_pass',
       },
     ],
   },
+  // {
+  //   step: 'login',
+  //   title: 'Check Your Email',
+  //   description:
+  //     'Please enter the 6-digit code sent to your email address. The code was sent to {{email}}.',
+  //   blocks: [
+  //     {
+  //       question: 'Enter Code',
+  //       placeholder: '000000',
+  //       fieldName: 'code',
+  //       blockType: 'text',
+  //       options: null,
+  //       rules: {
+  //         required: 'Please enter the code',
+  //       },
+  //       dbField: 'code',
+  //     },
+  //   ],
+  // },
   {
     step: 'name',
     title: 'Your Full Name',
@@ -52,7 +101,7 @@ export const onboardingPages = [
         placeholder: 'John Appleseed',
         fieldName: 'name',
         autoFocus: true,
-        fieldType: 'text',
+        blockType: 'text',
         options: null,
         rules: { required: 'Name is required' },
         dbField: 'user_name',
@@ -68,7 +117,7 @@ export const onboardingPages = [
         question: 'What is your phone number?',
         placeholder: '(951) 456-7890',
         fieldName: 'phone',
-        fieldType: 'text',
+        blockType: 'text',
         options: null,
         rules: { required: 'Phone number is required' },
         dbField: 'user_phone',
@@ -83,7 +132,7 @@ export const onboardingPages = [
       {
         question: 'What is your gender?',
         fieldName: 'gender',
-        fieldType: 'radio',
+        blockType: 'radio',
         options: [
           { label: 'Male', value: 'Male' },
           { label: 'Female', value: 'Female' },
@@ -105,7 +154,7 @@ export const onboardingPages = [
       {
         question: 'Address',
         fieldName: 'address1',
-        fieldType: 'text',
+        blockType: 'text',
         options: null,
         rules: { required: 'Address is required' },
         dbField: 'address1',
@@ -113,14 +162,14 @@ export const onboardingPages = [
       {
         question: 'Apt, suite, etc. (optional)',
         fieldName: 'address2',
-        fieldType: 'text',
+        blockType: 'text',
         options: null,
         dbField: 'address2',
       },
       {
         question: 'City',
         fieldName: 'city',
-        fieldType: 'text',
+        blockType: 'text',
         options: null,
         rules: { required: 'City is required' },
         dbField: 'user_city',
@@ -128,7 +177,7 @@ export const onboardingPages = [
       {
         question: 'State',
         fieldName: 'state',
-        fieldType: 'select',
+        blockType: 'select',
         options: [
           { label: 'Alabama', value: 'AL' },
           { label: 'Alaska', value: 'AK' },
@@ -187,7 +236,7 @@ export const onboardingPages = [
       {
         question: 'Zip Code',
         fieldName: 'zip',
-        fieldType: 'text',
+        blockType: 'text',
         options: null,
         rules: { required: 'Zip Code is required' },
         dbField: 'user_zip',
@@ -203,7 +252,7 @@ export const onboardingPages = [
       {
         question: 'Select your Regional Center',
         fieldName: 'regionalCenter',
-        fieldType: 'select',
+        blockType: 'select',
         options: [
           {
             label: 'Alta California Regional Center',
@@ -299,7 +348,7 @@ export const onboardingPages = [
           'Since you selected "Other" above, please enter your regional center here.',
         rules: { required: 'Please fill out this field' },
         fieldName: 'otherRegionalCenter',
-        fieldType: 'text',
+        blockType: 'text',
         dbField: 'regionalCenter',
       },
     ],
@@ -315,7 +364,7 @@ export const onboardingPages = [
         question: 'What are your interests & hobbies?',
         description: "Select as many as you'd like.",
         fieldName: 'interests',
-        fieldType: 'checkbox',
+        blockType: 'checkbox',
         defaultValue: [],
         rules: { required: 'Select your favorite interests and hobbies' },
         options: [
@@ -343,7 +392,7 @@ export const onboardingPages = [
           'Since you selected "Other" above, please enter your other interests.',
         rules: { required: 'Please fill out this field' },
         fieldName: 'otherInterests',
-        fieldType: 'textarea',
+        blockType: 'textarea',
         dbField: 'regionalCenter',
       },
     ],
@@ -357,7 +406,7 @@ export const onboardingPages = [
       {
         question: 'Do you smoke?',
         fieldName: 'smoke',
-        fieldType: 'radio',
+        blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
           { label: 'Yes', value: 'Yes' },
@@ -369,7 +418,7 @@ export const onboardingPages = [
       {
         question: 'Do you drink alcohol?',
         fieldName: 'alcohol',
-        fieldType: 'radio',
+        blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
           { label: 'Yes', value: 'Yes' },
@@ -389,7 +438,7 @@ export const onboardingPages = [
       {
         question: 'How often do you clean your living space?',
         fieldName: 'cleaning',
-        fieldType: 'radio',
+        blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
           { label: 'Daily', value: 'daily' },
@@ -403,7 +452,7 @@ export const onboardingPages = [
       {
         question: 'What is your sleep schedule like?',
         fieldName: 'sleepSchedule',
-        fieldType: 'radio',
+        blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
           {
@@ -426,7 +475,7 @@ export const onboardingPages = [
       {
         question: 'Do you enjoy hosting gatherings or parties?',
         fieldName: 'parties',
-        fieldType: 'radio',
+        blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
           { label: 'Yes', value: 'Yes' },
@@ -447,7 +496,7 @@ export const onboardingPages = [
         question: 'Gender Preference (Select all that apply)',
         description: 'Do you prefer your roommate to be a specific gender?',
         fieldName: 'roommatePreferences',
-        fieldType: 'checkbox',
+        blockType: 'checkbox',
         rules: { required: 'Please select an option' },
         defaultValue: [],
         options: [
@@ -472,7 +521,7 @@ export const onboardingPages = [
       {
         question: 'How do you feel about guests?',
         fieldName: 'guests',
-        fieldType: 'radio',
+        blockType: 'radio',
         options: [
           { label: 'The more the merrier', value: 'merrier' },
           { label: 'Occasional guests are fine', value: 'occasional' },
@@ -483,7 +532,7 @@ export const onboardingPages = [
       {
         question: 'Are you okay with sharing food or other items?',
         fieldName: 'sharing',
-        fieldType: 'radio',
+        blockType: 'radio',
         options: [
           { label: "Yes, I don't mind sharing", value: 'yesSharing' },
           { label: 'Some things, but not all', value: 'someSharing' },
@@ -503,7 +552,7 @@ export const onboardingPages = [
         question:
           'How do you usually handle conflict or issues with roommates?',
         fieldName: 'conflictResolution',
-        fieldType: 'radio',
+        blockType: 'radio',
         options: [
           {
             label: 'Discuss the issue directly but respectfully',
@@ -521,7 +570,7 @@ export const onboardingPages = [
         question:
           "What's your preferred method of communication for important matters?",
         fieldName: 'communicationMethod',
-        fieldType: 'radio',
+        blockType: 'radio',
         options: [
           { label: 'Face to face conversation', value: 'faceToFace' },
           { label: 'Phone call', value: 'phoneCall' },
@@ -540,7 +589,7 @@ export const onboardingPages = [
       {
         question: 'Do you have any pets?',
         fieldName: 'pets',
-        fieldType: 'radio',
+        blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
           { label: 'Yes', value: 'Yes' },
@@ -554,14 +603,14 @@ export const onboardingPages = [
         description: 'What kind of animals do you have? What are their names?',
         rules: { required: 'Please tell us about your pets' },
         fieldName: 'petsDescription',
-        fieldType: 'textarea',
+        blockType: 'textarea',
         dbField: 'petsDescription',
       },
       {
         question: 'Are you open to living with someone who has pets?',
         fieldName: 'openPets',
         rules: { required: 'Please select an option' },
-        fieldType: 'radio',
+        blockType: 'radio',
         options: [
           { label: 'Yes, I love all pets', value: 'yes' },
           { label: 'Yes, but only dogs', value: 'yes-dogs' },
@@ -589,7 +638,7 @@ const formatting = {
     {
       question: 'Do you smoke?',
       fieldName: 'smoke',
-      fieldType: 'radio',
+      blockType: 'radio',
       options: [
         { label: 'Yes', value: 'Yes' },
         { label: 'No', value: 'No' },
@@ -600,13 +649,13 @@ const formatting = {
     {
       question: 'Do you drink alcohol?',
       fieldName: 'alcohol',
-      fieldType: 'text',
+      blockType: 'text',
       options: null,
     },
     {
       question: 'How often do you clean your living space?',
       fieldName: 'cleaning',
-      fieldType: 'select',
+      blockType: 'select',
       options: [
         { label: 'Daily', value: 'daily' },
         { label: 'Weekly', value: 'weekly' },
