@@ -25,15 +25,16 @@ export const onboardingPages = [
           },
         ],
         rules: {
-          required: 'Email address is required',
+          required: 'Please select an option',
         },
         dbField: 'user_type',
       },
     ],
   },
   {
-    step: 'get-started/email',
+    step: 'get-started/account',
     title: "Let's Create Your Account",
+    isAuth: true,
     description:
       'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the credentials you use to log in.',
     blocks: [
@@ -41,7 +42,7 @@ export const onboardingPages = [
         question: 'Email Address',
         placeholder: 'name@example.com',
         fieldName: 'email',
-        blockType: 'text',
+        blockType: 'email',
         description: "We'll send you updates via email about your application.",
         options: null,
         rules: {
@@ -93,6 +94,7 @@ export const onboardingPages = [
   {
     step: 'name',
     title: 'Your Full Name',
+    disableBack: true,
     description:
       'Please enter the name of the individual that will be utilizing the Homies program.',
     blocks: [
@@ -103,7 +105,7 @@ export const onboardingPages = [
         autoFocus: true,
         blockType: 'text',
         options: null,
-        rules: { required: 'Name is required' },
+        rules: { required: 'Your name is required' },
         dbField: 'user_name',
       },
     ],
@@ -120,7 +122,7 @@ export const onboardingPages = [
         blockType: 'text',
         options: null,
         rules: { required: 'Phone number is required' },
-        dbField: 'user_phone',
+        dbField: 'user.phone',
       },
     ],
   },
@@ -134,14 +136,26 @@ export const onboardingPages = [
         fieldName: 'gender',
         blockType: 'radio',
         options: [
-          { label: 'Male', value: 'Male' },
-          { label: 'Female', value: 'Female' },
-          { label: 'Non-Binary', value: 'Non-Binary' },
-          { label: 'Prefer not to say', value: 'Prefer not to say' },
+          { label: 'Male', value: 'male' },
+          { label: 'Female', value: 'female' },
+          { label: 'Transgender Male', value: 'transgender-male' },
+          { label: 'Transgender Female', value: 'transgender-female' },
+          { label: 'Non-binary', value: 'non-binary' },
+          { label: 'Prefer not to say', value: 'private' },
           { label: 'Other...', value: 'other' },
         ],
         rules: { required: 'Gender selection is required' },
-        dbField: 'user_gender',
+        dbField: 'profile.gender',
+      },
+      {
+        showIf: { fieldName: 'gender', value: 'other' },
+        // question: 'Other Regional Center',
+        description:
+          'Since you selected "Other" above, please enter your gender here.',
+        rules: { required: 'Please fill out this field' },
+        fieldName: 'otherGender',
+        blockType: 'text',
+        dbField: 'profile.gender',
       },
     ],
   },
@@ -361,12 +375,12 @@ export const onboardingPages = [
       'We ask for this information so we can find a great roommate match for you.',
     blocks: [
       {
-        question: 'What are your interests & hobbies?',
+        question: 'What are your hobbies & interests?',
         description: "Select as many as you'd like.",
         fieldName: 'interests',
-        blockType: 'checkbox',
+        blockType: 'chips',
         defaultValue: [],
-        rules: { required: 'Select your favorite interests and hobbies' },
+        rules: { required: 'Select your favorite hobbies & interests' },
         options: [
           ...[
             { label: 'Reading', value: 'reading' },
@@ -389,7 +403,7 @@ export const onboardingPages = [
       {
         showIf: { fieldName: 'interests', value: 'other' },
         description:
-          'Since you selected "Other" above, please enter your other interests.',
+          'Since you selected "Other" above, please enter your other hobbies & interests.',
         rules: { required: 'Please fill out this field' },
         fieldName: 'otherInterests',
         blockType: 'textarea',
@@ -409,9 +423,8 @@ export const onboardingPages = [
         blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
-          { label: 'Yes', value: 'Yes' },
-          { label: 'No', value: 'No' },
-          { label: 'Sometimes', value: 'Sometimes' },
+          { label: 'Yes', value: 'yes' },
+          { label: 'No', value: 'no' },
         ],
         dbField: 'smoke',
       },
@@ -421,9 +434,8 @@ export const onboardingPages = [
         blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
-          { label: 'Yes', value: 'Yes' },
-          { label: 'No', value: 'No' },
-          { label: 'Sometimes', value: 'Sometimes' },
+          { label: 'Yes', value: 'yes' },
+          { label: 'No', value: 'no' },
         ],
         dbField: 'alcohol',
       },
@@ -493,20 +505,18 @@ export const onboardingPages = [
       'Let us know your preferences to help find a compatible roommate.',
     blocks: [
       {
-        question: 'Gender Preference (Select all that apply)',
+        question: 'Gender Preference (optional)',
         description: 'Do you prefer your roommate to be a specific gender?',
         fieldName: 'roommatePreferences',
         blockType: 'checkbox',
-        rules: { required: 'Please select an option' },
         defaultValue: [],
         options: [
-          { label: 'Cis-Male', value: 'Male' },
-          { label: 'Cis-Female', value: 'Female' },
-          { label: 'Transgender Male', value: 'T-Male' },
-          { label: 'Transgender Female', value: 'T-Female' },
-
-          { label: 'Non-Binary', value: 'Non-Binary' },
-          { label: 'No preference', value: 'No Preference' },
+          { label: 'Male', value: 'male' },
+          { label: 'Female', value: 'female' },
+          { label: 'Transgender Male', value: 'transgender-male' },
+          { label: 'Transgender Female', value: 'transgender-female' },
+          { label: 'Non-binary', value: 'non-binary' },
+          { label: 'No preference', value: 'no-preference' },
         ],
         dbField: 'roommate.gender',
       },
@@ -522,6 +532,7 @@ export const onboardingPages = [
         question: 'How do you feel about guests?',
         fieldName: 'guests',
         blockType: 'radio',
+        rules: { required: 'Please select an option' },
         options: [
           { label: 'The more the merrier', value: 'merrier' },
           { label: 'Occasional guests are fine', value: 'occasional' },
@@ -533,6 +544,7 @@ export const onboardingPages = [
         question: 'Are you okay with sharing food or other items?',
         fieldName: 'sharing',
         blockType: 'radio',
+        rules: { required: 'Please select an option' },
         options: [
           { label: "Yes, I don't mind sharing", value: 'yesSharing' },
           { label: 'Some things, but not all', value: 'someSharing' },
@@ -552,6 +564,7 @@ export const onboardingPages = [
         question:
           'How do you usually handle conflict or issues with roommates?',
         fieldName: 'conflictResolution',
+        rules: { required: 'Please select an option' },
         blockType: 'radio',
         options: [
           {
@@ -560,7 +573,7 @@ export const onboardingPages = [
           },
           { label: 'Avoid confrontation, keep it to myself', value: 'avoid' },
           {
-            label: 'Seek a mediator or third-party intervention',
+            label: 'Seek help from a mediator or third-party intervention',
             value: 'mediator',
           },
         ],
@@ -570,11 +583,12 @@ export const onboardingPages = [
         question:
           "What's your preferred method of communication for important matters?",
         fieldName: 'communicationMethod',
+        rules: { required: 'Please select an option' },
         blockType: 'radio',
         options: [
-          { label: 'Face to face conversation', value: 'faceToFace' },
-          { label: 'Phone call', value: 'phoneCall' },
-          { label: 'Text or email', value: 'textEmail' },
+          { label: 'Discuss face to face', value: 'faceToFace' },
+          { label: 'Talk on the phone', value: 'phoneCall' },
+          { label: 'Text message or email', value: 'textEmail' },
         ],
         dbField: 'communicationMethod',
       },
@@ -607,18 +621,12 @@ export const onboardingPages = [
         dbField: 'petsDescription',
       },
       {
-        question: 'Are you open to living with someone who has pets?',
+        question: 'Are you okay living with someone who has a pet?',
         fieldName: 'openPets',
         rules: { required: 'Please select an option' },
         blockType: 'radio',
         options: [
-          { label: 'Yes, I love all pets', value: 'yes' },
-          { label: 'Yes, but only dogs', value: 'yes-dogs' },
-          { label: 'Yes, but only cats', value: 'yes-cats' },
-          {
-            label: 'Yes, but only under certain circumstances',
-            value: 'yes-other',
-          },
+          { label: 'Yes', value: 'yes' },
           { label: 'No', value: 'no' },
         ],
         dbField: 'openPets',

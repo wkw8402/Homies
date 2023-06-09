@@ -1,7 +1,8 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
 import { NextApiHandler } from 'next';
-import NextAuth, { Theme } from 'next-auth';
+import NextAuth, { AuthOptions, Theme } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import Email from 'next-auth/providers/email';
 import { createTransport } from 'nodemailer';
 
@@ -91,9 +92,10 @@ function text({ url, host }: { url: string; host: string }) {
   return `Sign in to ${host}\n${url}\n\n`;
 }
 
-const options = {
+const options: AuthOptions = {
   providers: [
     Email({
+      id: 'email',
       server: {
         host: 'smtp.gmail.com',
         port: 465,
@@ -106,19 +108,64 @@ const options = {
       from: 'Homies <hello@meethomies.com>', // The "from" address that you want to use
       sendVerificationRequest,
     }),
+    CredentialsProvider({
+      id: 'credentials',
+      // The name to display on the sign in form (e.g. "Sign in with...")
+      name: 'Credentials',
+      // `credentials` is used to generate a form on the sign in page.
+      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
+      credentials: {
+        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+        password: {
+          label: 'Password',
+          type: 'password',
+          placeholder: 'password',
+        },
+      },
+      authorize: async (credentials, req) => {
+        const user = await fetch(
+          `${process.env.NEXTAUTH_URL}/api/user/check-credentials`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              accept: 'application/json',
+            },
+            body: Object.entries(credentials)
+              .map((e) => e.join('='))
+              .join('&'),
+          }
+        )
+          .then((res) => res.json())
+          .catch((err) => {
+            return null;
+          });
+
+        if (user) {
+          return user;
+        } else {
+          return null;
+        }
+      },
+    }),
   ],
 
   callbacks: {
-    async session({ session, token, user }) {
-      session.user.id = user.id;
-      session.user.admin = user.admin;
+    session: async ({ session, token, user }: any) => {
+      if (session?.user) {
+        session.accessToken = token?.accessToken;
+        session.user.id = token?.id;
+        session.user.admin = user?.admin;
+      }
 
       const profile = await prisma.profile.findUnique({
         select: {
           id: true,
         },
         where: {
-          userId: user.id,
+          userId: user?.id || token?.id,
         },
       });
 
@@ -126,10 +173,19 @@ const options = {
 
       return session;
     },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
   },
 
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
+  session: {
+    strategy: 'jwt',
+  },
   pages: {
     signIn: '/auth/signin',
     // signOut: '/auth/signout',

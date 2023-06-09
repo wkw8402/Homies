@@ -1,13 +1,14 @@
 import axios from 'axios';
 import classNames from 'classnames';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Loading from '../../../components/Loading';
 import Button from '../../../components/shared/Button';
 import { onboardingPages } from '../../../lib/onboardingPages';
-import Head from 'next/head';
 
 const FormStep = () => {
   const router = useRouter();
@@ -15,18 +16,24 @@ const FormStep = () => {
     isReady,
     query: { step: stepArray },
   } = router;
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { status, data: userData } = useSession();
+  const { user } = userData || { user: null };
 
   const {
     register,
     handleSubmit,
     setValue,
     trigger,
+    setError,
     getValues,
     reset,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({ reValidateMode: 'onChange', mode: 'onSubmit' });
+
+  console.log(getValues());
 
   const step = (stepArray as string[])?.join('/');
   const currentFormPage = onboardingPages.find((page) => page.step === step);
@@ -37,25 +44,51 @@ const FormStep = () => {
   const prevStep = onboardingPages[currentFormPageIndex - 1]?.step;
 
   const onPreviousStep = () => {
-    if (!prevStep) {
-      return;
-    }
     router.push(`/profile/onboarding/${prevStep}`);
   };
 
+  const renderBack = useMemo(() => {
+    return !prevStep || currentFormPage?.disableBack ? (
+      <div />
+    ) : (
+      <button
+        disabled={isLoading}
+        className="text-gray-400 text-sm focus:outline-none focus:shadow-outline"
+        onClick={onPreviousStep}
+        type="button"
+      >
+        Back
+      </button>
+    );
+  }, [prevStep, isLoading, currentFormPage?.disableBack]);
+
   const onSubmit = async (data) => {
-    setIsLoading(true);
     try {
-      await axios.post('/api/profile/onboarding', data);
+      if (currentFormPage?.isAuth) {
+        let res = await signIn('credentials', {
+          username: data.email,
+          password: data.password,
+          redirect: false,
+        });
+        if (res.error) {
+          setError('password', {
+            type: 'manual',
+            message: res.error,
+          });
+          return;
+        }
+      } else {
+        await axios.post('/api/profile/onboarding', data);
+      }
+
       if (nextStep) {
         router.push(`/profile/onboarding/${nextStep}`);
       } else {
         router.push('/profile/onboarding/complete');
       }
     } catch (error) {
-      console.error('Failed to save user progress:', error);
+      // console.error('Failed to save user progress:', error);
     } finally {
-      setIsLoading(false);
     }
   };
 
@@ -64,6 +97,10 @@ const FormStep = () => {
       if (!currentFormPage) {
         router.replace('/profile/onboarding');
       } else {
+        // force reset the component when navigating to a new page
+        // this is to prevent the form from showing the previous page's data
+        setIsLoading(false);
+
         // Reset the form when navigating to a new page
         reset();
         // Set the default values for the form
@@ -73,6 +110,26 @@ const FormStep = () => {
       }
     }
   }, [isReady, currentFormPage]);
+
+  useEffect(() => {
+    if (isReady) {
+      // if the user is not logged in, redirect to the login page
+      if (status === 'unauthenticated' && !currentFormPage?.isAuth) {
+        router.replace('/profile/onboarding/get-started');
+      } else if (status === 'authenticated' && currentFormPage?.isAuth) {
+        router.replace('/profile/onboarding');
+      } else if (
+        status === 'authenticated' &&
+        currentFormPage?.step.indexOf('get-started') > -1
+      ) {
+        router.replace('/profile/onboarding');
+      }
+
+      if (status && status !== 'loading') {
+        setIsLoading(false);
+      }
+    }
+  }, [isReady, status]);
 
   // Create an empty queue
   let queue = Promise.resolve();
@@ -130,12 +187,16 @@ const FormStep = () => {
           />
           <div className="bg-gray-100 rounded-full absolute inset-0" />
         </div>
-        <div className="text-sm text-gray-600 ml-2">
+        <div className="text-sm text-gray-400 ml-2">
           {progressPercentage}% complete
         </div>
       </div>
     );
   }, [currentFormPageIndex]);
+
+  const showLoading = useMemo(() => {
+    return isLoading || !currentFormPage || status === 'loading';
+  }, [isLoading, status, currentFormPage]);
 
   return (
     <>
@@ -144,7 +205,7 @@ const FormStep = () => {
       </Head>
       <div className="min-h-screen from-purple-50 bg-gradient-to-b pb-10 to-purple-100">
         <div className="w-full max-w-lg mx-auto py-5 px-4">
-          <div className="flex items-center justify-left mt-2 mb-6">
+          <div className="flex items-center justify-between mt-2 mb-6">
             <Image
               width={390}
               height={124}
@@ -152,8 +213,18 @@ const FormStep = () => {
               src="/images/logo.png"
               alt="Homies Photo Collage"
             />
+            {!!user && (
+              <div>
+                <button
+                  className="text-sm text-gray-400"
+                  onClick={() => signOut()}
+                >
+                  Sign out
+                </button>
+              </div>
+            )}
           </div>
-          {!currentFormPage ? (
+          {showLoading ? (
             <div className="bg-white pt-6 items-center justify-center shadow-md rounded px-8 pb-8 mb-8">
               <Loading />
             </div>
@@ -179,19 +250,19 @@ const FormStep = () => {
                     watch(block.showIf.fieldName)?.includes(
                       block.showIf.value
                     )) && (
-                    <div key={index} className="mb-6 sm:mb-8">
-                      <label className="block text-gray-700 font-bold mb-2">
+                    <div key={index} className="mb-6 sm:mb-6">
+                      <label className="block text-gray-700 font-bold mb-1">
                         {block.question}
                       </label>
                       {block.description && (
-                        <p className="text-gray-500 whitespace-pre-line text-sm mb-2">
+                        <p className="text-gray-500 whitespace-pre-line text-sm mb-1">
                           {block.description}
                         </p>
                       )}
                       {block.blockType === 'select' ? (
                         <select
                           defaultValue={''}
-                          autoFocus={index === 0}
+                          disabled={isSubmitting}
                           className="shadow appearance-none text-lg border border-gray-300 rounded-md w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           {...register(block.fieldName, block.rules)}
                         >
@@ -209,17 +280,18 @@ const FormStep = () => {
                           ))}
                         </select>
                       ) : block.blockType === 'text' ||
+                        block.blockType === 'email' ||
                         block.blockType === 'password' ? (
                         <input
+                          disabled={isSubmitting}
                           type={block.blockType}
-                          autoFocus={index === 0}
                           {...register(block.fieldName, block.rules)}
                           className="shadow appearance-none border border-gray-300 rounded-md w-full text-lg py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           placeholder={block.placeholder}
                         />
                       ) : block.blockType === 'textarea' ? (
                         <textarea
-                          autoFocus={index === 0}
+                          disabled={isSubmitting}
                           {...register(block.fieldName, block.rules)}
                           className="shadow appearance-none border border-gray-300 text-lg rounded-md w-full py-3 min-h-[40px] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           placeholder={block.placeholder}
@@ -230,9 +302,11 @@ const FormStep = () => {
                             <div
                               key={option.value}
                               onClick={() => {
-                                setValue(block.fieldName, option.value);
-                                if (errors[block.fieldName]) {
-                                  trigger(block.fieldName);
+                                if (!isSubmitting) {
+                                  setValue(block.fieldName, option.value);
+                                  if (errors[block.fieldName]) {
+                                    trigger(block.fieldName);
+                                  }
                                 }
                               }}
                               className={classNames(
@@ -245,12 +319,12 @@ const FormStep = () => {
                             >
                               <input
                                 id={option.value} // needed for the label to work correctly
-                                autoFocus={index === 0 && i === 0}
+                                readOnly={isSubmitting}
                                 onClick={(e) => e.stopPropagation()}
                                 type={block.blockType}
                                 {...register(block.fieldName, block.rules)}
                                 value={option.value}
-                                className="mr-3 mb-0.5 cursor-pointer"
+                                className="mr-3 cursor-pointer"
                               />
 
                               <label
@@ -274,8 +348,10 @@ const FormStep = () => {
                             <div
                               key={option.value}
                               onClick={(e) => {
-                                e.stopPropagation();
-                                handleCheckboxChange(block, option.value);
+                                if (!isSubmitting) {
+                                  e.stopPropagation();
+                                  handleCheckboxChange(block, option.value);
+                                }
                               }}
                               className={classNames(
                                 // if the value of the radio button is equal to the value of the option, then add the border-black class
@@ -287,6 +363,7 @@ const FormStep = () => {
                             >
                               <input
                                 key={option.value}
+                                disabled={isSubmitting}
                                 onClick={(e) => e.stopPropagation()}
                                 type="checkbox"
                                 {...register(block.fieldName, block.rules)}
@@ -303,8 +380,46 @@ const FormStep = () => {
                             </div>
                           ))}
                         </div>
+                      ) : block.blockType === 'chips' ? (
+                        <div className="flex flex-wrap gap-2">
+                          {block.options.map((option, i) => (
+                            <div
+                              key={option.value}
+                              onClick={(e) => {
+                                if (!isSubmitting) {
+                                  e.stopPropagation();
+                                  handleCheckboxChange(block, option.value);
+                                }
+                              }}
+                              className={classNames(
+                                'border px-3 py-1 rounded-full flex items-center cursor-pointer',
+                                watch(block.fieldName)?.includes(option.value)
+                                  ? 'border-black bg-gray-100 text-black hover:border-black'
+                                  : 'hover:border-gray-300 hover:text-black text-gray-500 hover:bg-gray-50'
+                              )}
+                            >
+                              <input
+                                disabled={isSubmitting}
+                                onClick={(e) => e.stopPropagation()}
+                                type="checkbox"
+                                {...register(block.fieldName, block.rules)}
+                                id={option.value}
+                                value={option.value}
+                                className="mr-2 rounded cursor-pointer"
+                              />
+                              <label
+                                onClick={(e) => e.stopPropagation()}
+                                htmlFor={option.value}
+                                className="cursor-pointer"
+                              >
+                                {option.label}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
                       ) : block.blockType === 'html' ? (
                         <textarea
+                          disabled={isSubmitting}
                           {...register(block.fieldName, block.rules)}
                           className="shadow appearance-none border border-gray-300 outline-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           placeholder={block.placeholder}
@@ -312,7 +427,7 @@ const FormStep = () => {
                       ) : null}
 
                       {errors[block.fieldName] && (
-                        <p className="text-red-500 mt-1 text-xs italic">
+                        <p className="text-red-600 mt-1 text-xs italic">
                           {errors[block.fieldName].message as string}
                         </p>
                       )}
@@ -321,20 +436,9 @@ const FormStep = () => {
               )}
 
               <div className="flex items-center flex-row justify-between">
-                {!prevStep ? (
-                  <div />
-                ) : (
-                  <button
-                    disabled={isLoading}
-                    className="text-gray-400 text-sm focus:outline-none focus:shadow-outline"
-                    onClick={onPreviousStep}
-                    type="button"
-                  >
-                    Back
-                  </button>
-                )}
+                {renderBack}
 
-                <Button loading={isLoading} type="submit">
+                <Button loading={isSubmitting} type="submit">
                   Continue
                 </Button>
               </div>

@@ -1,17 +1,30 @@
+import { NextApiHandler } from 'next';
+import { getSession } from 'next-auth/react';
 import { onboardingPages } from '../../../lib/onboardingPages';
 
 let userDB = {
   completedSteps: [],
 };
 
-export default function handler(req, res) {
-  // const allSteps = ['name', 'gender', 'address', 'city', 'state', 'zip'];
+const handler: NextApiHandler = async (req, res) => {
+  const session = await getSession({ req });
+
   const allSteps = onboardingPages.map((page) => page.step);
 
+  console.log('session', session);
+
   if (req.method === 'GET') {
-    const missingSteps = allSteps.filter(
-      (step) => !userDB.completedSteps.includes(step)
-    );
+    let missingSteps = [];
+
+    if (session) {
+      missingSteps = allSteps.filter(
+        (step) =>
+          !userDB.completedSteps.includes(step) &&
+          step.indexOf('get-started') === -1
+      );
+    } else {
+      missingSteps = allSteps;
+    }
 
     res.status(200).json(missingSteps);
   } else if (req.method === 'POST') {
@@ -29,4 +42,6 @@ export default function handler(req, res) {
   } else {
     res.status(405).json({ message: 'Only GET and POST methods are allowed' });
   }
-}
+};
+
+export default handler;
