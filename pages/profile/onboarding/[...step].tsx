@@ -255,12 +255,14 @@ const FormStep = () => {
                         {block.question}
                       </label>
                       {block.description && (
-                        <p className="text-gray-500 whitespace-pre-line text-sm mb-1">
+                        <p className="text-gray-500 whitespace-pre-line text-sm mb-2">
                           {block.description}
                         </p>
                       )}
                       {block.blockType === 'select' ? (
                         <select
+                          key={block.fieldName}
+                          id={block.fieldName}
                           defaultValue={''}
                           disabled={isSubmitting}
                           className="shadow appearance-none text-lg border border-gray-300 rounded-md w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -283,6 +285,8 @@ const FormStep = () => {
                         block.blockType === 'email' ||
                         block.blockType === 'password' ? (
                         <input
+                          key={block.fieldName}
+                          id={block.fieldName}
                           disabled={isSubmitting}
                           type={block.blockType}
                           {...register(block.fieldName, block.rules)}
@@ -291,6 +295,8 @@ const FormStep = () => {
                         />
                       ) : block.blockType === 'textarea' ? (
                         <textarea
+                          key={block.fieldName}
+                          id={block.fieldName}
                           disabled={isSubmitting}
                           {...register(block.fieldName, block.rules)}
                           className="shadow appearance-none border border-gray-300 text-lg rounded-md w-full py-3 min-h-[40px] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
