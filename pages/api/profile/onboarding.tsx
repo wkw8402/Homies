@@ -29,18 +29,33 @@ const handler: NextApiHandler = async (req, res) => {
     res.status(200).json(missingSteps);
   } else if (req.method === 'POST') {
     const data = req.body;
-    console.log(data);
+    const promises = [];
 
-    // Here we're updating our "database" when an address detail is submitted
-    if (data) {
-      // Simulate saving to DB. In a real-world scenario, you'd perform an actual DB operation here
-      userDB.completedSteps.push(data);
-      res.status(200).json({ message: `Successfully updated ${data}` });
-    } else {
-      res.status(400).json({ message: `Invalid step: ${data}` });
+    for (const tableName of Object.keys(data)) {
+      const table = prisma[tableName];
+
+      if (!table) {
+        res.status(400).json({ message: `Table ${tableName} does not exist.` });
+        return;
+      }
+
+      const columns = data[tableName];
+
+      for (const columnName of Object.keys(columns)) {
+        promises.push(
+          table.update({
+            where: { id: session?.user?.id },
+            data: { [columnName]: columns[columnName] },
+          })
+        );
+      }
     }
+
+    await Promise.all(promises);
+
+    res.status(200).json({ message: 'Data updated successfully' });
   } else {
-    res.status(405).json({ message: 'Only GET and POST methods are allowed' });
+    res.status(405).json({ message: 'Method not allowed' });
   }
 };
 

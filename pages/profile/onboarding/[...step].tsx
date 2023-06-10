@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import Loading from '../../../components/Loading';
 import Button from '../../../components/shared/Button';
 import { onboardingPages } from '../../../lib/onboardingPages';
+import Link from 'next/link';
 
 const FormStep = () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const FormStep = () => {
 
   const { status, data: userData } = useSession();
   const { user } = userData || { user: null };
+  const [message, setMessage] = useState(null);
 
   const {
     register,
@@ -78,7 +80,31 @@ const FormStep = () => {
           return;
         }
       } else {
-        await axios.post('/api/profile/onboarding', data);
+        const dbData = currentFormPage.blocks?.reduce((obj, block) => {
+          const tableName = block.dbField.split('.')[0];
+          const columnName = block.dbField.split('.')[1];
+
+          if (!obj[tableName]) {
+            obj[tableName] = {};
+          }
+
+          obj[tableName][columnName] = data[block.fieldName];
+
+          return obj;
+        }, {});
+
+        const res = await fetch('/api/profile/onboarding', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dbData),
+        });
+
+        if (res.status !== 200) {
+          setMessage('Something went wrong');
+          return;
+        }
+
+        // await axios.post('/api/profile/onboarding', data);
       }
 
       if (nextStep) {
@@ -103,6 +129,7 @@ const FormStep = () => {
 
         // Reset the form when navigating to a new page
         reset();
+        setMessage(null);
         // Set the default values for the form
         currentFormPage?.blocks.forEach((block) => {
           setValue(block.fieldName, block.defaultValue);
@@ -203,8 +230,8 @@ const FormStep = () => {
       <Head>
         <title>Onboarding - Homies</title>
       </Head>
-      <div className="min-h-screen from-purple-50 bg-gradient-to-b pb-10 to-purple-100">
-        <div className="w-full max-w-lg mx-auto py-5 px-4">
+      <div className="min-h-screen flex flex-col from-purple-50 bg-gradient-to-b to-purple-100">
+        <div className="w-full flex-1 max-w-lg mx-auto py-5 px-4">
           <div className="flex items-center justify-between mt-2 mb-6">
             <Image
               width={390}
@@ -214,7 +241,7 @@ const FormStep = () => {
               alt="Homies Photo Collage"
             />
             {!!user && (
-              <div>
+              <div className="flex flex-col justify-end items-end">
                 <button
                   className="text-sm text-gray-400"
                   onClick={() => signOut()}
@@ -261,6 +288,7 @@ const FormStep = () => {
                       )}
                       {block.blockType === 'select' ? (
                         <select
+                          autoFocus={index === 0}
                           key={block.fieldName}
                           id={block.fieldName}
                           defaultValue={''}
@@ -285,6 +313,7 @@ const FormStep = () => {
                         block.blockType === 'email' ||
                         block.blockType === 'password' ? (
                         <input
+                          autoFocus={index === 0}
                           key={block.fieldName}
                           id={block.fieldName}
                           disabled={isSubmitting}
@@ -324,6 +353,7 @@ const FormStep = () => {
                               )}
                             >
                               <input
+                                key={option.value}
                                 id={option.value} // needed for the label to work correctly
                                 readOnly={isSubmitting}
                                 onClick={(e) => e.stopPropagation()}
@@ -387,7 +417,7 @@ const FormStep = () => {
                           ))}
                         </div>
                       ) : block.blockType === 'chips' ? (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2.5">
                           {block.options.map((option, i) => (
                             <div
                               key={option.value}
@@ -398,13 +428,14 @@ const FormStep = () => {
                                 }
                               }}
                               className={classNames(
-                                'border px-3 py-1 rounded-full flex items-center cursor-pointer',
+                                'border px-3 py-2 rounded-full flex items-center cursor-pointer',
                                 watch(block.fieldName)?.includes(option.value)
                                   ? 'border-black bg-gray-100 text-black hover:border-black'
                                   : 'hover:border-gray-300 hover:text-black text-gray-500 hover:bg-gray-50'
                               )}
                             >
                               <input
+                                key={option.value}
                                 disabled={isSubmitting}
                                 onClick={(e) => e.stopPropagation()}
                                 type="checkbox"
@@ -440,6 +471,11 @@ const FormStep = () => {
                     </div>
                   )
               )}
+              {!!message && (
+                <div className="text-xs text-red-600 bg-gray-100 rounded-lg px-3 py-3 mb-2">
+                  {message}
+                </div>
+              )}
 
               <div className="flex items-center flex-row justify-between">
                 {renderBack}
@@ -450,6 +486,31 @@ const FormStep = () => {
               </div>
             </form>
           )}
+        </div>
+        <div className="flex flex-row gap-4 text-xs text-center text-gray-400 pb-3 divide-gray-400 justify-center items-center">
+          <div className="hover:underline cursor-pointer">
+            <Link href={'https://www.meethomies.com'} target="_blank">
+              Homies
+            </Link>
+          </div>
+          <div className="hover:underline cursor-pointer">
+            <Link href={'https://www.meethomies.com/faq'} target="_blank">
+              FAQ
+            </Link>
+          </div>
+          <div className="hover:underline cursor-pointer">
+            <Link href={'https://www.meethomies.com/contact'} target="_blank">
+              Contact
+            </Link>
+          </div>
+          <div className="hover:underline cursor-pointer">
+            <Link
+              href={'https://www.meethomies.com/privacy-policy'}
+              target="_blank"
+            >
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </>

@@ -53,8 +53,24 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Profile       Profile?
+  Address       Address?
 
   @@map("users")
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String   @unique @map("user_id")
+  street    String?
+  city      String?
+  state     String?
+  zip       String?
+  type      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("addresses")
 }
 
 model Profile {
