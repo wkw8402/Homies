@@ -1,6 +1,7 @@
 import { NextApiHandler } from 'next';
 import { getSession } from 'next-auth/react';
 import { onboardingPages } from '../../../lib/onboardingPages';
+import prisma from '../../../lib/prismadb';
 
 let userDB = {
   completedSteps: [],
