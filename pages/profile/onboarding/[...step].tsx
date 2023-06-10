@@ -103,7 +103,7 @@ const FormStep = () => {
 
         if (res.status !== 200) {
           setMessage('Something went wrong');
-          return;
+         
         }
 
         // await axios.post('/api/profile/onboarding', data);
