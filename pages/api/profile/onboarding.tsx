@@ -13,6 +13,8 @@ const handler: NextApiHandler = async (req, res) => {
 
   console.log('session', session);
 
+  console.log(req.method, req.body);
+
   if (req.method === 'GET') {
     let missingSteps = [];
 

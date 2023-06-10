@@ -160,17 +160,6 @@ const options: AuthOptions = {
         session.user.admin = user?.admin;
       }
 
-      const profile = await prisma.profile.findUnique({
-        select: {
-          id: true,
-        },
-        where: {
-          userId: user?.id || token?.id,
-        },
-      });
-
-      session.profile = profile;
-
       return session;
     },
     jwt: async ({ user, token }) => {
