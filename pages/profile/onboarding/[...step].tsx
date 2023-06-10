@@ -38,7 +38,9 @@ const FormStep = () => {
   console.log(getValues());
 
   const step = (stepArray as string[])?.join('/');
-  const currentFormPage = onboardingPages.find((page) => page.step === step);
+  const currentFormPage: any = onboardingPages.find(
+    (page) => page.step === step
+  );
   const currentFormPageIndex = onboardingPages.findIndex(
     (page) => page.step === step
   );
