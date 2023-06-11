@@ -280,12 +280,7 @@ const FormStep = ({ savedData }) => {
             />
             {!!user && (
               <div className="flex flex-col justify-end items-end">
-                <button
-                  className="text-sm text-gray-400"
-                  onClick={() => signOut()}
-                >
-                  Sign out
-                </button>
+                <div className="text-sm text-gray-400">{user.name}</div>
               </div>
             )}
           </div>
@@ -551,7 +546,7 @@ const FormStep = ({ savedData }) => {
           </div>
           <div className="hover:underline cursor-pointer">
             <Link href={'https://www.meethomies.com/contact'} target="_blank">
-              Contact
+              Contact Us
             </Link>
           </div>
           <div className="hover:underline cursor-pointer">
@@ -560,6 +555,11 @@ const FormStep = ({ savedData }) => {
               target="_blank"
             >
               Privacy Policy
+            </Link>
+          </div>
+          <div className="hover:underline cursor-pointer">
+            <Link href={'https://www.meethomies.com/api/auth/signout'}>
+              Logout
             </Link>
           </div>
         </div>
