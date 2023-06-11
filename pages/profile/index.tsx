@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import ProfileForm from '../../components/ProfileForm';
-import prisma from '../../lib/prismadb';
+import { prisma } from '../../lib/prismadb';
 
 const MyProfilePage = ({ profile }) => {
   const { data: session, status } = useSession();

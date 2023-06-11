@@ -1,7 +1,7 @@
 import { NextApiHandler } from 'next';
 import { getSession } from 'next-auth/react';
-import { onboardingPages } from '../../../lib/onboardingPages';
-import prisma from '../../../lib/prismadb';
+import { onboardingPages } from '../../../../lib/onboardingPages';
+import { prisma } from '../../../../lib/prismadb';
 
 let userDB = {
   completedSteps: [],
@@ -13,7 +13,6 @@ const handler: NextApiHandler = async (req, res) => {
   const allSteps = onboardingPages.map((page) => page.step);
 
   console.log('session', session);
-
   console.log(req.method, req.body);
 
   if (req.method === 'GET') {
@@ -45,12 +44,23 @@ const handler: NextApiHandler = async (req, res) => {
       const columns = data[tableName];
 
       for (const columnName of Object.keys(columns)) {
-        promises.push(
-          table.update({
-            where: { id: session?.user?.id },
-            data: { [columnName]: columns[columnName] },
-          })
-        );
+        let update = null;
+
+        update = table.upsert({
+          where:
+            tableName === 'user'
+              ? { id: session?.user?.id }
+              : { userId: session?.user?.id },
+          update: {
+            [columnName]: columns[columnName],
+          },
+          create: {
+            [columnName]: columns[columnName],
+            [tableName === 'user' ? 'id' : 'userId']: session?.user?.id,
+          },
+        });
+
+        promises.push(update);
       }
     }
 

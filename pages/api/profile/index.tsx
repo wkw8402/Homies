@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
-import prisma from '../../../lib/prismadb';
+import { prisma } from '../../../lib/prismadb';
 
 // POST /api/profile
 // Required fields in body: name

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { getSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import prisma from '../../lib/prismadb';
+import { prisma } from '../../lib/prismadb';
 
 const AdminPage = ({ profiles }) => {
   const router = useRouter();
@@ -159,7 +159,17 @@ export default AdminPage;
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  if (!session?.user.admin) {
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session?.user.id,
+    },
+    select: {
+      admin: true,
+    },
+  });
+
+  if (!user.admin) {
     return {
       notFound: true,
     };

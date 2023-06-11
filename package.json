@@ -3,11 +3,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:prod": "npx prisma generate && npx prisma db push && next build",
+    "build:prod": "npx prisma generate && npx prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma:dev": "dotenv -e .env.local -- npx prisma migrate dev", 
-    "prisma:migrate:postgres": "dotenv -e .env.local -- npx prisma migrate deploy",
+    "prisma:migrate": "dotenv -e .env.local -- npx prisma migrate deploy",
     "prisma:generate": "npx prisma generate",
     "prisma:run": "npx prisma db push",
     "studio": "npx prisma studio"

@@ -1,5 +1,5 @@
 import { getSession } from 'next-auth/react';
-import prisma from '../../../lib/prismadb';
+import { prisma } from '../../../lib/prismadb';
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { format } from 'date-fns';
@@ -81,7 +81,17 @@ export default AdminProfilePage;
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  if (!session?.user.admin) {
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session?.user.id,
+    },
+    select: {
+      admin: true,
+    },
+  });
+
+  if (!user.admin) {
     return {
       notFound: true,
     };

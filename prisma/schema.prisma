@@ -41,19 +41,24 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  password      String?
-  image         String?
-  admin         Boolean?  @default(false)
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @default(now()) @map("updated_at")
-  accounts      Account[]
-  sessions      Session[]
-  Profile       Profile?
-  Address       Address?
+  id                  String    @id @default(cuid())
+  name                String?
+  email               String?   @unique
+  emailVerified       DateTime? @map("email_verified")
+  password            String?
+  image               String?
+  phone               String?
+  gender              String?
+  genderOther         String?
+  regionalCenter      String?
+  regionalCenterOther String?
+  admin               Boolean?  @default(false)
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @default(now()) @map("updated_at")
+  accounts            Account[]
+  sessions            Session[]
+  Profile             Profile?
+  Address             Address?
 
   @@map("users")
 }
@@ -61,11 +66,12 @@ model User {
 model Address {
   id        String   @id @default(cuid())
   userId    String   @unique @map("user_id")
-  street    String?
+  address1  String?
+  address2  String?
   city      String?
   state     String?
   zip       String?
-  type      String?
+  type      String?  @default("home")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -74,15 +80,30 @@ model Address {
 }
 
 model Profile {
-  id        String   @id @default(cuid())
-  userId    String   @unique @map("user_id")
-  name      String?
-  bio       String?
-  image     String?
-  location  String?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @map("updated_at")
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                  String   @id @default(cuid())
+  userId              String   @unique @map("user_id")
+  name                String?
+  bio                 String?
+  image               String?
+  location            String?
+  interests           String[] @default([])
+  interestsOther      String?
+  smoking             String?
+  alcohol             String?
+  hasPets             String?
+  petsDescription     String?
+  likesPets           String?
+  roommateConflict    String?
+  cleaning            String?
+  sleepSchedule       String?
+  likesParties        String?
+  communicationMethod String?
+  roommateGender      String[] @default([])
+  roommateSharing     String?
+  roommateGuests      String?
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @default(now()) @map("updated_at")
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("profiles")
 }

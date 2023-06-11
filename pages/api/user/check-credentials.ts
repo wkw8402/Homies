@@ -1,7 +1,7 @@
 import sha256 from 'crypto-js/sha256';
 import { omit } from 'lodash';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import prisma from '../../../lib/prismadb';
+import { prisma } from '../../../lib/prismadb';
 
 export default async function handle(
   req: NextApiRequest,

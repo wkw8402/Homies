@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Avatar from 'react-avatar';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import prisma from '../../lib/prismadb';
+import { prisma } from '../../lib/prismadb';
 
 const ProfilePage = ({ profile }) => {
   const title = `${profile.name}'s Profile on Homies`;

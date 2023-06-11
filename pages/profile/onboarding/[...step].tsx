@@ -3,15 +3,15 @@ import classNames from 'classnames';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Loading from '../../../components/Loading';
 import Button from '../../../components/shared/Button';
 import { onboardingPages } from '../../../lib/onboardingPages';
-import Link from 'next/link';
 
-const FormStep = () => {
+const FormStep = ({ savedData }) => {
   const router = useRouter();
   const {
     isReady,
@@ -35,7 +35,7 @@ const FormStep = () => {
     formState: { errors, isSubmitting },
   } = useForm({ reValidateMode: 'onChange', mode: 'onSubmit' });
 
-  console.log(getValues());
+  // console.log(getValues());
 
   const step = (stepArray as string[])?.join('/');
   const currentFormPage: any = onboardingPages.find(
@@ -68,7 +68,10 @@ const FormStep = () => {
 
   const onSubmit = async (data) => {
     try {
-      if (currentFormPage?.isAuth) {
+      if (currentFormPageIndex === 0) {
+        router.push(`/profile/onboarding/${nextStep}?type=${data.userType}`);
+        return;
+      } else if (currentFormPage?.isAuth) {
         let res = await signIn('credentials', {
           username: data.email,
           password: data.password,
@@ -103,7 +106,7 @@ const FormStep = () => {
 
         if (res.status !== 200) {
           setMessage('Something went wrong');
-         
+          return;
         }
 
         // await axios.post('/api/profile/onboarding', data);
@@ -134,7 +137,10 @@ const FormStep = () => {
         setMessage(null);
         // Set the default values for the form
         currentFormPage?.blocks.forEach((block) => {
-          setValue(block.fieldName, block.defaultValue);
+          setValue(
+            block.fieldName,
+            savedData[block.fieldName] || block.defaultValue
+          );
         });
       }
     }
@@ -365,6 +371,18 @@ const FormStep = () => {
                                 className="mr-3 cursor-pointer"
                               />
 
+                              {/* {option.value === 'other' ? ( */}
+                              {/* // <input
+                                //   key={option.value}
+                                //   id={option.value} // needed for the label to work correctly
+                                //   readOnly={isSubmitting}
+                                //   onClick={(e) => e.stopPropagation()}
+                                //   type={'text'}
+                                //   {...register(block.fieldName, block.rules)}
+                                //   value={option.value}
+                                //   className="w-full rounded-md border border-gray-300"
+                                // />
+                              // ) : ( */}
                               <label
                                 htmlFor={option.value}
                                 onClick={(e) => e.stopPropagation()}
@@ -377,6 +395,7 @@ const FormStep = () => {
                                   </p>
                                 )}
                               </label>
+                              {/* )} */}
                             </div>
                           ))}
                         </div>
@@ -474,7 +493,7 @@ const FormStep = () => {
                   )
               )}
               {!!message && (
-                <div className="text-xs text-red-600 bg-gray-100 rounded-lg px-3 py-3 mb-2">
+                <div className="text-xs text-red-600 bg-gray-100 rounded-lg px-3 py-3 -mt-4 mb-2">
                   {message}
                 </div>
               )}
@@ -518,5 +537,40 @@ const FormStep = () => {
     </>
   );
 };
+
+export async function getServerSideProps({ query, req }) {
+  const stepArray = query.step;
+  const step = (stepArray as string[])?.toString().split(',').join('/');
+  const cookies = req.headers.cookie;
+
+  const onboardingIndex = onboardingPages.findIndex(
+    (page) => page.step === step
+  );
+
+  const welcomePageIndexes = [0, 1];
+
+  if (welcomePageIndexes.includes(onboardingIndex)) {
+    return {
+      props: {
+        savedData: {},
+      },
+    };
+  }
+
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/onboarding/${step}`,
+    {
+      headers: {
+        cookie: cookies,
+      },
+    }
+  );
+
+  return {
+    props: {
+      savedData: data,
+    },
+  };
+}
 
 export default FormStep;
