@@ -611,7 +611,7 @@ export const onboardingPages = [
         dbField: 'profile.hasPets',
       },
       {
-        showIf: { fieldName: 'pets', value: 'Yes' },
+        showIf: { fieldName: 'pets', value: 'yes' },
         question: 'Share a little about your pets!',
         description: 'What kind of animals do you have? What are their names?',
         rules: { required: 'Please tell us about your pets' },
