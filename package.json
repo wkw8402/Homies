@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:prod": "npx prisma generate && npx prisma migrate deploy && next build",
+    "build:prod": "npx prisma generate && npx prisma db push && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma:dev": "dotenv -e .env.local -- npx prisma migrate dev", 
