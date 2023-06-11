@@ -17,6 +17,8 @@ const handler: NextApiHandler = async (req, res) => {
       res.status(200).json({});
     }
 
+    console.log(session);
+
     if (!currentStep) {
       res.status(404).json({ message: 'Not found' });
     }
@@ -27,6 +29,12 @@ const handler: NextApiHandler = async (req, res) => {
       const tableName = block.dbField.split('.')[0];
       const columnName = block.dbField.split('.')[1];
       const fieldName = block.fieldName;
+
+      console.log('tableName', tableName);
+      console.log('columnName', columnName);
+      console.log('fieldName', fieldName);
+
+      console.log('session?.user?.id', session?.user?.id);
 
       // add promises to a list, we will await them all later
       dbData[fieldName] = prisma[tableName]

@@ -51,6 +51,7 @@ model User {
   gender              String?
   genderOther         String?
   regionalCenter      String?
+  type                String?
   regionalCenterOther String?
   admin               Boolean?  @default(false)
   createdAt           DateTime  @default(now()) @map("created_at")

@@ -1,7 +1,6 @@
-import sha256 from 'crypto-js/sha256';
-import { omit } from 'lodash';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../lib/prismadb';
+import sha256 from 'crypto-js/sha256';
 
 export default async function handle(
   req: NextApiRequest,
@@ -22,22 +21,23 @@ const hashPassword = (password: string) => {
 
 // POST /api/user
 async function handlePOST(res, req) {
-  const user = await prisma.user.findUnique({
-    where: { email: req.body.email },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      image: true,
-      password: true,
-    },
+  console.debug('creating user', {
+    ...req.body,
+    password: hashPassword(req.body.password),
   });
 
-  if (user && user.password == hashPassword(req.body.password)) {
-    console.debug('password correct');
-    res.json(omit(user, 'password'));
-  } else {
-    console.debug('incorrect credentials');
-    res.status(400).end('Invalid credentials');
+  let user = await prisma.user.findUnique({
+    where: { email: req.body.email },
+  });
+
+  if (user) {
+    res.status(400).end('User already exists');
+    return;
   }
+
+  user = await prisma.user.create({
+    data: { ...req.body, password: hashPassword(req.body.password) },
+  });
+
+  res.json(user);
 }

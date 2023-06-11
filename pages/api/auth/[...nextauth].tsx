@@ -1,5 +1,6 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
+import axios from 'axios';
 import { NextApiHandler } from 'next';
 import NextAuth, { AuthOptions, Theme } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -125,20 +126,13 @@ const options: AuthOptions = {
         },
       },
       authorize: async (credentials, req) => {
-        const user = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/check-credentials`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              accept: 'application/json',
-            },
-            body: Object.entries(credentials)
-              .map((e) => e.join('='))
-              .join('&'),
-          }
-        )
-          .then((res) => res.json())
+        console.log('creds', JSON.stringify(credentials));
+        const user = await axios
+          .post(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/check-credentials`,
+            credentials
+          )
+          .then((res) => res.data)
           .catch((err) => {
             return null;
           });
@@ -159,6 +153,20 @@ const options: AuthOptions = {
         session.user.id = token?.id;
         session.user.admin = user?.admin;
       }
+
+      const userDb = await prisma.user.findUnique({
+        where: {
+          id: session.user.id,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          image: true,
+        },
+      });
+
+      session.user = userDb;
 
       return session;
     },

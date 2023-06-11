@@ -17,6 +17,10 @@ const FormStep = ({ savedData }) => {
     isReady,
     query: { step: stepArray },
   } = router;
+
+  const searchParams = new URLSearchParams(router.asPath.split(/\?/)[1]);
+  const userType = searchParams.get('type');
+
   const [isLoading, setIsLoading] = useState(true);
 
   const { status, data: userData } = useSession();
@@ -28,6 +32,7 @@ const FormStep = ({ savedData }) => {
     handleSubmit,
     setValue,
     trigger,
+    clearErrors,
     setError,
     getValues,
     reset,
@@ -72,15 +77,40 @@ const FormStep = ({ savedData }) => {
         router.push(`/profile/onboarding/${nextStep}?type=${data.userType}`);
         return;
       } else if (currentFormPage?.isAuth) {
+        const createAccount = await fetch('/api/user/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: data.email,
+            password: data.password,
+            type: userType,
+          }),
+        });
+
+        if (createAccount.status === 400) {
+          setError('email', {
+            type: 'manual',
+            message: 'Email already exists',
+          });
+        } else if (createAccount.status !== 200) {
+          const res = await createAccount.json();
+          setError('email', {
+            type: 'manual',
+            message: res.error,
+          });
+          return;
+        }
+
         let res = await signIn('credentials', {
-          username: data.email,
+          email: data.email,
           password: data.password,
           redirect: false,
         });
         if (res.error) {
+          clearErrors();
           setError('password', {
             type: 'manual',
-            message: res.error,
+            message: 'Invalid password',
           });
           return;
         }
