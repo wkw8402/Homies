@@ -41,13 +41,6 @@ export default function Document() {
           content="black-translucent"
         />
         <meta name="apple-mobile-web-app-title" content="Homies" />
-        <Script id="clarity">
-          {`(function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "hijoq9lp8j");`}
-        </Script>
       </Head>
 
       <body className="h-full">
