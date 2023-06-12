@@ -526,7 +526,7 @@ const FormStep = ({ savedData }) => {
               <div className="flex items-center flex-row justify-between">
                 {renderBack}
 
-                <Button loading={isSubmitting} type="submit">
+                <Button loading={isSubmitting || showLoading} type="submit">
                   Continue
                 </Button>
               </div>
