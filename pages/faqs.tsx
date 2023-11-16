@@ -1,23 +1,17 @@
-import { format } from 'date-fns';
 import Head from 'next/head';
-import Link from 'next/link';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import Text from '../../components/notion/Text';
-import { getDatabase, getPropertyText } from '../../lib/notion';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Text from '../components/notion/Text';
+import { getDatabase } from '../lib/notion';
 
-export const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
+export const databaseId = process.env.NOTION_FAQ_DATABASE_ID;
 
-export default function Home({ posts }) {
+export default function Home({ questions }) {
   return (
     <>
       <Head>
         <title>Updates | Homies</title>
         <meta name="og:title" content="Blog | Homies" />
-        <meta
-          name="og:description"
-          content="Keep up to date with the latest articles, company updates, and more."
-        />
       </Head>
       <div className="bg-gradient-to-b from-purple-25 to-purple-50">
         <Header />
@@ -33,23 +27,12 @@ export default function Home({ posts }) {
                 more.
               </p>
               <div className="pt-10 mt-10 space-y-8 border-t border-gray-200">
-                {posts.map((post) => (
+                {questions.map((post) => (
                   <article
                     key={post.id}
                     className="flex flex-col items-start justify-between max-w-xl"
                   >
                     <div className="flex items-center text-xs gap-x-4">
-                      {post.properties['Date Published'].date && (
-                        <p className="text-sm font-normal text-purple-600 mt-7 font-pj">
-                          {format(
-                            new Date(
-                              post.properties['Date Published'].date.start +
-                                ' 00:00:00'
-                            ),
-                            'MMMM dd, yyyy'
-                          )}
-                        </p>
-                      )}
                       {/* <a
                         href={post.category.href}
                         className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
@@ -59,14 +42,8 @@ export default function Home({ posts }) {
                     </div>
                     <div className="relative group">
                       <h3 className="mt-3 text-2xl font-semibold leading-snug text-gray-900 sm:text-4xl group-hover:text-gray-600">
-                        <Link
-                          href={`/blog/${getPropertyText(
-                            post.properties.Slug
-                          )}`}
-                        >
-                          <span className="absolute inset-0" />
-                          <Text text={post.properties.Name.title} />
-                        </Link>
+                        <span className="absolute inset-0" />
+                        <Text text={post.properties.Question.title} />
                       </h3>
                       <p className="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">
                         {post.properties.Description}
@@ -92,7 +69,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      posts: database,
+      questions: database,
     },
     revalidate: 60 * 20, // In seconds
   };
