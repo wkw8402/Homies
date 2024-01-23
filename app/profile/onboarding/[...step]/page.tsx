@@ -1,8 +1,8 @@
 import { authOptions } from '@/lib/auth';
-import { getData } from '@/lib/helpers';
 import { onboardingPages } from '@/lib/onboardingPages';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
+import { getSavedData } from '../onboarding-step';
 import FormStep from './FormStep';
 
 export const dynamic = 'force-dynamic';
@@ -27,12 +27,10 @@ export default async function OnboardingPage({
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return redirect('/');
+      return redirect('/profile/onboarding/get-started');
     }
 
-    const data = await getData(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/onboarding/${step}`
-    );
+    const data = await getSavedData(step, session);
 
     console.log('data', data);
     return <FormStep savedData={data} />;

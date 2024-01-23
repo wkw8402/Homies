@@ -6,8 +6,9 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
-  console.log(session);
   return NextResponse.json({
-    id: 1,
+    id: session?.user?.id,
+    name: session?.user?.name,
+    email: session?.user?.email,
   });
 }
