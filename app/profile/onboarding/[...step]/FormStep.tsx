@@ -81,6 +81,8 @@ const FormStep = ({ savedData }) => {
         router.push(`/profile/onboarding/${nextStep}?type=${data.userType}`);
         return;
       } else if (currentFormPage?.isAuth) {
+        clearErrors();
+
         const createAccount = await fetch('/api/user/create', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -91,7 +93,7 @@ const FormStep = ({ savedData }) => {
           }),
         });
 
-        if (createAccount.status === 400) {
+        if (createAccount.status === 409) {
           setError('email', {
             type: 'manual',
             message: 'Email already exists',
@@ -110,11 +112,13 @@ const FormStep = ({ savedData }) => {
           password: data.password,
           redirect: false,
         });
+
+        console.log(res);
+
         if (res && res.error) {
-          clearErrors();
           setError('password', {
             type: 'manual',
-            message: 'Invalid password',
+            message: 'Incorrect password',
           });
           return;
         }
@@ -159,6 +163,7 @@ const FormStep = ({ savedData }) => {
 
   useEffect(() => {
     if (!currentFormPage) {
+      console.log('re-routing to onboarding');
       router.replace('/profile/onboarding');
     } else {
       console.log(savedData);

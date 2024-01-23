@@ -140,7 +140,6 @@ export const authOptions: NextAuthOptions = {
           }
 
           const user = data.body;
-          console.log('response.data', user);
 
           if (user) {
             return user;

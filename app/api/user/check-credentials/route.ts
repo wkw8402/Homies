@@ -23,6 +23,6 @@ export async function POST(req, res) {
     return NextResponse.json({ status: 200, body: omit(user, 'password') });
   } else {
     console.debug('incorrect credentials');
-    return NextResponse.json({ status: 400, body: 'Invalid credentials' });
+    return NextResponse.json({ status: 400, err: 'Invalid credentials' });
   }
 }

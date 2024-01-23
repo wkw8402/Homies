@@ -14,7 +14,10 @@ export async function POST(req, res) {
   });
 
   if (user) {
-    return NextResponse.json({ status: 400, body: 'User already exists' });
+    return NextResponse.json({
+      status: 409,
+      body: 'An account with this email address already exists',
+    });
   }
 
   user = await prisma.user.create({
