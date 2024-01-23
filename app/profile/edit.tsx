@@ -2,8 +2,6 @@ import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 
 const EditProfile = () => {
@@ -26,8 +24,6 @@ const EditProfile = () => {
         <title>Edit Profile | Homies</title>
       </Head>
       <div className="bg-gradient-to-b from-purple-25 to-purple-50">
-        <Header />
-
         <section className="py-8 mx-auto max-w-7xl sm:px-6">
           {loading && <Loading />}
           {!loading && session && (
@@ -176,10 +172,6 @@ const EditProfile = () => {
           )}
         </section>
       </div>
-
-      <div className="w-full h-40 sm:h-48 xl:h-52 bg-gradient-to-b from-purple-50 to-yellow-100"></div>
-
-      <Footer />
     </>
   );
 };

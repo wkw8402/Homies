@@ -12,25 +12,24 @@ const MyProfilePage = async () => {
 
   let profile: Partial<Profile> | null = null;
 
-  if (session) {
-    profile = await prisma.profile.findUnique({
-      select: {
-        id: true,
-        name: true,
-        location: true,
-        bio: true,
-      },
-      where: {
-        userId: session?.user?.id,
-      },
-    });
-  } else {
-    // redirect to login
+  if (!session) {
     return redirect('/');
   }
 
+  profile = await prisma.profile.findUnique({
+    select: {
+      id: true,
+      name: true,
+      location: true,
+      bio: true,
+    },
+    where: {
+      userId: session?.user?.id,
+    },
+  });
+
   if (!profile) {
-    notFound();
+    return redirect('/profile/onboarding');
   }
 
   return <MyProfile session={session} profile={profile} />;

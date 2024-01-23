@@ -29,10 +29,6 @@ export const getOnboardingStep = async (session) => {
 export async function getSavedData(step, session) {
   const currentStep: any = onboardingPages.find((page) => page.step === step);
 
-  if (!session) {
-    return redirect('/profile/onboarding/get-started');
-  }
-
   if (!currentStep) {
     // not found
     return null;

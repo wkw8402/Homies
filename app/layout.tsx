@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
           <header>{/* Header content */}</header>
 
           {/* Main content */}
-          <main className="flex flex-1 w-full">{children}</main>
+          <main className="flex flex-col flex-1 w-full">{children}</main>
 
           <footer>{/* Footer content */}</footer>
         </NextAuthProvider>

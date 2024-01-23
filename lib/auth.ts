@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import Email from 'next-auth/providers/email';
 import { createTransport } from 'nodemailer';
 import { prisma } from './prismadb';
+import { log } from 'console';
 
 async function sendVerificationRequest(params) {
   const { identifier, url, provider, theme } = params;
@@ -184,17 +185,62 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
+    // async signIn({ user, account, email }) {
+    //   const userExists = await prisma.user.findUnique({
+    //     select: { email: true },
+    //     where: { email: user.email || '' }, //the user object has an email property, which contains the email the user entered.
+    //   });
+
+    //   console.log('userExists', userExists);
+    //   if (userExists) {
+    //     return true; //if the email exists in the User collection, email them a magic login link
+    //   } else {
+    //     return '/register';
+    //   }
+    // },
+  },
+  events: {
+    async signIn(message) {
+      /* on successful sign in */
+    },
+    async signOut(message) {
+      /* on signout */
+    },
+    async createUser(message) {
+      /* user created */
+    },
+    async updateUser(message) {
+      /* user updated - e.g. their email was verified */
+    },
+    async linkAccount(message) {
+      /* account (e.g. Twitter) linked to a user */
+    },
+    async session(message) {
+      /* session is active */
+    },
+  },
+  logger: {
+    error(code, metadata) {
+      console.error(code, metadata);
+    },
+    warn(code) {
+      console.warn(code);
+    },
+    debug(code, metadata) {
+      console.debug(code, metadata);
+    },
   },
   adapter: PrismaAdapter(prisma),
-  secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
+    maxAge: 30 * 24 * 60 * 60 * 12 * 5, // 5 years
     strategy: 'jwt',
   },
   pages: {
-    // signIn: '/auth/signin',
+    signIn: '/',
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=
-    // verifyRequest: '/auth/verify-request', // (used for check email message)
+    verifyRequest: '/auth/verify', // (used for check email message)
     // newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 };

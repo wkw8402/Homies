@@ -41,6 +41,7 @@ export const onboardingPages = [
         question: 'Email Address',
         placeholder: 'name@example.com',
         fieldName: 'email',
+        autoComplete: 'email',
         blockType: 'email',
         description: "We'll send you updates via email about your application.",
         options: null,
@@ -59,6 +60,7 @@ export const onboardingPages = [
         description: 'Your password must be at least 8 characters.',
         fieldName: 'password',
         blockType: 'password',
+
         options: null,
         rules: {
           required: 'Password is required',
@@ -101,6 +103,7 @@ export const onboardingPages = [
         question: 'What is your name?',
         placeholder: 'John Appleseed',
         fieldName: 'name',
+        autoComplete: 'name',
         autoFocus: true,
         blockType: 'text',
         options: null,
@@ -118,6 +121,7 @@ export const onboardingPages = [
         question: 'What is your phone number?',
         placeholder: '(951) 456-7890',
         fieldName: 'phone',
+        autoComplete: 'tel',
         blockType: 'text',
         options: null,
         rules: { required: 'Phone number is required' },
@@ -168,6 +172,7 @@ export const onboardingPages = [
         question: 'Address',
         fieldName: 'address1',
         blockType: 'text',
+        autoComplete: 'address-line1',
         options: null,
         rules: { required: 'Address is required' },
         dbField: 'address.address1',
@@ -175,6 +180,7 @@ export const onboardingPages = [
       {
         question: 'Apt, suite, etc. (optional)',
         fieldName: 'address2',
+        autoComplete: 'address-line2',
         blockType: 'text',
         options: null,
         dbField: 'address.address2',
@@ -182,6 +188,7 @@ export const onboardingPages = [
       {
         question: 'City',
         fieldName: 'city',
+        autoComplete: 'address-level2',
         blockType: 'text',
         options: null,
         rules: { required: 'City is required' },
@@ -190,6 +197,7 @@ export const onboardingPages = [
       {
         question: 'State',
         fieldName: 'state',
+        autoComplete: 'address-level1',
         blockType: 'select',
         options: [
           { label: 'Alabama', value: 'AL' },
@@ -250,6 +258,7 @@ export const onboardingPages = [
         question: 'Zip Code',
         fieldName: 'zip',
         blockType: 'text',
+        autoComplete: 'postal-code',
         options: null,
         rules: { required: 'Zip Code is required' },
         dbField: 'address.zip',

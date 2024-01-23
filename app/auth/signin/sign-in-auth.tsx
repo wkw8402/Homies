@@ -21,7 +21,7 @@ const SignInAuth: React.FC<SignInAuthProps> = ({ csrfToken }) => {
   // }, [session]);
 
   if (session) {
-    // router.replace('/profile');
+    router.replace('/profile');
     return <>Redirecting...</>;
     //
   } else {

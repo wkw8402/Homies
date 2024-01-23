@@ -17,15 +17,11 @@ export async function GET(
     redirect('/profile/onboarding/get-started');
   }
 
-  // currentStep
+  // get current step from URL
   const stepArray = params.step;
   const step = (stepArray as string[])?.toString().split(',').join('/');
 
   const currentStep: any = onboardingPages.find((page) => page.step === step);
-
-  if (!session) {
-    return redirect('/profile/onboarding/get-started');
-  }
 
   if (!currentStep) {
     return NextResponse.json(JSON.stringify({ message: 'Not found' }), {

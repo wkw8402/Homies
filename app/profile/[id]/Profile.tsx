@@ -1,17 +1,22 @@
 'use client';
 
 import classNames from 'classnames';
+import Image from 'next/image';
 import Link from 'next/link';
 import Avatar from 'react-avatar';
-import Footer from '../../../components/Footer';
-import Header from '../../../components/Header';
 
 export default function Profile({ profile }) {
   return (
     <>
-      <div className="bg-gradient-to-b from-purple-25 to-purple-50">
-        <Header />
-
+      <div className="">
+        <div className="flex items-center justify-center mt-4">
+          <Image
+            alt="logo"
+            src={'/images/logo.png'}
+            width={100}
+            height={31.64}
+          />
+        </div>
         <section className="px-4 py-6 sm:px-6">
           <div className="max-w-screen-xl mx-auto">
             <div className="mb-6 bg-white border border-gray-300 rounded-xl">
@@ -208,10 +213,6 @@ export default function Profile({ profile }) {
           </div>
         </section>
       </div>
-
-      <div className="w-full h-40 sm:h-48 xl:h-52 bg-gradient-to-b from-purple-50 to-yellow-100"></div>
-
-      <Footer />
     </>
   );
 }

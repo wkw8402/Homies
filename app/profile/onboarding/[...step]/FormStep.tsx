@@ -331,6 +331,7 @@ const FormStep = ({ savedData }) => {
                           autoFocus={index === 0}
                           key={block.fieldName}
                           id={block.fieldName}
+                          autoComplete={block.autoComplete}
                           defaultValue={''}
                           disabled={isSubmitting}
                           className="w-full px-3 py-3 text-lg leading-tight text-gray-700 border border-gray-300 rounded-md shadow outline-0 focus:ring outline-neutral-700 focus:outline-none focus:shadow-outline"
@@ -358,6 +359,7 @@ const FormStep = ({ savedData }) => {
                           id={block.fieldName}
                           disabled={isSubmitting}
                           type={block.blockType}
+                          autoComplete={block.autoComplete}
                           {...register(block.fieldName, block.rules)}
                           className="w-full px-3 py-3 text-lg leading-tight text-gray-700 border border-gray-300 rounded-md shadow appearance-none focus:outline-none focus:ring focus:shadow-outline"
                           placeholder={block.placeholder}
