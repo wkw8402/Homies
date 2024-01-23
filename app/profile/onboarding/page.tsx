@@ -1,32 +1,34 @@
-import { getData } from '@/lib/helpers';
+import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
 import Head from 'next/head';
 import Image from 'next/image';
 import { notFound, redirect } from 'next/navigation';
 import Loading from '../../../components/Loading';
+import { getOnboardingStep } from './onboarding-step';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  let response;
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return redirect('/');
+  }
+
+  console.log('🦎session', session);
+
+  let steps;
   try {
-    response = await getData(
-      `${process.env.NEXTAUTH_URL}/api/profile/onboarding`
-    );
+    steps = await getOnboardingStep(session);
   } catch (error) {
     console.error('Failed to fetch user progress:', error);
     throw error;
   }
-  console.log(response.body);
-  const steps = response.body;
   const currentStep = steps[0] || 'complete';
 
   if (currentStep !== 'complete') {
     console.log('redirecting ', `/profile/onboarding/${currentStep}`);
     return redirect(`/profile/onboarding/${currentStep}`);
-  }
-
-  if (response.status !== 200) {
-    notFound();
   }
 
   return (

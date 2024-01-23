@@ -1,37 +1,9 @@
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import { onboardingPages } from '../../../../lib/onboardingPages';
 import { prisma } from '../../../../lib/prismadb';
 
-let userDB = {
-  completedSteps: [] as string[],
-};
-
 export const dynamic = 'force-dynamic';
-
-const allSteps = onboardingPages.map((page) => page.step);
-
-export const GET = async (req: NextRequest, res) => {
-  const session = await getServerSession(authOptions);
-
-  console.log('session', session);
-  let missingSteps: any = [];
-
-  // TODO: get the fields that are missing
-
-  if (session) {
-    missingSteps = allSteps.filter(
-      (step) =>
-        !userDB.completedSteps.includes(step) &&
-        step.indexOf('get-started') === -1
-    );
-  } else {
-    missingSteps = allSteps;
-  }
-
-  return NextResponse.json({ status: 200, body: missingSteps });
-};
 
 export const POST = async (req: NextRequest) => {
   const session = await getServerSession(authOptions);

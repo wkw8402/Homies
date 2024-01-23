@@ -328,7 +328,7 @@ const FormStep = ({ savedData }) => {
                           id={block.fieldName}
                           defaultValue={''}
                           disabled={isSubmitting}
-                          className="w-full px-3 py-3 text-lg leading-tight text-gray-700 border border-gray-300 rounded-md shadow appearance-none focus:outline-none focus:shadow-outline"
+                          className="w-full px-3 py-3 text-lg leading-tight text-gray-700 border border-gray-300 rounded-md shadow outline-0 focus:ring outline-neutral-700 focus:outline-none focus:shadow-outline"
                           {...register(block.fieldName, block.rules)}
                         >
                           <option value="" disabled>
@@ -354,7 +354,7 @@ const FormStep = ({ savedData }) => {
                           disabled={isSubmitting}
                           type={block.blockType}
                           {...register(block.fieldName, block.rules)}
-                          className="w-full px-3 py-3 text-lg leading-tight text-gray-700 border border-gray-300 rounded-md shadow appearance-none focus:outline-none focus:shadow-outline"
+                          className="w-full px-3 py-3 text-lg leading-tight text-gray-700 border border-gray-300 rounded-md shadow appearance-none focus:outline-none focus:ring focus:shadow-outline"
                           placeholder={block.placeholder}
                         />
                       ) : block.blockType === 'textarea' ? (
@@ -363,7 +363,7 @@ const FormStep = ({ savedData }) => {
                           id={block.fieldName}
                           disabled={isSubmitting}
                           {...register(block.fieldName, block.rules)}
-                          className="shadow appearance-none border border-gray-300 text-lg rounded-md w-full py-3 min-h-[40px] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          className="shadow appearance-none border border-gray-300 text-lg focus:ring rounded-md w-full py-3 min-h-[40px] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           placeholder={block.placeholder}
                         />
                       ) : block.blockType === 'radio' ? (
@@ -381,9 +381,9 @@ const FormStep = ({ savedData }) => {
                               }}
                               className={classNames(
                                 // if the value of the radio button is equal to the value of the option, then add the border-black class
-                                'border px-3 py-3 rounded-md flex items-center cursor-pointer',
+                                'border-[1.5px] px-3 py-3 rounded-lg flex items-center cursor-pointer',
                                 option.value === watch(block.fieldName)
-                                  ? 'border-black bg-gray-100 text-black font-medium hover:border-black'
+                                  ? 'border-blue-400 bg-gray-100 text-black font-medium'
                                   : 'hover:border-gray-300 hover:text-black text-gray-500 hover:bg-gray-50'
                               )}
                             >
