@@ -13,9 +13,9 @@ import {
 } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Loading from '../../../../components/Loading';
-import Button from '../../../../components/shared/Button';
-import { onboardingPages } from '../../../../lib/onboardingPages';
+import Loading from '../../../components/Loading';
+import Button from '../../../components/shared/Button';
+import { onboardingPages } from '../../../lib/onboardingPages';
 
 const FormStep = ({ savedData }) => {
   const router = useRouter();
@@ -57,7 +57,7 @@ const FormStep = ({ savedData }) => {
   const prevStep = onboardingPages[currentFormPageIndex - 1]?.step;
 
   const onPreviousStep = () => {
-    router.push(`/profile/onboarding/${prevStep}`);
+    router.push(`/onboarding/${prevStep}`);
   };
 
   const renderBack = useMemo(() => {
@@ -78,7 +78,7 @@ const FormStep = ({ savedData }) => {
   const onSubmit = async (data) => {
     try {
       if (currentFormPageIndex === 0) {
-        router.push(`/profile/onboarding/${nextStep}?type=${data.userType}`);
+        router.push(`/onboarding/${nextStep}?type=${data.userType}`);
         return;
       } else if (currentFormPage?.isAuth) {
         clearErrors();
@@ -136,24 +136,26 @@ const FormStep = ({ savedData }) => {
           return obj;
         }, {});
 
-        const res = await fetch('/api/profile/onboarding', {
+        const res = await fetch('/api/profile', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(dbData),
         });
+
+        console.log(res);
 
         if (res.status !== 200) {
           setMessage('Something went wrong');
           return;
         }
 
-        // await axios.post('/api/profile/onboarding', data);
+        // await axios.post('/api/onboarding', data);
       }
 
       if (nextStep) {
-        router.push(`/profile/onboarding/${nextStep}`);
+        router.push(`/onboarding/${nextStep}`);
       } else {
-        router.push('/profile/onboarding/complete');
+        router.push('/onboarding/complete');
       }
     } catch (error) {
       // console.error('Failed to save user progress:', error);
@@ -164,7 +166,7 @@ const FormStep = ({ savedData }) => {
   useEffect(() => {
     if (!currentFormPage) {
       console.log('re-routing to onboarding');
-      router.replace('/profile/onboarding');
+      router.replace('/onboarding');
     } else {
       console.log(savedData);
       if (!savedData) return;
@@ -188,14 +190,14 @@ const FormStep = ({ savedData }) => {
   useEffect(() => {
     // if the user is not logged in, redirect to the login page
     if (status === 'unauthenticated' && !currentFormPage?.isAuth) {
-      router.replace('/profile/onboarding/get-started');
+      router.replace('/onboarding/get-started');
     } else if (status === 'authenticated' && currentFormPage?.isAuth) {
-      // router.replace('/profile/onboarding');
+      // router.replace('/onboarding');
     } else if (
       status === 'authenticated' &&
       currentFormPage?.step.indexOf('get-started') > -1
     ) {
-      // router.replace('/profile/onboarding');
+      // router.replace('/onboarding');
     }
 
     if (status && status !== 'loading') {

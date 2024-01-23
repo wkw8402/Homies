@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import Head from 'next/head';
 import Image from 'next/image';
 import { notFound, redirect } from 'next/navigation';
-import Loading from '../../../components/Loading';
+import Loading from '../../components/Loading';
 import { getOnboardingStep } from './onboarding-step';
 
 export const dynamic = 'force-dynamic';
@@ -27,8 +27,8 @@ export default async function Home() {
   const currentStep = steps[0] || 'complete';
 
   if (currentStep !== 'complete') {
-    console.log('redirecting ', `/profile/onboarding/${currentStep}`);
-    return redirect(`/profile/onboarding/${currentStep}`);
+    console.log('redirecting ', `/onboarding/${currentStep}`);
+    return redirect(`/onboarding/${currentStep}`);
   }
 
   return (

@@ -2,7 +2,7 @@ import { authOptions } from '@/lib/auth';
 import { Profile } from '@prisma/client';
 import { getServerSession } from 'next-auth';
 import { notFound, redirect } from 'next/navigation';
-import { prisma } from '../../lib/prismadb';
+import { prisma } from '../../../lib/prismadb';
 import MyProfile from './Profile';
 
 export const dynamic = 'force-dynamic';
@@ -29,7 +29,7 @@ const MyProfilePage = async () => {
   });
 
   if (!profile) {
-    return redirect('/profile/onboarding');
+    return redirect('/onboarding');
   }
 
   return <MyProfile session={session} profile={profile} />;

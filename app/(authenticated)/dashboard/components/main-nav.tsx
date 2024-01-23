@@ -59,13 +59,15 @@ export function MainNav({
         Profile
       </Link>
       <Link
-        href="/settings"
+        href="/profile/share"
         className={cn(
-          activePath === '/settings' ? 'text-primary' : 'text-muted-foreground',
+          activePath === '/profile/share'
+            ? 'text-primary'
+            : 'text-muted-foreground',
           'text-sm font-medium transition-colors hover:text-primary'
         )}
       >
-        Settings
+        Share
       </Link>
     </nav>
   );

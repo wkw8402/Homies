@@ -56,7 +56,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 autoCorrect="off"
                 disabled={isLoading}
                 {...register('email', {
-                  required: true,
+                  required: 'Please enter your email address',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     message: 'Invalid email address',
@@ -64,7 +64,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 })} // Register email with react hook form
               />
               {errors.email?.message && (
-                <p className="text-sm text-red-500">
+                <p className="my-1 text-sm italic text-red-500">
                   {errors.email.message?.toString()}
                 </p>
               )}

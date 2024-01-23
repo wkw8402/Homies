@@ -2,8 +2,8 @@ import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
-import { onboardingPages } from '../../../../../lib/onboardingPages';
-import { prisma } from '../../../../../lib/prismadb';
+import { onboardingPages } from '../../../../lib/onboardingPages';
+import { prisma } from '../../../../lib/prismadb';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,7 +14,7 @@ export async function GET(
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect('/profile/onboarding/get-started');
+    redirect('/onboarding/get-started');
   }
 
   // get current step from URL

@@ -27,7 +27,7 @@ export default async function OnboardingPage({
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return redirect('/profile/onboarding/get-started');
+      return redirect('/onboarding/get-started');
     }
 
     const data = await getSavedData(step, session);
