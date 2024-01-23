@@ -201,7 +201,6 @@ const RoommateForm = () => {
               required: true,
             })}
             name="roommateKnow"
-            placeholder="Select an option..."
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           >
             <option disabled value="">
@@ -272,7 +271,6 @@ const RoommateForm = () => {
               required: 'Please select if you have housing already',
             })}
             name="housing"
-            placeholder="Select an option..."
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           >
             <option disabled value="">
@@ -335,7 +333,6 @@ const RoommateForm = () => {
                 'Please select where you heard about the Homies program',
             })}
             name="reference"
-            placeholder="Select an option..."
             className="w-full p-4 text-lg font-medium text-purple-700 placeholder-purple-700 duration-300 ease-in-out border-2 outline-none placeholder-opacity-70 rounded-2xl border-purple-50 focus:border-purple-200 focus:ring-purple-200 focus:outline-none"
           >
             <option disabled value="">

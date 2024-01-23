@@ -1,290 +1,76 @@
-const purple = {
-  900: '#160041',
-  800: '#18083A',
-  700: '#2C1854',
-  600: '#49479F',
-  500: '#6260b5',
-  400: '#7C7AC4',
-  300: '#B5A1F5',
-  200: '#D2C6FA',
-  100: '#e0d7fc',
-  50: '#f0ebfe',
-  25: '#F4F0FC',
-};
-const yellow = {
-  900: '#FAAF19',
-  800: '#FDBE3F',
-  700: '#EFB42D',
-  600: '#F4C350',
-  500: '#F8D075',
-  400: '#fbde9b',
-  300: '#FDEBC2',
-  200: '#fef3da',
-  100: '#fef7e7',
-  50: '#fffaf6',
-};
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class'],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}', // <-- Add this line
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-
+  prefix: '',
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
-      fontFamily: {
-        sans: ['Roboto', 'sans-serif'],
-        written: ['Gochi Hand', 'cursive'],
-      },
-
       colors: {
-        yellow: yellow,
-        purple: purple,
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
       },
-
-      lineHeight: {
-        tighter: '1.1',
-        loose: '1.875',
-      },
-
-      fontSize: {
-        '2xl': '1.75rem',
-        '3xl': '2rem',
-        '4xl': '2.25rem',
-        '5xl': '2.7rem',
-        '6xl': '3.25rem',
-        '7xl': '3.75rem',
-        '8xl': '5rem',
-        '9xl': '6rem',
-      },
-
-      height: {
-        '30vw': '30vw',
-      },
-
       borderRadius: {
-        '4xl': '2.5rem',
-        '5xl': '5rem',
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
-
-      maxWidth: {
-        prose: '65ch',
-      },
-
-      scale: {
-        30: '0.3',
-        80: '0.8',
-        130: '1.3',
-        135: '1.35',
-      },
-
-      rotate: {
-        '-8': '-8deg',
-        4: '4deg',
-        8: '8deg',
-      },
-
-      animation: {
-        ping: 'ping 2.5s cubic-bezier(0, 0, 0.3, 1) infinite',
-        'horizontal-bounce': 'horizontal-bounce 1s infinite',
-        'button-background': 'button-background 5s ease infinite',
-      },
-
       keyframes: {
-        ping: {
-          '75%, 100%': {
-            transform: 'scale(2)',
-            opacity: 0,
-          },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
-
-        'horizontal-bounce': {
-          '50%': {
-            transform: 'translateX(25%)',
-            animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)',
-          },
-
-          '0%, 100%': {
-            transform: 'translateX(0)',
-            animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)',
-          },
-        },
-
-        'button-background': {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
-          },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
-
-      typography: (theme) => ({
-        lg: {
-          css: {
-            h1: {
-              fontSize: theme('fontSize.5xl'),
-            },
-            h2: {
-              fontSize: theme('fontSize.4xl'),
-            },
-            h3: {
-              fontSize: theme('fontSize.3xl'),
-            },
-            // ...
-          },
-        },
-
-        xl: {
-          css: {
-            h1: {
-              fontSize: theme('fontSize.6xl'),
-            },
-            h2: {
-              fontSize: theme('fontSize.5xl'),
-            },
-            h3: {
-              fontSize: theme('fontSize.3xl'),
-            },
-            // ...
-          },
-        },
-
-        DEFAULT: {
-          css: [
-            {
-              color: purple['800'],
-              a: {
-                color: purple['600'],
-                '&:hover': {
-                  color: purple['400'],
-                },
-              },
-              strong: {
-                color: purple['900'],
-              },
-              'ol > li::before': {
-                color: purple['800'],
-              },
-              'ul > li::before': {
-                backgroundColor: purple['800'],
-              },
-              hr: {
-                borderColor: purple['50'],
-              },
-              blockquote: {
-                color: purple['700'],
-                borderLeftColor: purple['600'],
-              },
-              h1: {
-                color: purple['900'],
-              },
-              h2: {
-                color: purple['900'],
-              },
-              h3: {
-                color: purple['900'],
-              },
-              h4: {
-                color: purple['900'],
-              },
-              'figure figcaption': {
-                color: purple['800'],
-              },
-              code: {
-                color: purple['900'],
-              },
-              'a code': {
-                color: purple['700'],
-              },
-              pre: {
-                color: purple['25'],
-                backgroundColor: purple['900'],
-              },
-              thead: {
-                color: purple['900'],
-                borderBottomColor: purple['100'],
-              },
-              'tbody tr': {
-                borderBottomColor: purple['100'],
-              },
-              'p.lead': {
-                color: purple['900'],
-              },
-            },
-          ],
-        },
-
-        light: {
-          css: [
-            {
-              color: purple['25'],
-              strong: {
-                color: '#fff',
-              },
-              a: {
-                color: '#fff',
-                '&:hover': {
-                  color: purple['100'],
-                },
-              },
-              'ol > li::before': {
-                color: purple['25'],
-              },
-              'ul > li::before': {
-                backgroundColor: purple['100'],
-              },
-              hr: {
-                borderColor: purple['50'],
-              },
-              blockquote: {
-                color: '#fff',
-                borderLeftColor: purple['100'],
-              },
-              h1: {
-                color: '#fff',
-              },
-              h2: {
-                color: '#fff',
-              },
-              h3: {
-                color: '#fff',
-              },
-              h4: {
-                color: '#fff',
-              },
-              'figure figcaption': {
-                color: purple['50'],
-              },
-              code: {
-                color: '#fff',
-              },
-              'a code': {
-                color: purple['400'],
-              },
-              pre: {
-                color: '#fff',
-                backgroundColor: purple['800'],
-              },
-              thead: {
-                color: '#fff',
-                borderBottomColor: purple['100'],
-              },
-              'tbody tr': {
-                borderBottomColor: purple['50'],
-              },
-            },
-          ],
-        },
-      }),
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [require('tailwindcss-animate')],
 };

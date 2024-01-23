@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
@@ -159,7 +161,7 @@ const Header = () => {
                         width="44"
                         height="44"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
                         fill="none"
                         stroke-linecap="round"

@@ -1,8 +1,10 @@
+'use client';
+
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const ProfileForm = ({ profile }) => {
+const ProfileForm = ({ session, profile }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -11,6 +13,7 @@ const ProfileForm = ({ profile }) => {
     handleSubmit,
     formState: { errors, isDirty },
     watch,
+    setValue,
     reset,
   } = useForm({
     defaultValues: {
@@ -19,6 +22,10 @@ const ProfileForm = ({ profile }) => {
       bio: profile?.bio,
     },
   });
+
+  useEffect(() => {
+    setValue('name', session?.user?.name);
+  }, [session]);
 
   const onSubmit = async (data) => {
     setLoading(true);
