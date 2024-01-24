@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -25,19 +26,29 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   async function onSubmit({ email }) {
     setIsLoading(true);
 
-    await signIn('email', { callbackUrl: '/dashboard', email });
-
-    setIsLoading(false);
+    try {
+      await signIn('email', { callbackUrl: '/dashboard', email });
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+    }
   }
 
   return (
     <>
-      <div className="flex flex-col space-y-2 text-center">
+      <div className="flex flex-col items-center space-y-2 text-center">
+        <Image
+          src={'/images/logo.png'}
+          alt="logo"
+          className="absolute mb-4 top-6"
+          width={100}
+          height={33.6}
+        />
         <h1 className="text-2xl font-semibold tracking-tight">
           Welcome to Homies
         </h1>
         <p className="text-sm text-muted-foreground">
-          Enter your email below to login or create an account.
+          Enter your email below to sign in or create a profile.
         </p>
       </div>
       <div className={cn('grid gap-6', className)} {...props}>
@@ -94,13 +105,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           Continue with Google
         </Button>
       </div>
-      <p className="px-8 text-sm text-center text-muted-foreground">
-        By clicking continue, you agree to our{' '}
+      <p className="px-8 text-xs text-center text-muted-foreground">
+        By continuing, you agree to the{' '}
         <Link
           href="/terms"
           className="underline underline-offset-4 hover:text-primary"
         >
-          Terms of Service
+          Terms
         </Link>{' '}
         and{' '}
         <Link
