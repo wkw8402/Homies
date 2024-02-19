@@ -44,8 +44,6 @@ const FormStep = ({ savedData }) => {
     formState: { errors, isSubmitting },
   } = useForm({ reValidateMode: 'onChange', mode: 'onSubmit' });
 
-  // console.log(getValues());
-
   const step = (stepArray as string[])?.join('/');
   const currentFormPage: any = onboardingPages.find(
     (page) => page.step === step
@@ -58,6 +56,7 @@ const FormStep = ({ savedData }) => {
 
   const onPreviousStep = () => {
     router.push(`/onboarding/${prevStep}`);
+    router.refresh();
   };
 
   const renderBack = useMemo(() => {
@@ -77,10 +76,11 @@ const FormStep = ({ savedData }) => {
 
   const onSubmit = async (data) => {
     try {
-      if (currentFormPageIndex === 0) {
-        router.push(`/onboarding/${nextStep}?type=${data.userType}`);
-        return;
-      } else if (currentFormPage?.isAuth) {
+      // if (currentFormPageIndex === 0) {
+      //   router.push(`/onboarding/${nextStep}?type=${data.userType}`);
+      //   return;
+      // } else
+      if (currentFormPage?.isAuth) {
         clearErrors();
 
         const createAccount = await fetch('/api/user/create', {
@@ -113,9 +113,8 @@ const FormStep = ({ savedData }) => {
           redirect: false,
         });
 
-        console.log(res);
-
         if (res && res.error) {
+          console.error(res.error);
           setError('password', {
             type: 'manual',
             message: 'Incorrect password',
@@ -123,6 +122,7 @@ const FormStep = ({ savedData }) => {
           return;
         }
       } else {
+        console.log('data', data);
         const dbData = currentFormPage.blocks?.reduce((obj, block) => {
           const tableName = block.dbField.split('.')[0];
           const columnName = block.dbField.split('.')[1];
@@ -142,8 +142,6 @@ const FormStep = ({ savedData }) => {
           body: JSON.stringify(dbData),
         });
 
-        console.log(res);
-
         if (res.status !== 200) {
           setMessage('Something went wrong');
           return;
@@ -154,8 +152,10 @@ const FormStep = ({ savedData }) => {
 
       if (nextStep) {
         router.push(`/onboarding/${nextStep}`);
+        router.refresh();
       } else {
         router.push('/onboarding/complete');
+        router.refresh();
       }
     } catch (error) {
       // console.error('Failed to save user progress:', error);

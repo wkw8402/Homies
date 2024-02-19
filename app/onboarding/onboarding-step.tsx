@@ -1,6 +1,5 @@
 import { onboardingPages } from '@/lib/onboardingPages';
 import { prisma } from '@/lib/prismadb';
-import { redirect } from 'next/navigation';
 
 let userDB = {
   completedSteps: [] as string[],

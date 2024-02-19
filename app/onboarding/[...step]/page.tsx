@@ -5,7 +5,9 @@ import { redirect } from 'next/navigation';
 import { getSavedData } from '../onboarding-step';
 import FormStep from './FormStep';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const dynamic = 'auto';
 
 export default async function OnboardingPage({
   params: { step: stepArray },
@@ -21,18 +23,19 @@ export default async function OnboardingPage({
 
   const welcomePageIndexes = [0, 1];
 
-  if (welcomePageIndexes.includes(onboardingIndex)) {
-    return <FormStep savedData={null} />;
-  } else {
-    const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
+  const data: any = await getSavedData(step, session);
 
+  if (welcomePageIndexes.includes(onboardingIndex)) {
+    if (session && !!data?.password) {
+      return redirect('/onboarding/name');
+    }
+    return <FormStep savedData={data} />;
+  } else {
     if (!session) {
       return redirect('/onboarding/get-started');
     }
 
-    const data = await getSavedData(step, session);
-
-    console.log('data', data);
     return <FormStep savedData={data} />;
   }
 }

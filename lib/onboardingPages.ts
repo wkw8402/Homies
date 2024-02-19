@@ -14,7 +14,7 @@ export const onboardingPages = [
           {
             label: 'Neurodivergent individual',
             description:
-              'Select this option if you are signing up for a loved one.',
+              'I am creating a profile for myself or for a neurodivergent individual.',
             value: 'homie',
           },
           {
@@ -27,6 +27,7 @@ export const onboardingPages = [
         rules: {
           required: 'Please select an option',
         },
+        dbField: 'user.type',
       },
     ],
   },
@@ -35,7 +36,7 @@ export const onboardingPages = [
     title: "Let's Create Your Account",
     isAuth: true,
     description:
-      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the credentials you use to log in.',
+      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThese will be the credentials you use to log in.',
     blocks: [
       {
         question: 'Email Address',
@@ -43,7 +44,7 @@ export const onboardingPages = [
         fieldName: 'email',
         autoComplete: 'email',
         blockType: 'email',
-        description: "We'll send you updates via email about your application.",
+        description: "We'll send you updates via email about your profile.",
         options: null,
         rules: {
           required: 'Email address is required',
