@@ -3,14 +3,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:prod": "npx prisma generate && npx prisma db push && next build",
+    "build:prod": "npx prisma db push && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma:dev": "dotenv -e .env.local -- npx prisma migrate dev",
     "prisma:migrate": "dotenv -e .env.local -- npx prisma migrate deploy",
     "prisma:generate": "npx prisma generate",
     "prisma:run": "npx prisma db push",
-    "studio": "npx prisma studio"
+    "studio": "npx prisma studio",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
