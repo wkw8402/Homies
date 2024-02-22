@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/lib/constants';
 import axios from 'axios';
 
 const previewEmail = require('preview-email');
@@ -19,7 +20,7 @@ const adminEmail = 'Homies <hello@meethomies.com>';
 
 // Function for grabbing template files
 async function getPubFile(file) {
-  const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}${file}`);
+  const res = await axios.get(`${BASE_URL}${file}`);
   return res.data;
 }
 

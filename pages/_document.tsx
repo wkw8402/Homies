@@ -1,11 +1,8 @@
+import { BASE_URL } from '@/lib/constants';
 import { Head, Html, Main, NextScript } from 'next/document';
-import Script from 'next/script';
 
 export default function Document() {
-  const ogImage =
-    (process.env.NEXT_PUBLIC_BASE_URL
-      ? process.env.NEXT_PUBLIC_BASE_URL
-      : 'http://localhost:3000') + '/og.png';
+  const ogImage = BASE_URL + '/og.png';
   return (
     <Html className="h-full bg-purple-25">
       <Head>

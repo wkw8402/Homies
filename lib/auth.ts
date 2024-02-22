@@ -3,8 +3,8 @@ import { Theme, type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import Email from 'next-auth/providers/email';
 import { createTransport } from 'nodemailer';
+import { BASE_URL } from './constants';
 import { prisma } from './prismadb';
-import { log } from 'console';
 
 async function sendVerificationRequest(params) {
   const { identifier, url, provider, theme } = params;
@@ -125,7 +125,7 @@ export const authOptions: NextAuthOptions = {
         console.log('creds', JSON.stringify(credentials));
         try {
           const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/check-credentials`,
+            `${BASE_URL}/api/user/check-credentials`,
             {
               method: 'POST',
               headers: {
