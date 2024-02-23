@@ -1,3 +1,8 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
 export const onboardingPages = [
   {
     step: 'get-started',
@@ -14,7 +19,7 @@ export const onboardingPages = [
           {
             label: 'Neurodivergent individual',
             description:
-              'I am creating a profile for myself or for a neurodivergent individual.',
+              'Select this option if you are signing up for a loved one.',
             value: 'homie',
           },
           {
@@ -27,7 +32,6 @@ export const onboardingPages = [
         rules: {
           required: 'Please select an option',
         },
-        dbField: 'user.type',
       },
     ],
   },
@@ -36,7 +40,7 @@ export const onboardingPages = [
     title: "Let's Create Your Account",
     isAuth: true,
     description:
-      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThese will be the credentials you use to log in.',
+      'Please enter the email address of the individual that will be utilizing the Homies program. \n\nThis will be the credentials you use to log in.',
     blocks: [
       {
         question: 'Email Address',
@@ -44,7 +48,7 @@ export const onboardingPages = [
         fieldName: 'email',
         autoComplete: 'email',
         blockType: 'email',
-        description: "We'll send you updates via email about your profile.",
+        description: "We'll send you updates via email about your application.",
         options: null,
         rules: {
           required: 'Email address is required',
@@ -125,7 +129,17 @@ export const onboardingPages = [
         autoComplete: 'tel',
         blockType: 'text',
         options: null,
-        rules: { required: 'Phone number is required' },
+        rules: {
+          required: 'Phone Number is Required',
+          minLength: {
+            value: 10,
+            message: 'Invalid Phone Number Length',
+          },
+          pattern: {
+            value: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
+            message: 'Phone Number Contains Invalid Characters',
+          },
+        },
         dbField: 'user.phone',
       },
     ],
@@ -175,9 +189,16 @@ export const onboardingPages = [
         blockType: 'text',
         autoComplete: 'address-line1',
         options: null,
-        rules: { required: 'Address is required' },
+        rules: { 
+          required: 'Address is required',
+          pattern: {
+            // value: /^([a-zA-Z0-9\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/gi,
+            value: /^[#.0-9a-zA-Z\s,-]+$/g,
+            message: "Invalid Street Address",
+          },
+        },
         dbField: 'address.address1',
-      },
+      },    
       {
         question: 'Apt, suite, etc. (optional)',
         fieldName: 'address2',
@@ -192,7 +213,13 @@ export const onboardingPages = [
         autoComplete: 'address-level2',
         blockType: 'text',
         options: null,
-        rules: { required: 'City is required' },
+        rules: { 
+          required: 'City is required',
+          pattern: {
+            value: /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/gi,
+            message: "Invalid City (Must Only Contain A-Z,-,')",
+          },
+        },
         dbField: 'address.city',
       },
       {
@@ -261,7 +288,13 @@ export const onboardingPages = [
         blockType: 'text',
         autoComplete: 'postal-code',
         options: null,
-        rules: { required: 'Zip Code is required' },
+        rules: { 
+          required: 'Zip Code is required',
+          pattern: {
+            value: /^[0-9]*$/gi,
+            message: 'Zip Code Contains Invalid Characters (Must Only Contain 0-9)',
+          },
+        },
         dbField: 'address.zip',
       },
     ],
