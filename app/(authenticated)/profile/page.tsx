@@ -10,19 +10,13 @@ export const dynamic = 'force-dynamic';
 const MyProfilePage = async () => {
   const session = await getServerSession(authOptions);
 
-  let profile: Partial<Profile> | null = null;
+  let profile: Profile | null = null;
 
   if (!session) {
     return redirect('/');
   }
 
   profile = await prisma.profile.findUnique({
-    select: {
-      id: true,
-      name: true,
-      location: true,
-      bio: true,
-    },
     where: {
       userId: session?.user?.id,
     },

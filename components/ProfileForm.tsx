@@ -2,9 +2,37 @@
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Profile } from '@prisma/client';
 
-const ProfileForm = ({ session, profile }) => {
+type ProfileFormValues = {
+  name: string | null;
+  location: string | null;
+  bio: string | null;
+  smoking: string | null;
+  interests: string[] | null;
+  interestsOther: string | null;
+  alcohol: string | null;
+  hasPets: string | null;
+  petsDescription: string | null;
+  likesPets: string | null;
+  roommateConflict: string | null;
+  cleaning: string | null;
+  sleepSchedule: string | null;
+  likesParties: string | null;
+  communicationMethod: string | null;
+  roommateGender: string[] | null;
+  roommateSharing: string | null;
+  roommateGuests: string | null;
+};
+
+const ProfileForm = ({
+  session,
+  profile,
+}: {
+  session: any;
+  profile: Profile;
+}) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -15,11 +43,26 @@ const ProfileForm = ({ session, profile }) => {
     watch,
     setValue,
     reset,
-  } = useForm({
+  } = useForm<ProfileFormValues>({
     defaultValues: {
       name: profile?.name,
       location: profile?.location,
       bio: profile?.bio,
+      smoking: profile?.smoking,
+      interests: profile?.interests,
+      interestsOther: profile?.interestsOther,
+      alcohol: profile?.alcohol,
+      hasPets: profile?.hasPets,
+      petsDescription: profile?.petsDescription,
+      likesPets: profile?.likesPets,
+      roommateConflict: profile?.roommateConflict,
+      cleaning: profile?.cleaning,
+      sleepSchedule: profile?.sleepSchedule,
+      likesParties: profile?.likesParties,
+      communicationMethod: profile?.communicationMethod,
+      roommateGender: profile?.roommateGender,
+      roommateSharing: profile?.roommateSharing,
+      roommateGuests: profile?.roommateGuests,
     },
   });
 
@@ -27,23 +70,33 @@ const ProfileForm = ({ session, profile }) => {
     setValue('name', session?.user?.name);
   }, [session]);
 
-  const onSubmit = async (data) => {
-    setLoading(true);
+  useEffect(() => {
+    console.log("profile: ")
+    console.log(profile);
+  }, [])
 
-    const res = await axios({
-      method: 'POST',
-      url: '/api/profile',
-      data: data,
-    })
-      .then((res) => {
-        setLoading(false);
-        setSuccess(true);
-        reset(data);
+  const onSubmit: SubmitHandler<ProfileFormValues> = async (data) => {
+    try {
+      setLoading(true);
+
+      const res = await axios({
+        method: 'POST',
+        url: '/api/profile',
+        data: data,
       })
-      .catch((e) => {
-        alert("Oops, an error occurred. That's our fault.");
-        console.error(e);
-      });
+        .then((res) => {
+          setLoading(false);
+          setSuccess(true);
+          reset(data);
+        })
+        .catch((e) => {
+          alert("Oops, an error occurred. That's our fault.");
+          console.error(e);
+        });
+    }
+    catch (error){
+      console.log(error);
+    }
   };
 
   return (
@@ -90,15 +143,289 @@ const ProfileForm = ({ session, profile }) => {
           {errors.bio && <p className="text-red-500">This field is required</p>}
         </label>
 
-        {/* <label className="block mb-5">
+        <label className="block mb-5">
           <input
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
-            id="phone"
-            type="tel"
-            name="phone"
-            placeholder="Phone number"
+            {...register('interests', { required: true })}
+            id="interests"
+            name="interests"
+            type="text"
+            placeholder="Things you like to do (ex: listening to music, sleep)"
           />
-        </label> */}
+          {errors.location && (
+            <p className="text-red-500">This field is required</p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <input
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('interestsOther', { required: true })}
+            id="interestsOther"
+            name="interestsOther"
+            type="text"
+            placeholder="Any other interests you want to add on?"
+          />
+          {errors.interestsOther && (
+            <p className="text-red-500">This field is required</p>
+          )}
+        </label>
+        <label className="block mb-5">
+          <span>Do you smoke?</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('smoking', { required: 'This field is required' })}
+          >
+            <option value="select">select</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+          {errors.smoking && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>Do you drink alcohol?</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('alcohol', { required: 'This field is required' })}
+          >
+            <option value="select">select</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+          {errors.alcohol && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>Do you have pets?</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('hasPets', { required: 'This field is required' })}
+          >
+            <option value="select">select</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+          {errors.hasPets && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <input
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('petsDescription', { required: true })}
+            id="petsDescription"
+            name="petsDescription"
+            type="text"
+            placeholder="Describe what your pet is like"
+          />
+          {errors.petsDescription && (
+            <p className="text-red-500">This field is required</p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>Do you like pets:</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('likesPets', { required: 'This field is required' })}
+          >
+            <option value="select">select</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+          {errors.likesPets && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>roommateConflict:</span>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="roommateConflict"
+                value="discuss"
+                {...(register('roommateConflict', {
+                  required: 'This field is required',
+                }) as any)}
+                className="mr-2"
+              />
+              discuss
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="roommateConflict"
+                value="avoid"
+                {...(register('roommateConflict', {
+                  required: 'This field is required',
+                }) as any)}
+                className="mr-2"
+              />
+              avoid
+            </label>
+          </div>
+          {errors.roommateConflict && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>How often do you do cleaning:</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('cleaning', { required: 'This field is required' })}
+          >
+            <option value="select">select</option>
+            <option value="sometimes">sometimes</option>
+            <option value="weekly">daily</option>
+            <option value="monthly">monthly</option>
+          </select>
+          {errors.cleaning && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>Sleep Schedule:</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('sleepSchedule', {
+              required: 'This field is required',
+            })}
+          >
+            <option value="select">select</option>
+            <option value="earlyBird">earlyBird</option>
+            <option value="nightOwl">nightOwl</option>
+            <option value="mixed">mixed</option>
+          </select>
+          {errors.sleepSchedule && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>Do you like party?</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('likesParties', {
+              required: 'This field is required',
+            })}
+          >
+            <option value="select">select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          {errors.likesParties && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>What communication method do you prefer?</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('communicationMethod', {
+              required: 'This field is required',
+            })}
+          >
+            <option value="select">select</option>
+            <option value="phoneCall">Phonecall</option>
+            <option value="faceToFace">nightOwl</option>
+            <option value="textEmail">mixed</option>
+          </select>
+          {errors.communicationMethod && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>Roommate Gender:</span>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                name="roommateGender"
+                value="male"
+                {...(register('likesParties', {
+                  required: 'This field is required',
+                }) as any)}
+                className="mr-2"
+              />
+              male
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="roommateGender"
+                value="female"
+                {...(register('roommateGender', {
+                  required: 'This field is required',
+                }) as any)}
+                className="mr-2"
+              />
+              female
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="roommateGender"
+                value="other"
+                {...(register('roommateGender', {
+                  required: 'This field is required',
+                }) as any)}
+                className="mr-2"
+              />
+              other
+            </label>
+          </div>
+          {errors.roommateGender && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+        <label className="block mb-5">
+          <span>Roommate Sharing:</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('roommateSharing', {
+              required: 'This field is required',
+            })}
+          >
+            <option value="select">select</option>
+            <option value="noSharing">noSharing</option>
+            <option value="someSharing">someSharing</option>
+            <option value="yesSharing">yesSharing</option>
+          </select>
+          {errors.roommateSharing && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
+
+        <label className="block mb-5">
+          <span>Roommate Guests:</span>
+          <select
+            className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+            {...register('roommateGuests', {
+              required: 'This field is required',
+            })}
+          >
+            <option value="select">select</option>
+            <option value="occasional">noSharing</option>
+            <option value="noGuests">noGuests</option>
+            <option value="merrier">merrier</option>
+          </select>
+          {errors.roommateGuests && (
+            <p className="text-red-500"> This field is required </p>
+          )}
+        </label>
 
         <button
           className="w-full py-4 mb-8 font-semibold text-white transition duration-200 ease-in-out bg-indigo-600 border border-indigo-700 disabled:opacity-50 px-9 rounded-xl shadow-4xl focus:ring focus:ring-indigo-300 hover:bg-indigo-700"

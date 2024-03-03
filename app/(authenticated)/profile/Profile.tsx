@@ -3,8 +3,15 @@
 import ProfileForm from '@/components/ProfileForm';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { Profile } from '@prisma/client';
 
-const MyProfile = ({ session, profile }) => {
+const MyProfile = ({
+  session,
+  profile,
+}: {
+  session: any;
+  profile: Profile;
+}) => {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b from-purple-25 to-purple-50">
