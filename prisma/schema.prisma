@@ -90,6 +90,7 @@ model Profile {
   location            String?
   interests           String[] @default([])
   interestsOther      String?
+  personalityType     String?
   smoking             String?
   alcohol             String?
   hasPets             String?

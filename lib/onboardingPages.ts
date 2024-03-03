@@ -454,6 +454,25 @@ export const onboardingPages = [
     ],
   },
   {
+    step: 'about-you-personality',
+    title: 'Tell Us About Yourself',
+    description: 'Knowing more about your personality helps us to better match you with a compatible roommate.',
+    blocks: [
+      {
+        question: 'I am...',
+        fieldName: 'personalityType',
+        blockType: 'radio',
+        options: [
+          { label: 'Introverted', value: 'introverted' },
+          { label: 'Extroverted', value: 'extroverted' },
+          { label: 'Both introverted & extroverted', value: 'both' },
+        ],
+        rules: { required: 'Please select an option' },
+        dbField: 'profile.personalityType',
+      },
+    ],
+  },
+  {
     step: 'lifestyle/habits',
     title: 'Lifestyle & Habits',
     description:
