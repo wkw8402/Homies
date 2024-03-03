@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_DATABASE_URL")
 }
 
@@ -52,7 +52,7 @@ model User {
   gender              String?
   genderOther         String?
   regionalCenter      String?
-  type                String?
+  type                String? // "homie" | "admin" | "roomate"
   regionalCenterOther String?
   admin               Boolean?  @default(false)
   createdAt           DateTime  @default(now()) @map("created_at")
@@ -61,6 +61,9 @@ model User {
   sessions            Session[]
   Profile             Profile?
   Address             Address?
+  // Realisitcally, a user will only have invites to be a roomate or a homie, not both
+  roomanteInvites     Invite[]  @relation("roomate")
+  homieInvites        Invite[]  @relation("homie")
 
   @@map("users")
 }
@@ -118,4 +121,21 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+// A proposed pairing between a homie and a roomate
+model Invite {
+  id            String   @id @default(cuid())
+  homie         User     @relation("homie", fields: [homieId], references: [id])
+  homieId       String
+  roomate       User     @relation("roomate", fields: [roomateId], references: [id])
+  roomateId     String
+  expires       DateTime
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @map("updated_at")
+  // pending = no response yet
+  roomateStatus String? // "pending" | "accepted" | "rejected"
+  homieStatus   String? // "pending" | "accepted" | "rejected"
+
+  @@map("invites")
 }
