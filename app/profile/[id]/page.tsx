@@ -10,16 +10,13 @@ export default async function ProfilePage({
   const id = params.id;
   let profile;
   try {
-    profile = await prisma.profile.findUnique({
-      select: {
-        name: true,
-        location: true,
-        bio: true,
-      },
-      where: {
-        id: id,
+    let profileRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
       },
     });
+    profile = await profileRes.json();
   } catch (error) {
     console.error('Error retrieving profile:', error);
     notFound();
