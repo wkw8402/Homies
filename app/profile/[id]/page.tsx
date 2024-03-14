@@ -8,14 +8,18 @@ export default async function ProfilePage({
   params: { id: string };
 }) {
   const id = params.id;
+
   let profile;
   try {
-    let profileRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let profileRes = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/${id}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     profile = await profileRes.json();
   } catch (error) {
     console.error('Error retrieving profile:', error);
@@ -30,7 +34,7 @@ export default async function ProfilePage({
 
   return (
     <>
-      <Profile profile={profile} />
+      <Profile profile={profile} id={id} />
     </>
   );
 }

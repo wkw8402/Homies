@@ -4,8 +4,17 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import Avatar from 'react-avatar';
+import { useQuery } from '@tanstack/react-query';
 
-export default function Profile({ profile }) {
+export default function Profile({ profile, id }) {
+  const {
+    data: profileData,
+    isLoading: profileLoading,
+    isError: profileError,
+  } = useQuery(['profile'], () =>
+    fetch(`/api/profile/${id}`).then((res) => res.json())
+  );
+
   return (
     <>
       <div className="">
@@ -30,7 +39,7 @@ export default function Profile({ profile }) {
                     />
                     <div className="mb-2 ml-2">
                       <h5 className="text-2xl font-bold text-black">
-                        {profile.name}
+                        {JSON.stringify(profileData)}
                       </h5>
                       <div className="text-gray-600">
                         Looking for a Supportive Roommate

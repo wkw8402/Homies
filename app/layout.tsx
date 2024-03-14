@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import { Metadata } from 'next';
 import NextAuthProvider from './context/NextAuthProvider';
 import Script from 'next/script';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export const metadata: Metadata = {
   title: 'Homies',
@@ -10,16 +11,24 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const queryClient = new QueryClient();
+
   return (
     <html lang="en">
       <body className="flex w-full flex-col flex-1 h-[calc(100dvh)]">
         <NextAuthProvider>
+
           <header>{/* Header content */}</header>
 
           {/* Main content */}
-          <main className="flex flex-col flex-1 w-full">{children}</main>
+          <main className="flex flex-col flex-1 w-full">
+            
+            {children}
+            
+            </main>
 
           <footer>{/* Footer content */}</footer>
+
         </NextAuthProvider>
 
         {process.env.NODE_ENV === 'production' && (
