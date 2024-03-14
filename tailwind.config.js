@@ -51,6 +51,12 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      padding: {
+        'roommateCategory': '3.75rem 0'
+      },
+      fontSize: {
+        'title': ['2.5rem', '3rem']
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
