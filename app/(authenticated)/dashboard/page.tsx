@@ -11,59 +11,84 @@ import { getServerSession } from 'next-auth';
 import { MainNav } from './components/main-nav';
 import { UserNav } from './components/user-nav';
 
+import Dashboard from "./Dashboard";
+
 export const metadata: Metadata = {
   title: 'Dashboard',
   description: 'Example dashboard app built using the components.',
 };
 
-export default async function DashboardPage() {
-  const session = await getServerSession(authOptions);
+const testRoommateCategories = [
+  {
+    categoryType: "Requests",
+    categoryTitle: "Roommate Recommendations",
+    titleType: "bold",
+    numRoommates: 2,
+    showNumRoommates: true,
+    roommatesList: [
+      {
+        name: "Alex Wilson",
+        gender: "Male",
+        age: 30,
+        profileIcon: "🤝",
+      },
+      {
+        name: "Emily Taylor",
+        gender: "Female",
+        age: 24,
+        profileIcon: "🙋‍♀️"
+      },
+    ],
+    description: "Here are a list of recommended roommates for you."
+  },
+  {
+    categoryType: "Requested",
+    categoryTitle: "Roommates Requested",
+    titleType: "normal",
+    numRoommates: 3,
+    showNumRoommates: true,
+    roommatesList: [
+      {
+        name: "Chris Jackson",
+        gender: "Male",
+        age: 29,
+        profileIcon: "🤔",
+      },
+      {
+        name: "Samantha Evans",
+        gender: "Female",
+        age: 26,
+        profileIcon: "😉"
+      },
+    ],
+    description: ""
+  },
+  {
+    categoryType: "Not Interested",
+    categoryTitle: "Not Interested",
+    titleType: "faded",
+    numRoommates: 2,
+    showNumRoommates: false,
+    roommatesList: [
+      {
+        name: "Sarah Thompson",
+        gender: "Female",
+        age: 26,
+        profileIcon: "😔",
+      },
+      {
+        name: "Mike Johnson",
+        gender: "Male",
+        age: 27,
+        profileIcon: "😕"
+      },
+    ],
+    description: ""
+  },
+]
 
+export default async function DashboardPage() {  
   return (
-    <>
-      <div className="flex-1 p-8 pt-6 space-y-4">
-        <div className="flex items-center justify-between space-y-2">
-          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Card Content</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Card Content</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Card Content</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Card Content</p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </>
+    <Dashboard roommateCategories={testRoommateCategories}/>
   );
 }
