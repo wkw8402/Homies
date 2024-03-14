@@ -32,3 +32,4 @@ yarn.lock
 .env.test.local
 .env.production.local
 bun.lockb
+package-lock.json
