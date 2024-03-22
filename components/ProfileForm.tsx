@@ -103,6 +103,7 @@ const ProfileForm = ({
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label className="block mb-5">
+          <p className="mb-1 text-left text-gray-600 font-bold">Name :</p>
           <input
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('name', { required: true })}
@@ -118,6 +119,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
+          <p className="mb-1 text-left text-gray-600 font-bold">Desired Location :</p>
           <input
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('location', { required: true })}
@@ -132,6 +134,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
+        <p className="mb-1 text-left text-gray-600 font-bold">About yourself :</p>
           <textarea
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('bio', { required: true })}
@@ -144,13 +147,14 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
+          <p className="mb-1 text-left text-gray-600 font-bold">Things you like to do :</p>
           <input
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('interests', { required: true })}
             id="interests"
             name="interests"
             type="text"
-            placeholder="Things you like to do (ex: listening to music, sleep)"
+            placeholder="(ex: listening to music, sleep)"
           />
           {errors.location && (
             <p className="text-red-500">This field is required</p>
@@ -158,6 +162,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
+        <p className="mb-1 text-left text-gray-600 font-bold">Interests :</p>
           <input
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('interestsOther', { required: true })}
@@ -171,7 +176,7 @@ const ProfileForm = ({
           )}
         </label>
         <label className="block mb-5">
-          <span>Do you smoke?</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Do you smoke? :</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('smoking', { required: 'This field is required' })}
@@ -186,7 +191,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>Do you drink alcohol?</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Do you drink alcohol? :</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('alcohol', { required: 'This field is required' })}
@@ -201,7 +206,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>Do you have pets?</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Do you have pets?:</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('hasPets', { required: 'This field is required' })}
@@ -216,13 +221,14 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
+        <p className="mb-1 text-left text-gray-600 font-bold">If so, describe what your pet is like :</p>
           <input
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('petsDescription', { required: true })}
             id="petsDescription"
             name="petsDescription"
             type="text"
-            placeholder="Describe what your pet is like"
+            placeholder="my pet is like ..."
           />
           {errors.petsDescription && (
             <p className="text-red-500">This field is required</p>
@@ -230,7 +236,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>Do you like pets:</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Do you like pets :</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('likesPets', { required: 'This field is required' })}
@@ -245,9 +251,9 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>roommateConflict:</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Roommate Conflict :</p>
           <div>
-            <label>
+            <label className='mr-10'>
               <input
                 type="radio"
                 name="roommateConflict"
@@ -279,7 +285,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>How often do you do cleaning:</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">How often do you do cleaning?</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('cleaning', { required: 'This field is required' })}
@@ -295,7 +301,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>Sleep Schedule:</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Sleep schedule :</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('sleepSchedule', {
@@ -313,7 +319,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>Do you like party?</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Do you like party?</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('likesParties', {
@@ -330,7 +336,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>What communication method do you prefer?</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">What communication method do you prefer?</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('communicationMethod', {
@@ -348,9 +354,9 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>Roommate Gender:</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Roommate gender :</p>
           <div>
-            <label>
+            <label className='mr-10'>
               <input
                 type="checkbox"
                 name="roommateGender"
@@ -362,7 +368,7 @@ const ProfileForm = ({
               />
               male
             </label>
-            <label>
+            <label className='mr-10'>
               <input
                 type="checkbox"
                 name="roommateGender"
@@ -392,7 +398,7 @@ const ProfileForm = ({
           )}
         </label>
         <label className="block mb-5">
-          <span>Roommate Sharing:</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Roommate sharing :</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('roommateSharing', {
@@ -400,9 +406,9 @@ const ProfileForm = ({
             })}
           >
             <option value="select">select</option>
-            <option value="noSharing">noSharing</option>
-            <option value="someSharing">someSharing</option>
-            <option value="yesSharing">yesSharing</option>
+            <option value="noSharing">no Sharing</option>
+            <option value="someSharing">some Sharing</option>
+            <option value="yesSharing">yes Sharing</option>
           </select>
           {errors.roommateSharing && (
             <p className="text-red-500"> This field is required </p>
@@ -410,7 +416,7 @@ const ProfileForm = ({
         </label>
 
         <label className="block mb-5">
-          <span>Roommate Guests:</span>
+        <p className="mb-1 text-left text-gray-600 font-bold">Roommate guest :</p>
           <select
             className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
             {...register('roommateGuests', {
@@ -418,8 +424,8 @@ const ProfileForm = ({
             })}
           >
             <option value="select">select</option>
-            <option value="occasional">noSharing</option>
-            <option value="noGuests">noGuests</option>
+            <option value="occasional">no Sharing</option>
+            <option value="noGuests">no Guests</option>
             <option value="merrier">merrier</option>
           </select>
           {errors.roommateGuests && (
