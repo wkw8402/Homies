@@ -87,7 +87,7 @@ const testRoommateCategories = [
   },
 ]
 
-export default async function DashboardPage() {  
+export default async function DashboardPage() {
   return (
     <Dashboard roommateCategories={testRoommateCategories}/>
   );
