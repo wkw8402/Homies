@@ -11,7 +11,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, gender, profileIco
     return (
         <div id="profileCard" className="flex flex-col text-center py-3 gap-5">
             <div className="flex justify-center text-center">
-                <div className="rounded-full bg-gray-300 text-[3.90625rem] leading-[6.25rem] w-[6.25rem] h-[6.25rem] ">
+                <div className="rounded-full bg-gray-200 text-[3.90625rem] leading-[6.25rem] w-[6.25rem] h-[6.25rem] ">
                     {profileIcon}
                 </div>
             </div>
