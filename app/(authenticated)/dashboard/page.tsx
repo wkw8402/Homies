@@ -8,6 +8,10 @@ import {
 import { Metadata } from 'next';
 
 import Dashboard from "./Dashboard";
+import Link from 'next/link';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { prisma } from '@/lib/prismadb';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -194,15 +198,76 @@ const EmergencyResources = () => (
   </Card>
 );
 
+const WelcomeBanner = () => (
+  <div className="flex flex-col items-center justify-center text-center py-12">
+    <div className="text-title font-bold mb-6">Welcome to Homies!</div>
+    <p className="mb-4">Find a caregiver roommate to live independently.</p>
+    <div className="flex flex-col items-center gap-4">
+      <input
+        type="text"
+        placeholder="How are you feeling today?"
+        className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none min-w-[400px]"
+      />
+      <button className="bg-black text-white rounded-lg px-6 py-2">Submit</button>
+    </div>
+  </div>
+);
+
+const UserProfileCard = async ({ bio }) => {
+  const session = await getServerSession(authOptions);
+  return (
+    <div className="flex flex-row items-center justify-center text-center py-8 px-12 bg-white rounded-lg shadow">
+      <div className="flex flex-col items-center justify-center text-center py-8 px-1 mr-[200px]">
+        <div className="flex justify-center text-center">
+          <div className="rounded-full bg-gray-100 text-[3.90625rem] leading-[6.25rem] w-[6.25rem] h-[6.25rem] ">
+          👤
+          </div>
+        </div>
+        <h3 className="mt-4 font-bold text-xl">{session?.user?.name}</h3>
+        <p className="text-gray-600">{bio}</p>
+      </div>
+      
+      <div className="flex gap-4 mt-4">
+        <Link href="/profile">
+          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+            View Profile
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const Footer = () => (
+  <footer className="bg-gray-100 py-4">
+  <div className="max-w-6xl mx-auto px-4 flex flex-col items-center">
+    <div className="text-center mb-4">
+      <p className="text-sm text-gray-700">© 2022 Homies Inc.</p>
+    </div>
+    <div className="text-center">
+      <a className="text-sm text-gray-700 hover:underline">Terms of Service</a>
+      <span className="mx-2">|</span>
+      <a className="text-sm text-gray-700 hover:underline">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+);
+
 export default async function DashboardPage() {
   return (
     <>
+    <WelcomeBanner />
+    <UserProfileCard
+        bio="Individual with Autism. Looking for a supportive roommate."
+      />
     <MoveInChecklist />
     <Dashboard roommateCategories={testRoommateCategories}/>
     <WaysToFindRoommate />
     <EmergencyContacts />
     <WeeklyUpdates />
     <EmergencyResources />
+    <Footer />
     </>
   );
 }
