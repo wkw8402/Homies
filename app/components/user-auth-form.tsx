@@ -27,7 +27,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     setIsLoading(true);
 
     try {
-      await signIn('email', { callbackUrl: '/onboarding/get-started', email });
+      await signIn('email', { callbackUrl: '/onboarding/name', email });
     } catch (err) {
       console.log(err);
       setIsLoading(false);

@@ -31,6 +31,22 @@ const AdminProfilePage = async ({ params }) => {
       id: true,
       name: true,
       location: true,
+      interests: true,
+      interestsOther: true,
+      personalityType: true,
+      smoking: true,
+      alcohol: true,
+      hasPets: true,
+      petsDescription: true,
+      likesPets: true,
+      roommateConflict: true,
+      cleaning: true,
+      sleepSchedule: true,
+      likesParties: true,
+      communicationMethod: true,
+      roommateGender: true,
+      roommateSharing: true,
+      roommateGuests: true,
       createdAt: true,
       bio: true,
       user: {
@@ -103,13 +119,141 @@ const AdminProfilePage = async ({ params }) => {
                       </a>
                     </dd>
                   </div>
-
                   <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
                     <dt className="text-sm font-medium text-gray-500">About</dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                       {profile.bio}
                     </dd>
                   </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Interests
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.interests}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Other Interests
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.interestsOther}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Personality Type
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.personalityType}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Smokes?
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.smoking}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Drinks Alcohol?
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.alcohol}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Has Pets?
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.hasPets}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Pets Description
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.petsDescription}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Likes Pets?
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.likesPets}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Method of dealing with roommate conflicts
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.roommateConflict}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Cleaning Frequency
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.cleaning}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Sleep Schedule
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.sleepSchedule}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Likes Parties?
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.likesParties}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Preferred Communication Method
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.communicationMethod}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Preferred Roommate Gender
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.roommateGender}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Willing to share with roommate?
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.roommateSharing}
+                    </dd>
+                  </div>
+                  <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Opinion on Guests
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {profile.roommateGuests}
+                    </dd>
+                  </div>
+
                 </dl>
               </div>
             </div>

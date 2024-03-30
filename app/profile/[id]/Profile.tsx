@@ -39,7 +39,7 @@ export default function Profile({ profile, id }) {
                     />
                     <div className="mb-2 ml-2">
                       <h5 className="text-2xl font-bold text-black">
-                        {JSON.stringify(profileData)}
+                        {profileData && profileData.user ? profileData.user.name : ''}
                       </h5>
                       <div className="text-gray-600">
                         Looking for a Supportive Roommate
@@ -50,7 +50,7 @@ export default function Profile({ profile, id }) {
                     className="inline-block w-full px-6 py-3 font-medium text-center text-white transition duration-200 bg-indigo-600 rounded-full md:w-64 hover:bg-indigo-700"
                     href="/contact"
                   >
-                    Contact {profile.name}
+                    Contact {profileData && profileData.user ? profileData.user.name : ''}
                   </Link>
                 </div>
               </div>
@@ -76,7 +76,6 @@ export default function Profile({ profile, id }) {
                           )}
                         >
                           21 years old
-                          {/* {profile.age || 21} years old */}
                         </td>
                       </tr>
                       <tr>
@@ -94,7 +93,7 @@ export default function Profile({ profile, id }) {
                             'whitespace-nowrap p-3 text-sm text-gray-500 table-cell'
                           )}
                         >
-                          {/* {profile.gender || 'Male'} */}
+                          {profileData && profileData.user ? profileData.user.gender : ''}
                         </td>
                       </tr>
                       <tr>
@@ -110,7 +109,7 @@ export default function Profile({ profile, id }) {
                             'whitespace-nowrap p-3 text-sm text-gray-500 table-cell'
                           )}
                         >
-                          {profile.location}
+                          {profileData && profileData.user ? profileData.user.location : ''}
                         </td>
                       </tr>
                     </tbody>
@@ -171,7 +170,7 @@ export default function Profile({ profile, id }) {
                     <h3 className="mb-6 text-lg font-semibold text-black">
                       About Me
                     </h3>
-                    <p className="mb-4 text-gray-700">{profile.bio}</p>
+                    <p className="mb-4 text-gray-700">{profileData && profileData.user ? profileData.user.bio : ''}</p>
                   </div>
 
                   <div>
@@ -194,12 +193,12 @@ export default function Profile({ profile, id }) {
 
                 <div className="p-6 bg-white border border-gray-300 rounded-xl">
                   <h3 className="mb-4 text-lg font-semibold text-black">
-                    Interested in living with {profile.name}?
+                    Interested in living with {profileData && profileData.user ? profileData.user.name : ''}?
                   </h3>
                   <p className="mb-4 text-gray-700">
-                    {profile.name} is looking for a caregiver-roommate. If you
+                    {profileData && profileData.user ? profileData.user.name : ''} is looking for a caregiver-roommate. If you
                     or someone you know might be interested in living with{' '}
-                    {profile.name}, please contact us or share this profile to
+                    {profileData && profileData.user ? profileData.user.name : ''}, please contact us or share this profile to
                     help spread the word!
                   </p>
                   <div className="">
@@ -207,7 +206,7 @@ export default function Profile({ profile, id }) {
                       className="inline-block w-full px-6 py-3 mb-3 mr-3 font-medium text-center text-white transition duration-200 bg-indigo-600 rounded-full md:w-64 hover:bg-indigo-700"
                       href="/contact"
                     >
-                      Contact {profile.name}
+                      Contact {profileData && profileData.user ? profileData.user.name : ''}
                     </Link>
                     <Link
                       className="inline-block w-full px-6 py-3 font-medium text-center text-gray-900 transition duration-200 border border-gray-400 rounded-full md:w-64 hover:bg-gray-100"
