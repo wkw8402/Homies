@@ -10,6 +10,7 @@ import Dashboard from "./Dashboard";
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+import { prisma } from '@/lib/prismadb';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -117,11 +118,11 @@ const MoveInChecklist = () => {
           <div className="text-title font-bold mb-2">Move-in Checklist</div>
           <div className="text-m">Follow these steps to start your life-sharing journey:</div>
         </CardHeader>
-        <section className='flex flex-row flex-wrap justify-center gap-4'>
+        <CardDescription className='flex flex-row flex-wrap justify-center gap-4'>
         {checklistItems.map((item, index) => (
           <ChecklistItem key={index} emoji={item.emoji} text={item.text} />
         ))}
-        </section>
+        </CardDescription>
       </CardContent>
     </Card>
   );
@@ -147,11 +148,11 @@ const WaysToFindRoommate = () => (
   <Card className="flex flex-col gap-12 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
     <CardContent>
       <SectionHeader>Ways to Find a Roommate</SectionHeader>
-      <section className="flex justify-center gap-8">
+      <CardDescription className="flex justify-center gap-8">
         <InfoItem emoji="🔍" title="Online Platforms" subtitle="" />
         <InfoItem emoji="📄" title="Share your public profile" subtitle="" />
         <InfoItem emoji="👥" title="Autism Support Groups" subtitle=""/>
-      </section>
+      </CardDescription>
     </CardContent>
   </Card>
 );
@@ -161,11 +162,11 @@ const EmergencyContacts = () => (
   <Card className="flex flex-col gap-12 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
     <CardContent>
       <SectionHeader>Emergency Contacts</SectionHeader>
-      <section className="flex justify-center gap-8">
+      <CardDescription className="flex justify-center gap-8">
         <InfoItem emoji="👨‍👩‍👧‍👦" title="Family Members" subtitle="Priority 1" />
         <InfoItem emoji="👫" title="Friends" subtitle="Priority 2" />
         <InfoItem emoji="👩‍⚕️" title="Service Coordinator" subtitle="Priority 3" />
-      </section>
+      </CardDescription>
     </CardContent>
   </Card>
 );
@@ -174,11 +175,11 @@ const WeeklyUpdates = () => (
   <Card className="flex flex-col gap-12 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
     <CardContent>
       <SectionHeader>Weekly Updates</SectionHeader>
-      <section className="flex justify-center gap-8">
+      <CardDescription className="flex justify-center gap-8">
         <InfoItem emoji="📰" title="News Updates" subtitle="Read the latest articles and blog posts" />
         <InfoItem emoji="🎥" title="Webinar Recordings" subtitle="Access recordings of our informative webinars" />
         <InfoItem emoji="📅" title="Upcoming Events" subtitle="Check out our calendar for upcoming events" />
-      </section>
+      </CardDescription>
     </CardContent>
   </Card>
 );
@@ -187,11 +188,11 @@ const EmergencyResources = () => (
   <Card className="flex flex-col gap-12 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
     <CardContent>
       <SectionHeader>Emergency Resources</SectionHeader>
-      <section className="flex justify-center gap-8">
+      <CardDescription className="flex justify-center gap-8">
         <InfoItem emoji="📞" title="911" subtitle="" />
         <InfoItem emoji="⛑️" title="Suicide Prevention Hotline" subtitle="" />
         <InfoItem emoji="💼" title="Professional Help" subtitle=""/>
-      </section>
+      </CardDescription>
     </CardContent>
   </Card>
 );
@@ -211,7 +212,8 @@ const WelcomeBanner = () => (
   </div>
 );
 
-const UserProfileCard = ({ bio, name }) => {
+const UserProfileCard = async ({ bio }) => {
+  const session = await getServerSession(authOptions);
   return (
     <div className="flex flex-row items-center justify-center text-center py-8 px-12 bg-white rounded-lg shadow">
       <div className="flex flex-col items-center justify-center text-center py-8 px-1 mr-[200px]">
@@ -220,7 +222,7 @@ const UserProfileCard = ({ bio, name }) => {
           👤
           </div>
         </div>
-        <h3 className="mt-4 font-bold text-xl">{name}</h3>
+        <h3 className="mt-4 font-bold text-xl">{session?.user?.name}</h3>
         <p className="text-gray-600">{bio}</p>
       </div>
       
@@ -252,14 +254,11 @@ const Footer = () => (
 );
 
 export default async function DashboardPage() {
-  const session = await getServerSession(authOptions);
-  const name = session?.user?.name;
   return (
     <>
     <WelcomeBanner />
     <UserProfileCard
         bio="Individual with Autism. Looking for a supportive roommate."
-        name={name}
       />
     <MoveInChecklist />
     <Dashboard roommateCategories={testRoommateCategories}/>

@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_DATABASE_URL")
+ // directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model Account {
@@ -54,6 +54,7 @@ model User {
   regionalCenter      String?
   type                String? // "homie" | "admin" | "roomate"
   regionalCenterOther String?
+  onboardingCompleted Boolean   @default(false)
   admin               Boolean?  @default(false)
   createdAt           DateTime  @default(now()) @map("created_at")
   updatedAt           DateTime  @default(now()) @map("updated_at")
