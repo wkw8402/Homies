@@ -16,6 +16,7 @@ export default function Dashboard(props) {
   useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch('/api/user');
+      console.log(response.ok)
       if (response.ok) {
         const userData: User = await response.json();
         setUser(userData);
