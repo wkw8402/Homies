@@ -43,3 +43,31 @@ export async function GET(
     });
   }
 }
+
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const { id: profileId } = params;
+  const session = await getServerSession(authOptions);
+  const data = await req.json();
+
+  if (session) {
+    try {
+      const profile = await prisma.profile.update({
+        where: { id: String(profileId) },
+        data,
+      });
+
+      return NextResponse.json(profile);
+    } catch (error) {
+      return NextResponse.json({
+        status: 500,
+        message: 'Internal server error',
+        error: error.message,
+      });
+    }
+  } else {
+    return NextResponse.json({ status: 401, message: 'Unauthorized' });
+  }
+}

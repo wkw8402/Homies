@@ -99,12 +99,12 @@ model Profile {
   hasPets             String?
   petsDescription     String?
   likesPets           String?
-  roommateConflict    String?
-  cleaning            String?
+  roommateConflict    String? // Enum: "avoid" | "mediator" | "discuss"
+  cleaning            String? // Enum: "weekly" | "monthly" | "sometimes"
   sleepSchedule       String?
   likesParties        String?
   communicationMethod String?
-  roommateGender      String[] @default([])
+  roommateGender      String[] @default([]) // Options: "male" | "female" | "non-binary" | "transgender-male" | "transgender-female" | "other"
   roommateSharing     String?
   roommateGuests      String?
   createdAt           DateTime @default(now()) @map("created_at")
