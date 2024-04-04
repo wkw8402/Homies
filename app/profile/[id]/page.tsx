@@ -26,7 +26,7 @@ export default async function ProfilePage({
     notFound();
   }
 
-  if (!profile) {
+  if (profile.status === 404) {
     notFound();
   }
 

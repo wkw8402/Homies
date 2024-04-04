@@ -25,27 +25,21 @@ export async function GET(
 ) {
   const { id: profileId } = params;
 
-  const session = await getServerSession(authOptions);
+  try {
+    const profile = await prisma.profile.findUnique({
+      where: { id: profileId },
+      include: { user: true },
+    });
 
-  if (session) {
-    try {
-      const profile = await prisma.profile.findUnique({
-        where: { id: profileId },
-        include: { user: true },
-      });
-
-      if (!profile) {
-        return NextResponse.json({ status: 404, message: 'Profile not found' });
-      }
-      return NextResponse.json(profile);
-    } catch (error) {
-      return NextResponse.json({
-        status: 500,
-        message: 'Internal server error',
-        error: error.message,
-      });
+    if (!profile) {
+      return NextResponse.json({ status: 404, message: 'Profile not found' });
     }
-  } else {
-    return NextResponse.json({ status: 401, message: 'Unauthorized' });
+    return NextResponse.json(profile);
+  } catch (error) {
+    return NextResponse.json({
+      status: 500,
+      message: 'Internal server error',
+      error: error.message,
+    });
   }
 }
