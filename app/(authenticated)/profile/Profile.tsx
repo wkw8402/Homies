@@ -4,6 +4,7 @@ import ProfileForm from '@/components/ProfileForm';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { Profile } from '@prisma/client';
+import ImageUploader from '@/components/ImageUploader';
 
 const MyProfile = ({
   session,
@@ -36,6 +37,7 @@ const MyProfile = ({
                     (sign out)
                   </button>
                 </p>
+                <ImageUploader />
                 <ProfileForm session={session} profile={profile} />
                 {profile && (
                   <div className="flex flex-col space-y-4">
