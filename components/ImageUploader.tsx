@@ -7,7 +7,6 @@ const ImageUploader = () => {
     const formData = new FormData(e.currentTarget);
     
     try {
-      // Use axios for the POST request
       await axios.post('/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -15,15 +14,12 @@ const ImageUploader = () => {
       })
       .then((response) => {
         console.log('Upload success:', response.data);
-        // Handle success here (e.g., show a success message)
       })
       .catch((error) => {
         console.error('Upload failed:', error);
-        // Handle the error here (e.g., show an error message)
       });
     } catch (error) {
       console.error('Unexpected error:', error);
-      // Handle any unexpected errors here
     }
   };
 
