@@ -65,6 +65,8 @@ model User {
   roomanteInvites     Invite[]  @relation("roomate")
   homieInvites        Invite[]  @relation("homie")
 
+  contacts Contact[] 
+
   @@map("users")
 }
 
@@ -138,4 +140,17 @@ model Invite {
   homieStatus   String? // "pending" | "accepted" | "rejected"
 
   @@map("invites")
+}
+
+// Emergency Contact Model
+model Contact {
+  id        String  @id @default(cuid())
+  title     String  
+  name      String
+  phoneNumber String @map("phone_number")
+  email     String?
+  userId    String  @map("user_id")
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("contacts")
 }
