@@ -88,6 +88,10 @@ export default function Realistic() {
           </Link>
           .
         </p>
+        <div className="space"></div>
+        <Link href="/dashboard" className="block bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm py-2 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-110">
+          Back to Dashboard!
+      </Link>
       </div>
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </>
