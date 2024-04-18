@@ -96,7 +96,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             <span className="px-2 bg-background text-muted-foreground">OR</span>
           </div>
         </div>
-        <Button variant="outline" type="button" disabled={isLoading}>
+        <Button 
+          variant="outline" 
+          type="button" 
+          onClick={() => signIn('google', { callbackUrl: `${window.location.origin}/dashboard` })} //or just dashboard
+          disabled={isLoading}>
           {isLoading ? (
             <Icons.spinner className="w-4 h-4 mr-2 animate-spin" />
           ) : (
