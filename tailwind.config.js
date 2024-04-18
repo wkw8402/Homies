@@ -62,6 +62,12 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      gridTemplateRows: {
+        'settingsLayout': '75px 1fr'
+      },
+      gridTemplateColumns: {
+        'settingsLayout': "215px 1fr" 
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
