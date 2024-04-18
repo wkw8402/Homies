@@ -5,10 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from "react";
 
-export function MainNav({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
+export function MainNav(props) {
   const activePath = usePathname();
 
   const [profileId, setProfileId] = useState("");
@@ -59,8 +56,7 @@ export function MainNav({
 
   return (
     <nav
-      className={cn('flex items-center space-x-4 lg:space-x-6', className)}
-      {...props}
+      className={cn('flex items-center space-x-4 lg:space-x-6 mx-6')}
     >
       {/* <Image alt="logo" src={'/images/logo.png'} width={80} height={50} /> */}
 
