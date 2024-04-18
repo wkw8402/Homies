@@ -5,6 +5,8 @@ import Email from 'next-auth/providers/email';
 import { createTransport } from 'nodemailer';
 import { BASE_URL } from './constants';
 import { prisma } from './prismadb';
+import GoogleProvider from 'next-auth/providers/google';
+
 
 async function sendVerificationRequest(params) {
   const { identifier, url, provider, theme } = params;
@@ -92,6 +94,10 @@ function text({ url, host }: { url: string; host: string }) {
 
 export const authOptions: NextAuthOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
     Email({
       server: {
         host: 'smtp.gmail.com',
