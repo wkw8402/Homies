@@ -1,7 +1,7 @@
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '../../../../lib/prismadb';
+import { prisma } from '../../../../../lib/prismadb';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,25 +11,26 @@ export const GET = async (req: NextRequest, { params }: { params: { userId: stri
   if (session) {
     try {
       const { userId } = params;
-      const user = await prisma.user.findUnique({
+      const profile = await prisma.profile.findUnique({
         where: {
-          id: userId,
+          userId: userId,
         },
       });
-
-      if (!user) {
-        return NextResponse.json({ status: 404, message: "User not found" });
+  
+      if (!profile) {
+        return NextResponse.json({ status: 404, message: "Profile not found" })
       }
-      return NextResponse.json(user);
-
+      return NextResponse.json(profile);
+  
     } catch (error) {
       return NextResponse.json({
         status: 500,
         message: "Internal server error",
         error: error.message
-      });
+      })
     }
   } else {
     return NextResponse.json({ status: 401, message: 'Unauthorized' });
   }
-}
+
+} 

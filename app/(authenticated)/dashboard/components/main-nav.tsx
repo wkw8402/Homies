@@ -3,18 +3,60 @@
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from "react";
 
-export function MainNav({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
+export function MainNav(props) {
   const activePath = usePathname();
 
-  console.log(activePath);
+  const [profileId, setProfileId] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const userId = props.session?.user?.id;
+
+      try {
+        const profileRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/profile/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application.json"
+          }
+        })
+
+        const profile = await profileRes.json();
+        setProfileId(profile.id);
+
+      } catch (error) {
+        console.error('Error retrieving profile:', error);
+      }
+    }
+
+    const checkIsAdmin = async () => {
+      const userId = props.session?.user?.id;
+
+      try {
+        const userRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application.json"
+          }
+        })
+
+        const user = await userRes.json();
+        setIsAdmin(user.admin);
+
+      } catch (error) {
+        console.error('Error retrieving profile:', error);
+      }
+    }
+    fetchProfile();
+    checkIsAdmin();
+
+  }, [props.session?.user?.id])
+
   return (
     <nav
-      className={cn('flex items-center space-x-4 lg:space-x-6', className)}
-      {...props}
+      className={cn('flex items-center space-x-4 lg:space-x-6 mx-6')}
     >
       {/* <Image alt="logo" src={'/images/logo.png'} width={80} height={50} /> */}
 
@@ -59,16 +101,31 @@ export function MainNav({
         Profile
       </Link>
       <Link
-        href="/profile/share"
+        href={`/profile/${profileId}`}
         className={cn(
           activePath === '/profile/share'
             ? 'text-primary'
             : 'text-muted-foreground',
           'text-sm font-medium transition-colors hover:text-primary'
         )}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         Share
       </Link>
+      {isAdmin &&
+        <Link
+          href="/admin"
+          className={cn(
+            activePath === '/admin' ? 'text-primary' : 'text-muted-foreground',
+            'text-sm font-medium transition-colors hover:text-primary'
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Admin Dashboard
+        </Link>
+      }
     </nav>
   );
 }

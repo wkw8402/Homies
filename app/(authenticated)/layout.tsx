@@ -11,12 +11,13 @@ export const metadata: Metadata = {
 
 export default async function AuthLayout({ children }) {
   const session = await getServerSession(authOptions);
+
   return (
     <>
       <div className="flex flex-col">
         <div className="border-b">
           <div className="flex items-center h-16 px-4">
-            <MainNav className="mx-6" />
+            <MainNav session={session} className="mx-6" />
             <div className="flex items-center ml-auto space-x-4">
               <UserNav session={session} />
             </div>
