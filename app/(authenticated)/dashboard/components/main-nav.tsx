@@ -19,7 +19,7 @@ export function MainNav({
       const userId = props.session?.user?.id;
 
       try {
-        const profileRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/me/${userId}`, {
+        const profileRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/profile/${userId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application.json"
