@@ -38,13 +38,13 @@ export function UserNav({ session }) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/settings">
+          {/* <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Billing</DropdownMenuItem> */}
+          <Link href="/settings" target="_blank" rel="noreferrer noopener">
+            <DropdownMenuItem>
               Settings
-            </Link>
-          </DropdownMenuItem>
+            </DropdownMenuItem>
+          </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem
