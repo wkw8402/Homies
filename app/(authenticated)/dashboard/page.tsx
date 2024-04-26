@@ -143,6 +143,35 @@ const InfoItem = ({ emoji, title, subtitle }) => (
   </div>
 );
 
+const FindingRoommateSubComponent = ({ title, subtitle }) => (
+  <Card className="flex flex-row items-center justify-center max-w-xs mx-10">
+    <div className="w-16 h-16 bg-gray-200 items-left"></div>
+    <CardContent>
+      <p className="text-[1.25rem] leading-6 text-black">{title}</p>
+    </CardContent>
+    {subtitle && <p className="opacity-50 text-base leading-6">{subtitle}</p>}
+  </Card>
+);
+
+const ResourcesSubComponent = ({ title, subtitle }) => (
+  <Card className="flex flex-col items-center justify-center gap-4 max-w-xs mx-10">
+    <CardContent>
+      <p className="text-[1.25rem] leading-7 text-black">{title}</p>
+    </CardContent>
+    {subtitle && <p className="opacity-50 text-base leading-6">{subtitle}</p>}
+  </Card>
+);
+
+const EducationContentSubComponent = ({ title, subtitle }) => (
+  <Card className="flex flex-row items-center justify-center gap-4 max-w-xs mx-10">
+    <div className="w-16 h-16 bg-gray-200 items-center"></div>
+    <CardContent>
+      <p className="text-[1.25rem] leading-7 text-black">{title}</p>
+    </CardContent>
+    {subtitle && <p className="opacity-50 text-base leading-6">{subtitle}</p>}
+  </Card>
+);
+
 const WaysToFindRoommate = () => (
   <Card className="flex flex-col gap-12 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
     <CardContent>
@@ -156,6 +185,44 @@ const WaysToFindRoommate = () => (
   </Card>
 );
 
+const HowFindingYourRoommateWorks = () => (
+  <Card className="flex flex-row gap-15 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
+    <CardContent className="flex-1 text-left">
+    <div className="text-sm">
+      <SectionHeader>How Finding Your Roommate Works</SectionHeader>
+    </div>
+    </CardContent>
+    <CardContent className="flex flex-col gap-8">
+      <FindingRoommateSubComponent title="Profile Creation" subtitle="" />
+      <FindingRoommateSubComponent title="Matchmaking" subtitle="" />
+      <FindingRoommateSubComponent title="Meet your matches with confidence" subtitle=""/>
+    </CardContent>
+  </Card>
+);
+
+const Resources = () => (
+  <Card className="flex flex-row gap-12 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
+    <CardContent className="flex-1 text-left">
+      <SectionHeader>Resources</SectionHeader>
+    </CardContent>
+    <CardContent className="flex-1 flex-col text-center">
+        <ResourcesSubComponent title="Supportive Services Directory" subtitle="" />
+        <ResourcesSubComponent title="Homies Community Hub" subtitle="" />
+    </CardContent>
+  </Card>
+);
+
+const EducationContent = () => (
+  <Card className="flex flex-row gap-10 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
+    <CardContent className="flex-1 text-left">
+      <SectionHeader>Education Content</SectionHeader>
+    </CardContent>
+      <CardContent className="flex flex-col justify-center gap-8">
+        <EducationContentSubComponent title="Video 1" subtitle="" />
+        <EducationContentSubComponent title="Video 2" subtitle="" />
+      </CardContent>
+  </Card>
+);
 
 const EmergencyContacts = () => (
   <Card className="flex flex-col gap-12 items-center justify-center text-center py-[3.75rem] px-[10.625rem] min-h-[500px]">
@@ -264,6 +331,9 @@ export default async function DashboardPage() {
     <MoveInChecklist />
     <Dashboard roommateCategories={testRoommateCategories}/>
     <WaysToFindRoommate />
+    <HowFindingYourRoommateWorks />
+    <Resources />
+    <EducationContent />
     <EmergencyContacts />
     <WeeklyUpdates />
     <EmergencyResources />
