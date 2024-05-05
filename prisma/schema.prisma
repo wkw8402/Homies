@@ -64,6 +64,7 @@ model User {
   // Realisitcally, a user will only have invites to be a roomate or a homie, not both
   roomanteInvites     Invite[]  @relation("roomate")
   homieInvites        Invite[]  @relation("homie")
+  Contacts            Contact[]
 
   @@map("users")
 }
@@ -138,4 +139,19 @@ model Invite {
   homieStatus   String? // "pending" | "accepted" | "rejected"
 
   @@map("invites")
+}
+
+model Contact {
+  id     String @id @default(cuid())
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name      String?
+  email     String?
+  phone     String?
+  relation  String? // Things like parent, sibling, friend, etc.
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("contacts")
 }
