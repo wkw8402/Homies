@@ -3,6 +3,153 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+export enum UserType {
+  Homie = 'homie',
+  Supporter = 'supporter',
+}
+
+export enum Gender {
+  Male = 'male',
+  Female = 'female',
+  'Transgender Male' = 'transgender-male',
+  'Transgender Female' = 'transgender-female',
+  'Non-Binary' = 'non-binary',
+  'Prefer not to say' = 'private',
+  Other = 'other',
+}
+
+export enum State {
+  Alabama = 'AL',
+  Alaska = 'AK',
+  Arizona = 'AZ',
+  Arkansas = 'AR',
+  California = 'CA',
+  Colorado = 'CO',
+  Connecticut = 'CT',
+  Delaware = 'DE',
+  Florida = 'FL',
+  Georgia = 'GA',
+  Hawaii = 'HI',
+  Idaho = 'ID',
+  Illinois = 'IL',
+  Indiana = 'IN',
+  Iowa = 'IA',
+  Kansas = 'KS',
+  Kentucky = 'KY',
+  Louisiana = 'LA',
+  Maine = 'ME',
+  Maryland = 'MD',
+  Massachusetts = 'MA',
+  Michigan = 'MI',
+  Minnesota = 'MN',
+  Mississippi = 'MS',
+  Missouri = 'MO',
+  Montana = 'MT',
+  Nebraska = 'NE',
+  Nevada = 'NV',
+  'New Hampshire' = 'NH',
+  'New Jersey' = 'NJ',
+  'New Mexico' = 'NM',
+  'New York' = 'NY',
+  'North Carolina' = 'NC',
+  'North Dakota' = 'ND',
+  Ohio = 'OH',
+  Oklahoma = 'OK',
+  Oregon = 'OR',
+  Pennsylvania = 'PA',
+  'Rhode Island' = 'RI',
+  'South Carolina' = 'SC',
+  'South Dakota' = 'SD',
+  Tennessee = 'TN',
+  Texas = 'TX',
+  Utah = 'UT',
+  Vermont = 'VT',
+  Virginia = 'VA',
+  Washington = 'WA',
+  'West Virginia' = 'WV',
+  Wisconsin = 'WI',
+  Wyoming = 'WY',
+}
+
+export enum RegionalCenter {
+  'Alta California' = 'Alta California Regional Center',
+  'Central Valley' = 'Central Valley Regional Center',
+  'Eastern Los Angeles' = 'Eastern Los Angeles Regional Center',
+  'Far Northern' = 'Far Northern Regional Center',
+  'Golden Gate' = 'Golden Gate Regional Center',
+  Harbor = 'Harbor Regional Center',
+  Inland = 'Inland Regional Center',
+  Kern = 'Kern Regional Center',
+  Lanterman = 'Lanterman Regional Center',
+  'North Bay' = 'North Bay Regional Center',
+  'North Los Angeles' = 'North Los Angeles County Regional Center',
+  'Orange County' = 'Orange County Regional Center',
+  'Redwood Coast' = 'Redwood Coast Regional Center',
+  'East Bay' = 'Regional Center of the East Bay',
+  'San Andreas' = 'San Andreas Regional Center',
+  'San Diego' = 'San Diego Regional Center',
+  'San Gabriel/Pomona' = 'San Gabriel/Pomona Regional Center',
+  'South Central Los Angeles' = 'South Central Los Angeles Regional Center',
+  'Tri-Counties' = 'Tri-Counties Regional Center',
+  'Valley Mountain' = 'Valley Mountain Regional Center',
+  'Westside' = 'Westside Regional Center',
+  Unknown = 'unknown',
+  Other = 'other',
+}
+
+export enum PersonalityType {
+  Introverted = 'introverted',
+  Extroverted = 'extroverted',
+  Both = 'both',
+}
+
+export enum LifestyleChoice {
+  Yes = 'yes',
+  No = 'no',
+  Sometimes = 'sometimes',
+}
+
+export enum RoommatePreference {
+  Male = 'male',
+  Female = 'female',
+  'Transgender Male' = 'transgender-male',
+  'Transgender Female' = 'transgender-female',
+  'Non-Binary' = 'non-binary',
+  'No Preference' = 'no-preference',
+}
+
+export enum ConflictResolution {
+  Discuss = 'discuss',
+  Avoid = 'avoid',
+  Mediator = 'mediator',
+}
+
+export enum CommunicationMethod {
+  'Face to Face' = 'faceToFace',
+  'Phone Call' = 'phoneCall',
+  'Text Email' = 'textEmail',
+}
+
+export enum CleaningFrequency {
+  Daily = 'daily',
+  Weekly = 'weekly',
+  Monthly = 'monthly',
+  Sometimes = 'sometimes',
+  None = 'none',
+}
+
+export enum SleepSchedule {
+  'Early Bird' = 'earlyBird',
+  'Night Owl' = 'nightOwl',
+  Mixed = 'mixed',
+}
+
+export enum SharingPreference {
+  'Yes, I want to share' = 'yesSharing',
+  'Somewhat, I want to share' = 'someSharing',
+  'No, I do not want to share' = 'noSharing',
+}
+
 export const onboardingPages = [
   {
     step: 'get-started',
@@ -20,13 +167,13 @@ export const onboardingPages = [
             label: 'Neurodivergent individual',
             description:
               'Select this option if you are signing up for a loved one.',
-            value: 'homie',
+            value: UserType.Homie,
           },
           {
             label: 'Caregiver roommate, family member or friend',
             description:
               'I want to take care of and live with a neurodivergent individual.',
-            value: 'supporter',
+            value: UserType.Supporter,
           },
         ],
         rules: {
@@ -154,13 +301,13 @@ export const onboardingPages = [
         fieldName: 'gender',
         blockType: 'radio',
         options: [
-          { label: 'Male', value: 'male' },
-          { label: 'Female', value: 'female' },
-          { label: 'Transgender Male', value: 'transgender-male' },
-          { label: 'Transgender Female', value: 'transgender-female' },
-          { label: 'Non-binary', value: 'non-binary' },
-          { label: 'Prefer not to say', value: 'private' },
-          { label: 'Other...', value: 'other' },
+          { label: 'Male', value: Gender.Male },
+          { label: 'Female', value: Gender.Female },
+          { label: 'Transgender Male', value: Gender.TransgenderMale },
+          { label: 'Transgender Female', value: Gender.TransgenderFemale },
+          { label: 'Non-binary', value: Gender.NonBinary },
+          { label: 'Prefer not to say', value: Gender.Private },
+          { label: 'Other...', value: Gender.Other },
         ],
         rules: { required: 'Gender selection is required' },
         dbField: 'user.gender',
@@ -189,16 +336,16 @@ export const onboardingPages = [
         blockType: 'text',
         autoComplete: 'address-line1',
         options: null,
-        rules: { 
+        rules: {
           required: 'Address is required',
           pattern: {
             // value: /^([a-zA-Z0-9\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/gi,
             value: /^[#.0-9a-zA-Z\s,-]+$/g,
-            message: "Invalid Street Address",
+            message: 'Invalid Street Address',
           },
         },
         dbField: 'address.address1',
-      },    
+      },
       {
         question: 'Apt, suite, etc. (optional)',
         fieldName: 'address2',
@@ -213,10 +360,11 @@ export const onboardingPages = [
         autoComplete: 'address-level2',
         blockType: 'text',
         options: null,
-        rules: { 
+        rules: {
           required: 'City is required',
           pattern: {
-            value: /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/gi,
+            value:
+              /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/gi,
             message: "Invalid City (Must Only Contain A-Z,-,')",
           },
         },
@@ -227,58 +375,10 @@ export const onboardingPages = [
         fieldName: 'state',
         autoComplete: 'address-level1',
         blockType: 'select',
-        options: [
-          { label: 'Alabama', value: 'AL' },
-          { label: 'Alaska', value: 'AK' },
-          { label: 'Arizona', value: 'AZ' },
-          { label: 'Arkansas', value: 'AR' },
-          { label: 'California', value: 'CA' },
-          { label: 'Colorado', value: 'CO' },
-          { label: 'Connecticut', value: 'CT' },
-          { label: 'Delaware', value: 'DE' },
-          { label: 'Florida', value: 'FL' },
-          { label: 'Georgia', value: 'GA' },
-          { label: 'Hawaii', value: 'HI' },
-          { label: 'Idaho', value: 'ID' },
-          { label: 'Illinois', value: 'IL' },
-          { label: 'Indiana', value: 'IN' },
-          { label: 'Iowa', value: 'IA' },
-          { label: 'Kansas', value: 'KS' },
-          { label: 'Kentucky', value: 'KY' },
-          { label: 'Louisiana', value: 'LA' },
-          { label: 'Maine', value: 'ME' },
-          { label: 'Maryland', value: 'MD' },
-          { label: 'Massachusetts', value: 'MA' },
-          { label: 'Michigan', value: 'MI' },
-          { label: 'Minnesota', value: 'MN' },
-          { label: 'Mississippi', value: 'MS' },
-          { label: 'Missouri', value: 'MO' },
-          { label: 'Montana', value: 'MT' },
-          { label: 'Nebraska', value: 'NE' },
-          { label: 'Nevada', value: 'NV' },
-          { label: 'New Hampshire', value: 'NH' },
-          { label: 'New Jersey', value: 'NJ' },
-          { label: 'New Mexico', value: 'NM' },
-          { label: 'New York', value: 'NY' },
-          { label: 'North Carolina', value: 'NC' },
-          { label: 'North Dakota', value: 'ND' },
-          { label: 'Ohio', value: 'OH' },
-          { label: 'Oklahoma', value: 'OK' },
-          { label: 'Oregon', value: 'OR' },
-          { label: 'Pennsylvania', value: 'PA' },
-          { label: 'Rhode Island', value: 'RI' },
-          { label: 'South Carolina', value: 'SC' },
-          { label: 'South Dakota', value: 'SD' },
-          { label: 'Tennessee', value: 'TN' },
-          { label: 'Texas', value: 'TX' },
-          { label: 'Utah', value: 'UT' },
-          { label: 'Vermont', value: 'VT' },
-          { label: 'Virginia', value: 'VA' },
-          { label: 'Washington', value: 'WA' },
-          { label: 'West Virginia', value: 'WV' },
-          { label: 'Wisconsin', value: 'WI' },
-          { label: 'Wyoming', value: 'WY' },
-        ],
+        options: Object.entries(State).map(([fullName, abbr]) => ({
+          label: fullName,
+          value: abbr,
+        })),
         rules: { required: 'State selection is required' },
         dbField: 'address.state',
       },
@@ -288,11 +388,12 @@ export const onboardingPages = [
         blockType: 'text',
         autoComplete: 'postal-code',
         options: null,
-        rules: { 
+        rules: {
           required: 'Zip Code is required',
           pattern: {
             value: /^[0-9]*$/gi,
-            message: 'Zip Code Contains Invalid Characters (Must Only Contain 0-9)',
+            message:
+              'Zip Code Contains Invalid Characters (Must Only Contain 0-9)',
           },
         },
         dbField: 'address.zip',
@@ -309,91 +410,10 @@ export const onboardingPages = [
         question: 'Select your Regional Center',
         fieldName: 'regionalCenter',
         blockType: 'select',
-        options: [
-          {
-            label: 'Alta California Regional Center',
-            value: 'Alta California Regional Center',
-          },
-          {
-            label: 'Central Valley Regional Center',
-            value: 'Central Valley Regional Center',
-          },
-          {
-            label: 'Eastern Los Angeles Regional Center',
-            value: 'Eastern Los Angeles Regional Center',
-          },
-          {
-            label: 'Far Northern Regional Center',
-            value: 'Far Northern Regional Center',
-          },
-          {
-            label: 'Golden Gate Regional Center',
-            value: 'Golden Gate Regional Center',
-          },
-          { label: 'Harbor Regional Center', value: 'Harbor Regional Center' },
-          { label: 'Inland Regional Center', value: 'Inland Regional Center' },
-          { label: 'Kern Regional Center', value: 'Kern Regional Center' },
-          {
-            label: 'Lanterman Regional Center',
-            value: 'Lanterman Regional Center',
-          },
-          {
-            label: 'North Bay Regional Center',
-            value: 'North Bay Regional Center',
-          },
-          {
-            label: 'North Los Angeles County Regional Center',
-            value: 'North Los Angeles County Regional Center',
-          },
-          {
-            label: 'Orange County Regional Center',
-            value: 'Orange County Regional Center',
-          },
-          {
-            label: 'Redwood Coast Regional Center',
-            value: 'Redwood Coast Regional Center',
-          },
-          {
-            label: 'Regional Center of the East Bay',
-            value: 'Regional Center of the East Bay',
-          },
-          {
-            label: 'San Andreas Regional Center',
-            value: 'San Andreas Regional Center',
-          },
-          {
-            label: 'San Diego Regional Center',
-            value: 'San Diego Regional Center',
-          },
-          {
-            label: 'San Gabriel/Pomona Regional Center',
-            value: 'San Gabriel/Pomona Regional Center',
-          },
-          {
-            label: 'South Central Los Angeles Regional Center',
-            value: 'South Central Los Angeles Regional Center',
-          },
-          {
-            label: 'Tri-Counties Regional Center',
-            value: 'Tri-Counties Regional Center',
-          },
-          {
-            label: 'Valley Mountain Regional Center',
-            value: 'Valley Mountain Regional Center',
-          },
-          {
-            label: 'Westside Regional Center',
-            value: 'Westside Regional Center',
-          },
-          {
-            label: `Not sure`,
-            value: 'unknown',
-          },
-          {
-            label: `Other...`,
-            value: 'other',
-          },
-        ],
+        options: Object.values(RegionalCenter).map((center) => ({
+          label: center,
+          value: center,
+        })),
         rules: { required: 'Regional center selection is required' },
         dbField: 'user.regionalCenter',
       },
@@ -456,16 +476,20 @@ export const onboardingPages = [
   {
     step: 'about-you-personality',
     title: 'Tell Us About Yourself',
-    description: 'Knowing more about your personality helps us to better match you with a compatible roommate.',
+    description:
+      'Knowing more about your personality helps us to better match you with a compatible roommate.',
     blocks: [
       {
         question: 'I am...',
         fieldName: 'personalityType',
         blockType: 'radio',
         options: [
-          { label: 'Introverted', value: 'introverted' },
-          { label: 'Extroverted', value: 'extroverted' },
-          { label: 'Both introverted & extroverted', value: 'both' },
+          { label: 'Introverted', value: PersonalityType.Introverted },
+          { label: 'Extroverted', value: PersonalityType.Extroverted },
+          {
+            label: 'Both introverted & extroverted',
+            value: PersonalityType.Both,
+          },
         ],
         rules: { required: 'Please select an option' },
         dbField: 'profile.personalityType',
@@ -484,8 +508,8 @@ export const onboardingPages = [
         blockType: 'radio',
         rules: { required: 'Please select an option' },
         options: [
-          { label: 'Yes', value: 'yes' },
-          { label: 'No', value: 'no' },
+          { label: 'Yes', value: LifestyleChoice.Yes },
+          { label: 'No', value: LifestyleChoice.No },
         ],
         dbField: 'profile.smoking',
       },
